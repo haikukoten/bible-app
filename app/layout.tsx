@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Bible Website',
-  description: 'Explore the scriptures, read our blog, and find daily inspiration.',
+  description: 'Explore the scriptures, read our blog, find daily inspiration, and watch inspiring videos.',
 }
 
 export default function RootLayout({
@@ -20,12 +20,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen bg-background">
-          <header className="px-4 lg:px-6 h-14 flex items-center max-w-7xl mx-auto w-full">
+          <header className="px-4 lg:px-6 h-14 flex items-center justify-between max-w-7xl mx-auto w-full">
             <Link className="flex items-center justify-center" href="/">
               <BookOpen className="h-6 w-6" />
               <span className="sr-only">Bible Website</span>
             </Link>
-            <nav className="ml-auto flex gap-4 sm:gap-6">
+            <nav className="flex gap-4 sm:gap-6">
               <Link className="text-sm font-medium hover:underline underline-offset-4" href="/">
                 Home
               </Link>
@@ -34,6 +34,9 @@ export default function RootLayout({
               </Link>
               <Link className="text-sm font-medium hover:underline underline-offset-4" href="/blog">
                 Blog
+              </Link>
+              <Link className="text-sm font-medium hover:underline underline-offset-4" href="/videos">
+                Videos
               </Link>
             </nav>
           </header>
