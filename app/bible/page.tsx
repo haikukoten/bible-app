@@ -1,44 +1,105 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ChevronLeft, ChevronRight, Search } from "lucide-react"
+import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Modal from 'react-modal';
+
+// Mapping of book names to abbreviations used in the JSON
+const bookNameToAbbrevMap: Record<string, string> = {
+  "Genesis": "gn",
+  "Exodus": "ex",
+  // Add more book names and their abbreviations as needed
+};
+
+const books = [
+  { name: "Genesis", abbrev: "gn", chapters: 50 },
+  { name: "Exodus", abbrev: "ex", chapters: 40 },
+  // Add more books with their chapter count
+];
 
 export default function BiblePage() {
-  const [book, setBook] = useState('Genesis')
-  const [chapter, setChapter] = useState('1')
-  const [verse, setVerse] = useState('1')
-  const [bibleText, setBibleText] = useState('')
-  const [fontSize, setFontSize] = useState('medium')
+  const [bibleVersion, setBibleVersion] = useState<string>('en_kjv'); // default version
+  const [book, setBook] = useState<string>('Genesis');
+  const [chapter, setChapter] = useState<string>('1');
+  const [bibleText, setBibleText] = useState<string[]>([]);
+  const [fontSize, setFontSize] = useState<string>('medium');
+  const [bibleData, setBibleData] = useState<any>(null); // Explicitly set type to `any` or appropriate type
+  const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false); // State for controlling chapter modal
+
+  // Load the selected Bible version's JSON data
+  useEffect(() => {
+    fetchBibleData();
+  }, [bibleVersion]);
 
   useEffect(() => {
-    fetchBibleText()
-  }, [book, chapter, verse])
-
-  const fetchBibleText = async () => {
-    try {
-      const response = await fetch(`https://bible-api.com/${book}+${chapter}:${verse}`)
-      const data = await response.json()
-      setBibleText(data.text)
-    } catch (error) {
-      console.error('Error fetching Bible text:', error)
-      setBibleText('Error loading Bible text. Please try again.')
+    if (bibleData) {
+      fetchBibleText();
     }
-  }
+  }, [book, chapter, bibleData]);
+
+  const fetchBibleData = async () => {
+    try {
+      const response = await fetch(`/json/${bibleVersion}.json`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setBibleData(data);
+    } catch (error) {
+      console.error('Error loading Bible data:', error);
+      setBibleText(['Error loading Bible data. Please try again.']);
+    }
+  };
+
+  const fetchBibleText = () => {
+    if (!bibleData) return; // Early return if bibleData is null
+
+    const bookAbbrev = bookNameToAbbrevMap[book];
+    if (!bookAbbrev) {
+      setBibleText(['Book abbreviation not found. Please check your selection.']);
+      return;
+    }
+
+    const bookData = bibleData.find((b: any) => b.abbrev.toLowerCase() === bookAbbrev.toLowerCase());
+
+    if (bookData) {
+      const chapterIndex = parseInt(chapter, 10) - 1;
+      if (bookData.chapters[chapterIndex]) {
+        setBibleText(bookData.chapters[chapterIndex]);
+      } else {
+        setBibleText(['Chapter not found. Please check your selection.']);
+      }
+    } else {
+      setBibleText(['Book not found. Please check your selection.']);
+    }
+  };
 
   const handlePreviousChapter = () => {
-    const currentChapter = parseInt(chapter, 10)
+    const currentChapter = parseInt(chapter, 10);
     if (currentChapter > 1) {
-      setChapter((prevChapter) => String(parseInt(prevChapter, 10) - 1))
+      setChapter((prevChapter) => String(parseInt(prevChapter, 10) - 1));
     }
-  }
+  };
 
   const handleNextChapter = () => {
-    setChapter((prevChapter) => String(parseInt(prevChapter, 10) + 1))
-  }
+    setChapter((prevChapter) => String(parseInt(prevChapter, 10) + 1));
+  };
+
+  const handleVersionChange = (version: string) => {
+    setBibleVersion(version); // Update the Bible version
+  };
+
+  const openChapterModal = () => {
+    setIsChapterModalOpen(true);  // Open the chapter selection modal
+  };
+
+  const handleChapterSelect = (chapter: string) => {
+    setChapter(chapter);  // Set the selected chapter as a string
+    setIsChapterModalOpen(false); // Close the modal
+  };
 
   return (
     <>
@@ -54,33 +115,32 @@ export default function BiblePage() {
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
-              <form className="flex space-x-2">
-                <Input
-                  className="max-w-lg flex-1"
-                  placeholder="Enter book"
-                  type="text"
-                  value={book}
-                  onChange={(e) => setBook(e.target.value)}
-                />
-                <Input
-                  className="max-w-lg flex-1"
-                  placeholder="Enter chapter"
-                  type="text"
-                  value={chapter}
-                  onChange={(e) => setChapter(e.target.value)}
-                />
-                <Input
-                  className="max-w-lg flex-1"
-                  placeholder="Enter verse"
-                  type="text"
-                  value={verse}
-                  onChange={(e) => setVerse(e.target.value)}
-                />
-                <Button type="submit" onClick={(e) => { e.preventDefault(); fetchBibleText(); }}>
-                  <Search className="h-4 w-4" />
-                  <span className="sr-only">Search</span>
-                </Button>
-              </form>
+              {/* Bible Selector Component */}
+              <div>
+                <Select value={bibleVersion} onValueChange={handleVersionChange}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Version" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="en_kjv">King James Version</SelectItem>
+                    {/* Add more versions */}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Select value={book} onValueChange={setBook}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Book" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {books.map((book) => (
+                      <SelectItem key={book.abbrev} value={book.name}>
+                        {book.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
         </div>
@@ -89,22 +149,35 @@ export default function BiblePage() {
         <div className="container px-4 md:px-6">
           <Card className="w-full max-w-3xl mx-auto">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>{`${book} ${chapter}:${verse}`}</CardTitle>
-              <Select value={fontSize} onValueChange={setFontSize}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select font size" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="small">Small</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="large">Large</SelectItem>
-                </SelectContent>
-              </Select>
+              <CardTitle>{`${book} ${chapter}`}</CardTitle>
+
+              <div className="flex space-x-4">
+                {/* Button to select chapter */}
+                <Button onClick={openChapterModal}>
+                  Select Chapter
+                </Button>
+
+                {/* Font size selection */}
+                <Select value={fontSize} onValueChange={setFontSize}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select font size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="small">Small</SelectItem>
+                    <SelectItem value="medium">Medium</SelectItem>
+                    <SelectItem value="large">Large</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </CardHeader>
             <CardContent>
-              <p className={`font-serif ${fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? 'text-xl' : 'text-base'}`}>
-                {bibleText}
-              </p>
+              <div className={`font-serif ${fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? 'text-xl' : 'text-base'}`}>
+                {bibleText.map((verse, index) => (
+                  <p key={index}>
+                    <sup>{index + 1}</sup> {verse}
+                  </p>
+                ))}
+              </div>
             </CardContent>
           </Card>
           <div className="flex justify-center mt-4 space-x-4">
@@ -119,6 +192,29 @@ export default function BiblePage() {
           </div>
         </div>
       </section>
+
+      {/* Chapter Selection Modal */}
+      {isChapterModalOpen && (
+        <Modal
+          isOpen={isChapterModalOpen}
+          onRequestClose={() => setIsChapterModalOpen(false)}
+          contentLabel="Select Chapter"
+          className="bg-white p-4 rounded shadow-lg max-w-xs mx-auto"
+          overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+        >
+          <h2 className="text-lg font-semibold mb-4">Select Chapter for {book}</h2>
+          <div className="grid grid-cols-5 gap-2">
+            {Array.from({ length: books.find(b => b.name === book)?.chapters || 0 }, (_, i) => (
+              <Button key={i} onClick={() => handleChapterSelect(String(i + 1))}>
+                {i + 1}
+              </Button>
+            ))}
+          </div>
+          <Button onClick={() => setIsChapterModalOpen(false)} className="mt-4">
+            Close
+          </Button>
+        </Modal>
+      )}
     </>
-  )
+  );
 }

@@ -38,6 +38,9 @@ export default function RootLayout({
               <Link className="text-sm font-medium hover:underline underline-offset-4" href="/videos">
                 Videos
               </Link>
+              <Link className="text-sm font-medium hover:underline underline-offset-4" href="/chat">
+                Chat with Bible
+              </Link>
             </nav>
           </header>
           <main className="flex-1 w-full max-w-7xl mx-auto">
