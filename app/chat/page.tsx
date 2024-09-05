@@ -1,42 +1,96 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
+// Define the Message type
 type Message = {
-  role: 'user' | 'assistant'
-  content: string
+  role: 'user' | 'assistant';
+  content: string;
 }
 
 export default function ChatWithBible() {
-  const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
-  ])
-  const [input, setInput] = useState('')
+  // Load messages from localStorage on initial load
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const storedMessages = localStorage.getItem('bible-chat-messages')
+    return storedMessages ? JSON.parse(storedMessages) : [
+      { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
+    ]
+  })
 
-  const handleSend = () => {
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  // Save messages to localStorage every time they change
+  useEffect(() => {
+    localStorage.setItem('bible-chat-messages', JSON.stringify(messages))
+  }, [messages])
+
+  // Function to send a message
+  const handleSend = async () => {
     if (input.trim()) {
-      setMessages([...messages, { role: 'user', content: input }])
+      const userMessage: Message = { role: 'user', content: input }
+      setMessages([...messages, userMessage])
       setInput('')
-      
-      // Simulate a response (in a real app, this would be an API call)
-      setTimeout(() => {
-        setMessages(prev => [...prev, { 
-          role: 'assistant', 
-          content: `That's an interesting question about "${input}". In the Bible, we can find various passages that might relate to this topic. However, as an AI, I don't have personal beliefs or interpretations. I'd recommend consulting with a religious leader or scholar for a more in-depth discussion on this matter.`
-        }])
-      }, 1000)
+
+      setLoading(true)
+      try {
+        // Send user message to the GPT API via the backend route
+        const response = await fetch('/api/chat-with-gpt', { // <-- Correct API route
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ messages: [...messages, userMessage] })  // Pass the conversation history
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          // Update the chat with the assistant's response
+          const assistantMessage: Message = { role: 'assistant', content: data.message }
+          setMessages(prev => [
+            ...prev,
+            assistantMessage
+          ])
+        } else {
+          // Handle error case
+          const errorMessage: Message = { role: 'assistant', content: 'Sorry, I had trouble getting a response. Please try again.' }
+          setMessages(prev => [
+            ...prev,
+            errorMessage
+          ])
+        }
+      } catch (error) {
+        const errorMessage: Message = { role: 'assistant', content: 'An error occurred. Please try again.' }
+        setMessages(prev => [
+          ...prev,
+          errorMessage
+        ])
+      } finally {
+        setLoading(false)
+      }
     }
+  }
+
+  // Function to clear messages
+  const handleClearMessages = () => {
+    setMessages([
+      { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
+    ])
+    localStorage.removeItem('bible-chat-messages')
   }
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <Card className="w-full">
         <CardContent className="p-6">
-          <h1 className="text-2xl font-bold mb-4">Chat with Bible</h1>
+          <h1 className="text-2xl font-bold mb-4">Chat with GPT-4 Mini</h1>
+
+          {/* Chat Area */}
           <ScrollArea className="h-[400px] mb-4 p-4 border rounded-md">
             {messages.map((message, index) => (
               <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
@@ -46,6 +100,8 @@ export default function ChatWithBible() {
               </div>
             ))}
           </ScrollArea>
+
+          {/* Input Field */}
           <div className="flex gap-2">
             <Input
               type="text"
@@ -53,8 +109,12 @@ export default function ChatWithBible() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              disabled={loading}
             />
-            <Button onClick={handleSend}>Send</Button>
+            <Button onClick={handleSend} disabled={loading}>
+              {loading ? 'Sending...' : 'Send'}
+            </Button>
+            <Button variant="destructive" onClick={handleClearMessages}>Clear Chat</Button>
           </div>
         </CardContent>
       </Card>

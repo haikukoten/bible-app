@@ -7,25 +7,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Modal from 'react-modal';
 
-// Mapping of book names to abbreviations used in the JSON
-const bookNameToAbbrevMap: Record<string, string> = {
-  "Genesis": "gn",
-  "Exodus": "ex",
-  // Add more book names and their abbreviations as needed
-};
-
-const books = [
-  { name: "Genesis", abbrev: "gn", chapters: 50 },
-  { name: "Exodus", abbrev: "ex", chapters: 40 },
-  // Add more books with their chapter count
-];
+// Import books and abbreviations from the separate file
+import { books, bookNameToAbbrevMap } from "@/lib/bibleBooks"; // Adjust the path as needed
 
 export default function BiblePage() {
   const [bibleVersion, setBibleVersion] = useState<string>('en_kjv'); // default version
   const [book, setBook] = useState<string>('Genesis');
   const [chapter, setChapter] = useState<string>('1');
   const [bibleText, setBibleText] = useState<string[]>([]);
-  const [fontSize, setFontSize] = useState<string>('medium');
+  const [fontSize, setFontSize] = useState<string>('large');
   const [bibleData, setBibleData] = useState<any>(null); // Explicitly set type to `any` or appropriate type
   const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false); // State for controlling chapter modal
 
