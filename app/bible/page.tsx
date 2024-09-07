@@ -18,6 +18,7 @@ export default function BiblePage() {
   const [fontSize, setFontSize] = useState<string>('large');
   const [bibleData, setBibleData] = useState<any>(null); // Explicitly set type to `any` or appropriate type
   const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false); // State for controlling chapter modal
+  const [bibleVersions, setBibleVersions] = useState<{ name: string; abbreviation: string }[]>([]); // For storing versions
 
   // Load the selected Bible version's JSON data
   useEffect(() => {
@@ -29,6 +30,27 @@ export default function BiblePage() {
       fetchBibleText();
     }
   }, [book, chapter, bibleData]);
+
+  useEffect(() => {
+    fetchBibleVersions(); // Fetch versions on page load
+  }, []);
+
+  // Fetch the Bible versions dynamically from /json/index.json
+  const fetchBibleVersions = async () => {
+    try {
+      const response = await fetch('/json/index.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const versionData = await response.json();
+      const allVersions = versionData.reduce((acc: { name: string; abbreviation: string }[], languageEntry: any) => {
+        return acc.concat(languageEntry.versions);
+      }, []);
+      setBibleVersions(allVersions); // Store fetched versions
+    } catch (error) {
+      console.error('Error fetching Bible versions:', error);
+    }
+  };
 
   const fetchBibleData = async () => {
     try {
@@ -105,18 +127,27 @@ export default function BiblePage() {
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
-              {/* Bible Selector Component */}
+              {/* Bible Version Selector */}
               <div>
                 <Select value={bibleVersion} onValueChange={handleVersionChange}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select Version" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="en_kjv">King James Version</SelectItem>
-                    {/* Add more versions */}
+                    {bibleVersions.length === 0 ? (
+                      <SelectItem value="disabled" disabled>No Versions Available</SelectItem>
+                    ) : (
+                      bibleVersions.map((version) => (
+                        <SelectItem key={version.abbreviation} value={version.abbreviation}>
+                          {version.name}
+                        </SelectItem>
+                      ))
+                    )}
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Book Selector */}
               <div>
                 <Select value={book} onValueChange={setBook}>
                   <SelectTrigger className="w-full">
@@ -135,6 +166,8 @@ export default function BiblePage() {
           </div>
         </div>
       </section>
+
+      {/* Bible Content */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
           <Card className="w-full max-w-3xl mx-auto">
