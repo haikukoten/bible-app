@@ -13,7 +13,6 @@ type Message = {
 }
 
 export default function ChatWithBible() {
-  // Load messages from localStorage on initial load
   const [messages, setMessages] = useState<Message[]>(() => {
     const storedMessages = localStorage.getItem('bible-chat-messages')
     return storedMessages ? JSON.parse(storedMessages) : [
@@ -24,12 +23,10 @@ export default function ChatWithBible() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // Save messages to localStorage every time they change
   useEffect(() => {
     localStorage.setItem('bible-chat-messages', JSON.stringify(messages))
   }, [messages])
 
-  // Function to send a message
   const handleSend = async () => {
     if (input.trim()) {
       const userMessage: Message = { role: 'user', content: input }
@@ -38,26 +35,23 @@ export default function ChatWithBible() {
 
       setLoading(true)
       try {
-        // Send user message to the GPT API via the backend route
-        const response = await fetch('/api/chat-with-gpt', { // <-- Correct API route
+        const response = await fetch('/api/chat-with-gpt', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ messages: [...messages, userMessage] })  // Pass the conversation history
+          body: JSON.stringify({ messages: [...messages, userMessage] })
         })
 
         const data = await response.json()
 
         if (response.ok) {
-          // Update the chat with the assistant's response
           const assistantMessage: Message = { role: 'assistant', content: data.message }
           setMessages(prev => [
             ...prev,
             assistantMessage
           ])
         } else {
-          // Handle error case
           const errorMessage: Message = { role: 'assistant', content: 'Sorry, I had trouble getting a response. Please try again.' }
           setMessages(prev => [
             ...prev,
@@ -76,7 +70,6 @@ export default function ChatWithBible() {
     }
   }
 
-  // Function to clear messages
   const handleClearMessages = () => {
     setMessages([
       { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
@@ -90,7 +83,6 @@ export default function ChatWithBible() {
         <CardContent className="p-6">
           <h1 className="text-2xl font-bold mb-4">Chat with GPT-4 Mini</h1>
 
-          {/* Chat Area */}
           <ScrollArea className="h-[400px] mb-4 p-4 border rounded-md">
             {messages.map((message, index) => (
               <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
@@ -101,7 +93,6 @@ export default function ChatWithBible() {
             ))}
           </ScrollArea>
 
-          {/* Input Field */}
           <div className="flex gap-2">
             <Input
               type="text"

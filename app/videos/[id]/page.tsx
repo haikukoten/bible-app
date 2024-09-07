@@ -4,7 +4,54 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChevronLeft } from "lucide-react"
 import { getVideoData } from '@/lib/videos'
+import { Metadata } from 'next'
 
+// Define types for the ID parameter
+interface Params {
+  params: {
+    id: string
+  }
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const videoData = await getVideoData(params.id)
+
+  if (!videoData) {
+    return {
+      title: 'Video not found',
+      description: 'The video you are looking for does not exist.',
+    }
+  }
+
+  return {
+    title: videoData.title,
+    description: videoData.description,
+    openGraph: {
+      title: videoData.title,
+      description: videoData.description,
+      images: [
+        {
+          url: videoData.thumbnail,
+          alt: videoData.title,
+        },
+      ],
+      url: `https://yourdomain.com/videos/${params.id}`,
+      type: 'video.other',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: videoData.title,
+      description: videoData.description,
+      images: [videoData.thumbnail],
+    },
+    alternates: {
+      canonical: `https://yourdomain.com/videos/${params.id}`,
+    },
+  }
+}
+
+// Dynamic Video Page Component
 export default async function VideoPage({ params }: { params: { id: string } }) {
   const videoData = await getVideoData(params.id)
 
