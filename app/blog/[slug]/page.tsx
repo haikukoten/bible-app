@@ -1,15 +1,64 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChevronLeft } from "lucide-react"
-import { getPostData } from '@/lib/posts'
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChevronLeft } from 'lucide-react';
+import { getPostData, getPostSlugs } from '@/lib/posts';
+import { Metadata } from 'next';
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const postData = await getPostData(params.slug)
+// Define types for the slug parameter
+interface Params {
+  params: {
+    slug: string;
+  };
+}
+
+// Fetch post data dynamically based on the slug
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const postData = await getPostData(params.slug);
 
   if (!postData) {
-    notFound()
+    return {
+      title: 'Post not found',
+      description: 'The blog post you are looking for does not exist.',
+    };
+  }
+
+  return {
+    title: postData.title,
+    description: postData.excerpt || postData.contentHtml.slice(0, 150),
+    openGraph: {
+      title: postData.title,
+      description: postData.excerpt || postData.contentHtml.slice(0, 150),
+      type: 'article',
+      publishedTime: postData.date,
+      url: `https://yourdomain.com/blog/${params.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: postData.title,
+      description: postData.excerpt || postData.contentHtml.slice(0, 150),
+    },
+    alternates: {
+      canonical: `https://yourdomain.com/blog/${params.slug}`,
+    },
+  };
+}
+
+// Fetch slugs dynamically for generating static paths
+export async function generateStaticParams() {
+  const slugs = getPostSlugs();
+  return slugs.map((slug) => ({
+    slug,
+  }));
+}
+
+// Dynamic Blog Post Component
+export default async function BlogPost({ params }: Params) {
+  const postData = await getPostData(params.slug);
+
+  if (!postData) {
+    notFound();
   }
 
   return (
@@ -26,9 +75,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <p className="text-sm text-gray-500">{postData.date}</p>
         </CardHeader>
         <CardContent>
-          <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <div
+            className="prose dark:prose-invert max-w-none"
+            dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+          />
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
