@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       description: postData.excerpt || postData.contentHtml.slice(0, 150),
       type: 'article',
       publishedTime: postData.date,
-      url: `https://yourdomain.com/blog/${params.slug}`,
+      url: `https://asbible.com/blog/${params.slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       description: postData.excerpt || postData.contentHtml.slice(0, 150),
     },
     alternates: {
-      canonical: `https://yourdomain.com/blog/${params.slug}`,
+      canonical: `https://asbible.com/blog/${params.slug}`,
     },
   };
 }

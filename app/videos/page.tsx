@@ -7,10 +7,10 @@ import { Metadata } from 'next'
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: 'Inspiring Bible Videos',
+  title: 'asBible | Inspiring Bible Videos',
   description: 'Watch and learn from our collection of insightful Bible study videos.',
   openGraph: {
-    title: 'Inspiring Bible Videos',
+    title: 'asBible | Inspiring Bible Videos',
     description: 'Watch and learn from our collection of insightful Bible study videos.',
     url: 'https://yourdomain.com/videos',
     type: 'website',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Inspiring Bible Videos',
+    title: 'asBible | Inspiring Bible Videos',
     description: 'Watch and learn from our collection of insightful Bible study videos.',
     images: ['/path-to-thumbnail-image.jpg'], // Default image for Twitter cards
   },

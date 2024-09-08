@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     images: ['/path-to-thumbnail-image.jpg'], // Default image for Twitter cards
   },
   alternates: {
-    canonical: 'https://yourdomain.com/bible',
+    canonical: 'https://asbible.com/bible',
   },
 };
 
