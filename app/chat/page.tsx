@@ -81,7 +81,7 @@ export default function ChatWithBible() {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <Card className="w-full">
         <CardContent className="p-6">
-          <h1 className="text-2xl font-bold mb-4">Chat with GPT-4 Mini</h1>
+          <h1 className="text-2xl font-bold mb-4">Chat with Bible</h1>
 
           <ScrollArea className="h-[400px] mb-4 p-4 border rounded-md">
             {messages.map((message, index) => (

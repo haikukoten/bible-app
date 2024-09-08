@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'asBible | Read Bible Online',
-  description: 'Read Bible online, select from different versions and explore the word of God.',
+  title: 'asBible | Chat with Bible AI',
+  description: 'Now you can chat with Bible with asBible AI Bible Chat. Get in-depth knowledge of Bible with the Bible Chat.',
   openGraph: {
-    title: 'asBible | Read Bible Online',
-    description: 'Read Bible online, select from different versions and explore the word of God.',
-    url: 'https://yourdomain.com/bible',
+    title: 'asBible | Chat with Bible AI',
+    description: 'Now you can chat with Bible with asBible AI Bible Chat. Get in-depth knowledge of Bible with the Bible Chat.',
+    url: 'https://asbible.com/bible',
     type: 'website',
     images: [
       {
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'asBible | Read Bible Online',
-    description: 'Read Bible online, select from different versions and explore the word of God.',
+    title: 'asBible | Chat with Bible AI',
+    description: 'Now you can chat with Bible with asBible AI Bible Chat. Get in-depth knowledge of Bible with the Bible Chat.',
     images: ['/path-to-thumbnail-image.jpg'], // Default image for Twitter cards
   },
   alternates: {
