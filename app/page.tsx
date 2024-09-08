@@ -1,106 +1,58 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { books } from '@/lib/bibleBooks'
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from 'next/link'
-
-// Define types for blog post data and Bible book structure
-interface BlogPost {
-  id: string;
-  date: string;
-  title: string;
-  excerpt: string;
-}
-
-// Utility function to remove BOM (Byte Order Mark) from a file if present
-function stripBOM(content: string): string {
-  return content.charAt(0) === '\uFEFF' ? content.slice(1) : content;
-}
-
-// Fetch blog posts directly from the _posts directory (server-side)
-function getSortedPostsData(): BlogPost[] {
-  const postsDirectory = path.join(process.cwd(), '_posts')
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData: BlogPost[] = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, '')
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const matterResult = matter(fileContents)
-
-    return {
-      id,
-      ...(matterResult.data as { date: string; title: string; excerpt: string }),
-    }
-  })
-
-  return allPostsData.sort((a, b) => {
-    return new Date(a.date) < new Date(b.date) ? 1 : -1
-  })
-}
-
-// Fetch the Bible data and strip the BOM if present
-function loadBibleData() {
-  try {
-    const biblePath = path.join(process.cwd(), 'public/json/en_kjv.json')
-    const fileContents = fs.readFileSync(biblePath, 'utf8')
-
-    // Remove BOM before parsing
-    const cleanContents = stripBOM(fileContents)
-
-    return JSON.parse(cleanContents)  // Parse the clean JSON
-  } catch (error) {
-    console.error("Error reading Bible data:", error)
-    return null
-  }
-}
+import { books } from '@/lib/bibleBooks';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import Image from "next/image";  // Import the Image component
+import { getAllArticles } from "@/lib/contentful";
 
 // Get the daily verse based on current date
 function getDailyVerse() {
-  const bibleData = loadBibleData()
+  try {
+    const bibleData = require('../public/json/en_kjv.json'); // Load the JSON file
 
-  if (!bibleData) return null
+    const currentDate = new Date();
+    const dayOfYear = Math.floor(
+      (currentDate.getTime() - new Date(currentDate.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24
+    );
 
-  const currentDate = new Date()
-  const dayOfYear = Math.floor(
-    (currentDate.getTime() - new Date(currentDate.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24
-  )
+    const totalVerses = bibleData.reduce((total: number, book: any) => {
+      return total + book.chapters.reduce((chapterSum: number, chapter: string[]) => chapterSum + chapter.length, 0);
+    }, 0);
 
-  const totalVerses = bibleData.reduce((total: number, book: any) => {
-    return total + book.chapters.reduce((chapterSum: number, chapter: string[]) => chapterSum + chapter.length, 0)
-  }, 0)
+    let verseIndex = dayOfYear % totalVerses;
+    let verseCount = 0;
 
-  let verseIndex = dayOfYear % totalVerses
-  let verseCount = 0
+    for (const book of bibleData) {
+      for (let chapterIndex = 0; chapterIndex < book.chapters.length; chapterIndex++) {
+        const chapter = book.chapters[chapterIndex];
+        for (let verseIndexInChapter = 0; verseIndexInChapter < chapter.length; verseIndexInChapter++) {
+          if (verseCount === verseIndex) {
+            const foundBook = books.find((b) => b.abbrev === book.abbrev);
+            const bookName = foundBook ? foundBook.name : "Unknown Book";
 
-  for (const book of bibleData) {
-    for (let chapterIndex = 0; chapterIndex < book.chapters.length; chapterIndex++) {
-      const chapter = book.chapters[chapterIndex]
-      for (let verseIndexInChapter = 0; verseIndexInChapter < chapter.length; verseIndexInChapter++) {
-        if (verseCount === verseIndex) {
-          const foundBook = books.find((b) => b.abbrev === book.abbrev)
-          const bookName = foundBook ? foundBook.name : "Unknown Book"
-
-          return {
-            book: bookName,
-            chapter: chapterIndex + 1,
-            verse: verseIndexInChapter + 1,
-            text: chapter[verseIndexInChapter],
+            return {
+              book: bookName,
+              chapter: chapterIndex + 1,
+              verse: verseIndexInChapter + 1,
+              text: chapter[verseIndexInChapter],
+            };
           }
+          verseCount++;
         }
-        verseCount++
       }
     }
-  }
 
-  return null
+    return null;
+  } catch (error) {
+    console.error("Error reading Bible data:", error);
+    return null;
+  }
 }
 
-// Async component for Home page
 export default async function Home() {
-  const allPostsData = getSortedPostsData()
-  const dailyVerse = getDailyVerse()
+  // Fetch latest posts from Contentful
+  const allPostsData = await getAllArticles(4, false); // Fetch 4 latest posts
+  const dailyVerse = getDailyVerse(); // Get the daily verse
 
   return (
     <>
@@ -119,7 +71,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* Verse of the Day */}
       <section className="w-full py-8 md:py-16 lg:py-20 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
@@ -158,19 +110,33 @@ export default async function Home() {
             Latest Blog Posts
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {allPostsData.slice(0, 4).map((post) => (
-              <Card key={post.id}>
+            {allPostsData.map((post) => (
+              <Card key={post.sys.id}>
                 <CardHeader>
                   <CardTitle>{post.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-500 dark:text-gray-400">{post.excerpt}</p>
+                  {/* Check if cover image exists and render it */}
+                  {post.coverImage?.url && (
+                    <Image
+                      src={post.coverImage.url}
+                      alt={post.title}
+                      width={350}
+                      height={200}
+                      className="rounded-lg object-cover w-full"
+                    />
+                  )}
+                  <p className="text-gray-500 dark:text-gray-400 mt-4">{post.excerpt}</p>
                 </CardContent>
                 <CardFooter className="flex justify-between">
-                  <Link href={`/blog/${post.id}`} passHref>
+                  <Link href={`/blog/${post.slug}`} passHref>
                     <Button variant="outline">Read More</Button>
                   </Link>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{post.date}</p>
+                  {post.publishedDate && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {new Date(post.publishedDate).toLocaleDateString()}
+                    </p>
+                  )}
                 </CardFooter>
               </Card>
             ))}
@@ -178,5 +144,5 @@ export default async function Home() {
         </div>
       </section>
     </>
-  )
+  );
 }

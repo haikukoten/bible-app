@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"; // Import the Button component
 import { notFound } from "next/navigation";
-import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { BLOCKS, MARKS, INLINES, Document } from "@contentful/rich-text-types"; // Import the Document type
 import { ReactNode } from "react";
 
 // Custom rendering options for Contentful rich text
@@ -16,7 +16,22 @@ const options = {
     [MARKS.CODE]: (text: ReactNode) => <code className="font-mono bg-gray-100 p-1 rounded">{text}</code>,
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: any, children: ReactNode) => <p className="mb-4">{children}</p>,
+    [BLOCKS.PARAGRAPH]: (node: any, children: ReactNode) => {
+      // Handle line breaks within paragraphs
+      const paragraphText = children.map((child) => {
+        if (typeof child === 'string') {
+          return child.split('\n').map((part, index) => (
+            <>
+              {part}
+              {index < child.split('\n').length - 1 && <br />} {/* Add <br /> for each new line */}
+            </>
+          ));
+        }
+        return child;
+      });
+
+      return <p className="mb-4">{paragraphText}</p>;
+    },
     [BLOCKS.HEADING_1]: (node: any, children: ReactNode) => <h1 className="text-4xl font-bold mb-4">{children}</h1>,
     [BLOCKS.HEADING_2]: (node: any, children: ReactNode) => <h2 className="text-3xl font-bold mb-3">{children}</h2>,
     [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => <h3 className="text-2xl font-bold mb-2">{children}</h3>,
@@ -90,6 +105,12 @@ export default async function BlogPostPage({
   // Safely access coverImage URL from article object
   const coverImageUrl = article?.coverImage?.url;
 
+  // Directly access content from article
+  const content: Document = article?.content;  // No need to use `json` here
+
+  // Debug the content document
+  console.log("Content document:", content);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
       <section className="w-full max-w-3xl">
@@ -132,7 +153,12 @@ export default async function BlogPostPage({
             <div className="space-y-4 md:space-y-6">
               <div className="space-y-2">
                 <div className="prose max-w-none">
-                  {article.content && documentToReactComponents(article.content, options)}
+                  {/* Check if content exists */}
+                  {content ? (
+                    documentToReactComponents(content, options)
+                  ) : (
+                    <p>No content available.</p>
+                  )}
                 </div>
               </div>
             </div>
