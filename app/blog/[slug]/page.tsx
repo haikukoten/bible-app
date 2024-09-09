@@ -1,11 +1,11 @@
+import React, { ReactNode } from "react";
 import { getArticle, getAllArticles } from "@/lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // Import the Button component
+import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
-import { BLOCKS, MARKS, INLINES, Document } from "@contentful/rich-text-types"; // Import the Document type
-import { ReactNode } from "react";
+import { BLOCKS, MARKS, Document } from "@contentful/rich-text-types";
 
 // Custom rendering options for Contentful rich text
 const options = {
@@ -13,59 +13,73 @@ const options = {
     [MARKS.BOLD]: (text: ReactNode) => <strong className="font-bold">{text}</strong>,
     [MARKS.ITALIC]: (text: ReactNode) => <em className="italic">{text}</em>,
     [MARKS.UNDERLINE]: (text: ReactNode) => <u>{text}</u>,
-    [MARKS.CODE]: (text: ReactNode) => <code className="font-mono bg-gray-100 p-1 rounded">{text}</code>,
+    [MARKS.CODE]: (text: ReactNode) => (
+      <code className="font-mono bg-gray-100 p-1 rounded">{text}</code>
+    ),
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node: any, children: ReactNode) => {
-      // Handle line breaks within paragraphs
-      const paragraphText = children.map((child) => {
-        if (typeof child === 'string') {
-          return child.split('\n').map((part, index) => (
-            <>
-              {part}
-              {index < child.split('\n').length - 1 && <br />} {/* Add <br /> for each new line */}
-            </>
-          ));
-        }
-        return child;
-      });
+    [BLOCKS.PARAGRAPH]: (node: any, children: ReactNode | ReactNode[]) => {
+      // Ensure children is an array and handle line breaks within paragraphs
+      const paragraphText = Array.isArray(children)
+        ? children.map((child: ReactNode, index: number) => {
+            if (typeof child === "string") {
+              return child.split("\n").map((part, partIndex) => (
+                <React.Fragment key={partIndex}>
+                  {part}
+                  {partIndex < child.split("\n").length - 1 && <br />}
+                </React.Fragment>
+              ));
+            }
+            return child;
+          })
+        : children;
 
       return <p className="mb-4">{paragraphText}</p>;
     },
-    [BLOCKS.HEADING_1]: (node: any, children: ReactNode) => <h1 className="text-4xl font-bold mb-4">{children}</h1>,
-    [BLOCKS.HEADING_2]: (node: any, children: ReactNode) => <h2 className="text-3xl font-bold mb-3">{children}</h2>,
-    [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => <h3 className="text-2xl font-bold mb-2">{children}</h3>,
-    [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
-    [BLOCKS.OL_LIST]: (node: any, children: ReactNode) => <ol className="list-decimal pl-5 mb-4">{children}</ol>,
+    [BLOCKS.HEADING_1]: (node: any, children: ReactNode) => (
+      <h1 className="text-4xl font-bold mb-4">{children}</h1>
+    ),
+    [BLOCKS.HEADING_2]: (node: any, children: ReactNode) => (
+      <h2 className="text-3xl font-bold mb-3">{children}</h2>
+    ),
+    [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => (
+      <h3 className="text-2xl font-bold mb-2">{children}</h3>
+    ),
+    [BLOCKS.HEADING_4]: (node: any, children: ReactNode) => (
+      <h4 className="text-2xl font-bold mb-1">{children}</h4>
+    ),
+    [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
+      <ul className="list-disc pl-5 mb-4">{children}</ul>
+    ),
+    [BLOCKS.OL_LIST]: (node: any, children: ReactNode) => (
+      <ol className="list-decimal pl-5 mb-4">{children}</ol>
+    ),
     [BLOCKS.LIST_ITEM]: (node: any, children: ReactNode) => <li>{children}</li>,
-    [BLOCKS.QUOTE]: (node: any, children: ReactNode) => <blockquote className="border-l-4 pl-4 italic my-4">{children}</blockquote>,
+    [BLOCKS.QUOTE]: (node: any, children: ReactNode) => (
+      <blockquote className="border-l-4 pl-4 italic my-4">{children}</blockquote>
+    ),
     [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
       const { url, description } = node.data.target.fields;
       return (
         <Image
           src={getAbsoluteUrl(url)}
-          alt={description || 'Embedded asset'}
+          alt={description || "Embedded asset"}
           width={500}
           height={300}
           className="w-full rounded-lg my-4"
         />
       );
     },
-    [INLINES.HYPERLINK]: (node: any, children: ReactNode) => (
-      <a href={node.data.uri} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
-    ),
   },
 };
 
 // Function to handle image URLs that are relative
 function getAbsoluteUrl(url: string) {
-  if (url.startsWith('//')) {
+  if (url.startsWith("//")) {
     return `https:${url}`;
-  } else if (url.startsWith('/')) {
+  } else if (url.startsWith("/")) {
     return `https://images.ctfassets.net${url}`;
-  } else if (!url.startsWith('http')) {
+  } else if (!url.startsWith("http")) {
     return `https://${url}`;
   }
   return url;
@@ -97,25 +111,22 @@ export default async function BlogPostPage({
 
   // Find the current article index
   const currentIndex = allArticles.findIndex((a) => a.slug === params.slug);
-  
+
   // Previous and Next articles
   const prevArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
-  const nextArticle = currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null;
+  const nextArticle =
+    currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null;
 
   // Safely access coverImage URL from article object
   const coverImageUrl = article?.coverImage?.url;
 
   // Directly access content from article
-  const content: Document = article?.content;  // No need to use `json` here
-
-  // Debug the content document
-  console.log("Content document:", content);
+  const content: Document = article?.content; // No need to use `json` here
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
       <section className="w-full max-w-3xl">
         <div className="space-y-12">
-          
           {/* Go Back Button */}
           <div className="mt-8">
             <Link href="/blog">
@@ -125,10 +136,10 @@ export default async function BlogPostPage({
 
           <div className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
-              {article.title}
+              {article?.title}
             </h1>
             <p className="text-zinc-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
-              {article.excerpt}
+              {article?.excerpt}
             </p>
           </div>
 
@@ -138,7 +149,7 @@ export default async function BlogPostPage({
               <div>
                 <Image
                   src={coverImageUrl}
-                  alt={article.title || 'Article Image'}
+                  alt={article.title || "Article Image"}
                   width={1200} // Adjust as per need
                   height={630} // Adjust as per need
                   className="rounded-xl"
@@ -176,10 +187,7 @@ export default async function BlogPostPage({
               </Link>
 
               <Link href={nextArticle ? `/blog/${nextArticle.slug}` : "#"}>
-                <Button
-                  variant="outline"
-                  disabled={!nextArticle}
-                >
+                <Button variant="outline" disabled={!nextArticle}>
                   Next →
                 </Button>
               </Link>

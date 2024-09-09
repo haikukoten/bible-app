@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllArticles } from "@/lib/contentful";
+import { getAllArticles, Article } from "@/lib/contentful"; // Article is now exported
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,17 +8,33 @@ import { useEffect, useState } from "react";
 
 export default function BlogPage() {
   // State to store blog posts
-  const [allPostsData, setAllPostsData] = useState<any[]>([]);
+  const [allPostsData, setAllPostsData] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        // Fetch blog posts from Contentful
-        const posts = await getAllArticles(3, false); // Fetch only published articles
-        console.log("Fetched articles:", posts); // Debug log to ensure articles are fetched
-        setAllPostsData(posts);
+        let allPosts: Article[] = []; // Explicitly type as Article[]
+        let limit = 10; // Fetch in batches of 10
+        let morePostsAvailable = true;
+        let skip = 0;
+
+        // Continue fetching while there are more posts available
+        while (morePostsAvailable) {
+          // getAllArticles takes three arguments: limit, skip, and isDraftMode
+          const postsBatch = await getAllArticles(limit, skip, false); 
+          console.log("Fetched articles batch:", postsBatch); // Debug log to ensure articles are fetched
+          
+          if (postsBatch.length > 0) {
+            allPosts = [...allPosts, ...postsBatch];
+            skip += postsBatch.length; // Increment skip to fetch the next batch
+          }
+
+          morePostsAvailable = postsBatch.length === limit; // If we get fewer than limit, we fetched all
+        }
+
+        setAllPostsData(allPosts);
       } catch (err) {
         console.error("Error fetching articles:", err);
         setError("Failed to fetch articles.");

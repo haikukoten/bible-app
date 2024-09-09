@@ -51,7 +51,7 @@ function getDailyVerse() {
 
 export default async function Home() {
   // Fetch latest posts from Contentful
-  const allPostsData = await getAllArticles(4, false); // Fetch 4 latest posts
+  const allPostsData = await getAllArticles(4, 0, false); // Fetch 4 latest posts
   const dailyVerse = getDailyVerse(); // Get the daily verse
 
   return (
@@ -105,44 +105,46 @@ export default async function Home() {
 
       {/* Latest Blog Posts */}
       <section className="w-full py-6 md:py-12 lg:py-16 bg-white dark:bg-gray-900">
-        <div className="container px-4 md:px-6 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl lg:text-6xl mb-8">
-            Latest Blog Posts
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {allPostsData.map((post) => (
-              <Card key={post.sys.id}>
-                <CardHeader>
-                  <CardTitle>{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {/* Check if cover image exists and render it */}
-                  {post.coverImage?.url && (
-                    <Image
-                      src={post.coverImage.url}
-                      alt={post.title}
-                      width={350}
-                      height={200}
-                      className="rounded-lg object-cover w-full"
-                    />
-                  )}
-                  <p className="text-gray-500 dark:text-gray-400 mt-4">{post.excerpt}</p>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Link href={`/blog/${post.slug}`} passHref>
-                    <Button variant="outline">Read More</Button>
-                  </Link>
-                  {post.publishedDate && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {new Date(post.publishedDate).toLocaleDateString()}
-                    </p>
-                  )}
-                </CardFooter>
-              </Card>
-            ))}
+  <div className="container px-4 md:px-6 max-w-7xl mx-auto">
+    <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl lg:text-6xl mb-8">
+      Latest Blog Posts
+    </h2>
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {allPostsData.map((post) => (
+        <Card key={post.sys.id} className="flex flex-col justify-between h-full">
+          <div>
+            <CardHeader>
+              <CardTitle>{post.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {/* Check if cover image exists and render it */}
+              {post.coverImage?.url && (
+                <Image
+                  src={post.coverImage.url}
+                  alt={post.title}
+                  width={350}
+                  height={200}
+                  className="rounded-lg object-cover w-full"
+                />
+              )}
+              <p className="text-gray-500 dark:text-gray-400 mt-4">{post.excerpt}</p>
+            </CardContent>
           </div>
-        </div>
-      </section>
+          <CardFooter className="flex justify-between mt-auto">
+            <Link href={`/blog/${post.slug}`} passHref>
+              <Button variant="outline">Read More</Button>
+            </Link>
+            {post.publishedDate && (
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {new Date(post.publishedDate).toLocaleDateString()}
+              </p>
+            )}
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
     </>
   );
 }

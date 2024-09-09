@@ -25,7 +25,7 @@ const ARTICLE_GRAPHQL_FIELDS = `
   }
 `;
 
-interface Article {
+export interface Article {
   sys: {
     id: string;
   };
@@ -78,11 +78,12 @@ function extractArticleEntries(fetchResponse: any): Article[] {
 }
 
 export async function getAllArticles(
-  limit = 3,
+  limit = 10, // Default limit per request
+  skip = 0,   // Default skip for pagination
   isDraftMode = false
 ): Promise<Article[]> {
   const query = `query {
-    blogCollection(where: { slug_exists: true }, order: publishedDate_DESC, limit: ${limit}, preview: ${
+    blogCollection(where: { slug_exists: true }, order: publishedDate_DESC, limit: ${limit}, skip: ${skip}, preview: ${
       isDraftMode ? "true" : "false"
     }) {
       items {
