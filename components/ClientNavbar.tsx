@@ -34,13 +34,10 @@ export default function ClientNavbar() {
           Home
         </Link>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="/bible">
-          Bible
+          Read Bible
         </Link>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="/blog">
           Blog
-        </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/videos">
-          Videos
         </Link>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="/chat">
           Chat with Bible
@@ -53,13 +50,10 @@ export default function ClientNavbar() {
           Home
         </Link>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="/bible">
-          Bible
+          Read Bible
         </Link>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="/blog">
           Blog
-        </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/videos">
-          Videos
         </Link>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="/chat">
           Chat with Bible
