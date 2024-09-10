@@ -16,7 +16,7 @@ export default function ClientNavbar() {
     <header className="px-4 lg:px-6 h-14 flex items-center justify-between max-w-7xl mx-auto w-full">
       <Link className="flex items-center justify-center" href="/">
         <BookOpen className="h-6 w-6" />
-        <span className="sr-only">Bible Website</span>
+        <span className="sr-only">asBible</span>
       </Link>
       
       {/* Hamburger Icon for Mobile */}

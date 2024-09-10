@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Read the Bible Online | Bible Study and Scripture Search',
     description: 'Search and read the scriptures from the Bible, select from different versions and explore the word of God.',
-    url: 'https://yourdomain.com/bible',
+    url: 'https://asbible.com/bible',
     type: 'website',
     images: [
       {

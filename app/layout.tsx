@@ -7,7 +7,7 @@ import Link from 'next/link'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Bible Website',
+  title: 'asBible | Read Bible',
   description: 'Explore the scriptures, read our blog, find daily inspiration, and watch inspiring videos.',
 }
 
