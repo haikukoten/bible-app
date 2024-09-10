@@ -17,6 +17,7 @@ export default function BiblePage() {
   const [bibleData, setBibleData] = useState<any>(null); // Explicitly set type to `any` or appropriate type
   const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false); // State for controlling chapter modal
   const [bibleVersions, setBibleVersions] = useState<{ name: string; abbreviation: string }[]>([]); // For storing versions
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state for Bible text
 
   // Fetch Bible versions on page load
   useEffect(() => {
@@ -26,17 +27,20 @@ export default function BiblePage() {
   // Wrapping fetchBibleData in useCallback
   const fetchBibleData = useCallback(async () => {
     try {
+      setIsLoading(true); // Start loading
       const response = await fetch(`/json/${bibleVersion}.json`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       setBibleData(data);
+      setIsLoading(false); // End loading
     } catch (error) {
       console.error('Error loading Bible data:', error);
       setBibleText(['Error loading Bible data. Please try again.']);
+      setIsLoading(false); // End loading even if there was an error
     }
-  }, [bibleVersion]); // Adding bibleVersion as a dependency
+  }, [bibleVersion]);
 
   // Wrapping fetchBibleText in useCallback
   const fetchBibleText = useCallback(() => {
@@ -51,11 +55,15 @@ export default function BiblePage() {
     const bookData = bibleData.find((b: any) => b.abbrev.toLowerCase() === bookAbbrev.toLowerCase());
     if (bookData) {
       const chapterIndex = parseInt(chapter, 10) - 1;
-      setBibleText(bookData.chapters[chapterIndex] || ['Chapter not found.']);
+      if (bookData.chapters[chapterIndex]) {
+        setBibleText(bookData.chapters[chapterIndex]);
+      } else {
+        setBibleText(['Chapter not found.']);
+      }
     } else {
       setBibleText(['Book not found.']);
     }
-  }, [book, chapter, bibleData]); // Adding book, chapter, and bibleData as dependencies
+  }, [book, chapter, bibleData]);
 
   // Fetch Bible data when the version changes
   useEffect(() => {
@@ -65,7 +73,7 @@ export default function BiblePage() {
   // Fetch Bible text when the book, chapter, or bibleData changes
   useEffect(() => {
     fetchBibleText();
-  }, [fetchBibleText, book, chapter, bibleData]); // Now the dependency is stable
+  }, [fetchBibleText, book, chapter, bibleData]);
 
   // Fetch the Bible versions dynamically from /json/index.json
   const fetchBibleVersions = async () => {
@@ -166,10 +174,10 @@ export default function BiblePage() {
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
           <Card className="w-full max-w-3xl mx-auto">
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:items-center md:justify-between">
               <CardTitle>{`${book} ${chapter}`}</CardTitle>
 
-              <div className="flex space-x-4">
+              <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
                 {/* Button to select chapter */}
                 <Button onClick={openChapterModal}>
                   Select Chapter
@@ -177,7 +185,7 @@ export default function BiblePage() {
 
                 {/* Font size selection */}
                 <Select value={fontSize} onValueChange={setFontSize}>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-full md:w-[180px]">
                     <SelectValue placeholder="Select font size" />
                   </SelectTrigger>
                   <SelectContent>
@@ -189,13 +197,17 @@ export default function BiblePage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className={`font-serif ${fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? 'text-xl' : 'text-base'}`}>
-                {bibleText.map((verse, index) => (
-                  <p key={index}>
-                    <sup>{index + 1}</sup> {verse}
-                  </p>
-                ))}
-              </div>
+              {isLoading ? (
+                <p>Loading...</p> // Show a loading message while the data is being fetched
+              ) : (
+                <div className={`font-serif ${fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? 'text-xl' : 'text-base'}`}>
+                  {bibleText.map((verse, index) => (
+                    <p key={index}>
+                      <sup>{index + 1}</sup> {verse}
+                    </p>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
           <div className="flex justify-center mt-4 space-x-4">

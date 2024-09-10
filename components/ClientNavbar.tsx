@@ -12,6 +12,10 @@ export default function ClientNavbar() {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center justify-between max-w-7xl mx-auto w-full">
       <Link className="flex items-center justify-center" href="/">
@@ -46,16 +50,16 @@ export default function ClientNavbar() {
 
       {/* Mobile Navigation */}
       <nav className={`lg:hidden flex flex-col gap-4 sm:gap-6 absolute top-14 left-0 w-full bg-white dark:bg-gray-800 p-4 transition-all duration-300 ease-in-out ${menuOpen ? 'block' : 'hidden'}`}>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/">
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/" onClick={closeMenu}>
           Home
         </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/bible">
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/bible" onClick={closeMenu}>
           Read Bible
         </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/blog">
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/blog" onClick={closeMenu}>
           Blog
         </Link>
-        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/chat">
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="/chat" onClick={closeMenu}>
           Chat with Bible
         </Link>
       </nav>
