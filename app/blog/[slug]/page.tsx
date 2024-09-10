@@ -120,8 +120,8 @@ export default async function BlogPostPage({
   // Safely access coverImage URL from article object
   const coverImageUrl = article?.coverImage?.url;
 
-  // Directly access content from article
-  const content: Document = article?.content; // No need to use `json` here
+  // Use article.content directly instead of json
+  const content = article?.content as unknown as Document;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">

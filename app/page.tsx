@@ -87,23 +87,23 @@ export default async function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Verse of the Day</h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Find daily inspiration in God's word.
+                Find daily inspiration in God&apos;s word.
               </p>
             </div>
             <Card className="w-full max-w-3xl">
               <CardHeader>
-                <CardTitle>Today's Verse</CardTitle>
+                <CardTitle>Today&apos;s Verse</CardTitle>
               </CardHeader>
               <CardContent>
                 {dailyVerse ? (
                   <>
-                    <p className="text-2xl font-serif italic">"{dailyVerse.text}"</p>
+                    <p className="text-2xl font-serif italic">&quot;{dailyVerse.text}&quot;</p>
                     <p className="text-right font-semibold">
                       - {dailyVerse.book} {dailyVerse.chapter}:{dailyVerse.verse}
                     </p>
                   </>
                 ) : (
-                  <p className="text-2xl font-serif italic">Unable to load today's verse.</p>
+                  <p className="text-2xl font-serif italic">Unable to load today&apos;s verse.</p>
                 )}
               </CardContent>
             </Card>

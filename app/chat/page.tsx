@@ -13,69 +13,72 @@ type Message = {
 }
 
 export default function ChatWithBible() {
-  const [messages, setMessages] = useState<Message[]>(() => {
-    const storedMessages = localStorage.getItem('bible-chat-messages')
-    return storedMessages ? JSON.parse(storedMessages) : [
-      { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
-    ]
-  })
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
+  ]);
 
-  const [input, setInput] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
 
+  // Load messages from localStorage (only in the browser)
   useEffect(() => {
-    localStorage.setItem('bible-chat-messages', JSON.stringify(messages))
-  }, [messages])
+    if (typeof window !== 'undefined') {
+      const storedMessages = localStorage.getItem('bible-chat-messages');
+      if (storedMessages) {
+        setMessages(JSON.parse(storedMessages));
+      }
+    }
+  }, []);
+
+  // Save messages to localStorage (only in the browser)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('bible-chat-messages', JSON.stringify(messages));
+    }
+  }, [messages]);
 
   const handleSend = async () => {
     if (input.trim()) {
-      const userMessage: Message = { role: 'user', content: input }
-      setMessages([...messages, userMessage])
-      setInput('')
+      const userMessage: Message = { role: 'user', content: input };
+      setMessages([...messages, userMessage]);
+      setInput('');
 
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await fetch('/api/chat-with-gpt', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ messages: [...messages, userMessage] })
-        })
+          body: JSON.stringify({ messages: [...messages, userMessage] }),
+        });
 
-        const data = await response.json()
+        const data = await response.json();
 
         if (response.ok) {
-          const assistantMessage: Message = { role: 'assistant', content: data.message }
-          setMessages(prev => [
-            ...prev,
-            assistantMessage
-          ])
+          const assistantMessage: Message = { role: 'assistant', content: data.message };
+          setMessages((prev) => [...prev, assistantMessage]);
         } else {
-          const errorMessage: Message = { role: 'assistant', content: 'Sorry, I had trouble getting a response. Please try again.' }
-          setMessages(prev => [
-            ...prev,
-            errorMessage
-          ])
+          const errorMessage: Message = { role: 'assistant', content: 'Sorry, I had trouble getting a response. Please try again.' };
+          setMessages((prev) => [...prev, errorMessage]);
         }
       } catch (error) {
-        const errorMessage: Message = { role: 'assistant', content: 'An error occurred. Please try again.' }
-        setMessages(prev => [
-          ...prev,
-          errorMessage
-        ])
+        const errorMessage: Message = { role: 'assistant', content: 'An error occurred. Please try again.' };
+        setMessages((prev) => [...prev, errorMessage]);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
-  }
+  };
 
   const handleClearMessages = () => {
     setMessages([
       { role: 'assistant', content: 'Hello! I\'m here to chat about the Bible. What would you like to know?' }
-    ])
-    localStorage.removeItem('bible-chat-messages')
-  }
+    ]);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('bible-chat-messages');
+    }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -110,5 +113,5 @@ export default function ChatWithBible() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

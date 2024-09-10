@@ -1,13 +1,11 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Modal from 'react-modal';
-
-// Import books and abbreviations from the separate file
 import { books, bookNameToAbbrevMap } from "@/lib/bibleBooks"; // Adjust the path as needed
 
 export default function BiblePage() {
@@ -20,20 +18,54 @@ export default function BiblePage() {
   const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false); // State for controlling chapter modal
   const [bibleVersions, setBibleVersions] = useState<{ name: string; abbreviation: string }[]>([]); // For storing versions
 
-  // Load the selected Bible version's JSON data
+  // Fetch Bible versions on page load
+  useEffect(() => {
+    fetchBibleVersions();
+  }, []);
+
+  // Wrapping fetchBibleData in useCallback
+  const fetchBibleData = useCallback(async () => {
+    try {
+      const response = await fetch(`/json/${bibleVersion}.json`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setBibleData(data);
+    } catch (error) {
+      console.error('Error loading Bible data:', error);
+      setBibleText(['Error loading Bible data. Please try again.']);
+    }
+  }, [bibleVersion]); // Adding bibleVersion as a dependency
+
+  // Wrapping fetchBibleText in useCallback
+  const fetchBibleText = useCallback(() => {
+    if (!bibleData) return; // Early return if bibleData is null
+
+    const bookAbbrev = bookNameToAbbrevMap[book];
+    if (!bookAbbrev) {
+      setBibleText(['Book abbreviation not found.']);
+      return;
+    }
+
+    const bookData = bibleData.find((b: any) => b.abbrev.toLowerCase() === bookAbbrev.toLowerCase());
+    if (bookData) {
+      const chapterIndex = parseInt(chapter, 10) - 1;
+      setBibleText(bookData.chapters[chapterIndex] || ['Chapter not found.']);
+    } else {
+      setBibleText(['Book not found.']);
+    }
+  }, [book, chapter, bibleData]); // Adding book, chapter, and bibleData as dependencies
+
+  // Fetch Bible data when the version changes
   useEffect(() => {
     fetchBibleData();
-  }, [bibleVersion]);
+  }, [fetchBibleData]); // Now the dependency is stable
 
+  // Fetch Bible text when the book, chapter, or bibleData changes
   useEffect(() => {
-    if (bibleData) {
-      fetchBibleText();
-    }
-  }, [book, chapter, bibleData]);
-
-  useEffect(() => {
-    fetchBibleVersions(); // Fetch versions on page load
-  }, []);
+    fetchBibleText();
+  }, [fetchBibleText, book, chapter, bibleData]); // Now the dependency is stable
 
   // Fetch the Bible versions dynamically from /json/index.json
   const fetchBibleVersions = async () => {
@@ -49,43 +81,6 @@ export default function BiblePage() {
       setBibleVersions(allVersions); // Store fetched versions
     } catch (error) {
       console.error('Error fetching Bible versions:', error);
-    }
-  };
-
-  const fetchBibleData = async () => {
-    try {
-      const response = await fetch(`/json/${bibleVersion}.json`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setBibleData(data);
-    } catch (error) {
-      console.error('Error loading Bible data:', error);
-      setBibleText(['Error loading Bible data. Please try again.']);
-    }
-  };
-
-  const fetchBibleText = () => {
-    if (!bibleData) return; // Early return if bibleData is null
-
-    const bookAbbrev = bookNameToAbbrevMap[book];
-    if (!bookAbbrev) {
-      setBibleText(['Book abbreviation not found. Please check your selection.']);
-      return;
-    }
-
-    const bookData = bibleData.find((b: any) => b.abbrev.toLowerCase() === bookAbbrev.toLowerCase());
-
-    if (bookData) {
-      const chapterIndex = parseInt(chapter, 10) - 1;
-      if (bookData.chapters[chapterIndex]) {
-        setBibleText(bookData.chapters[chapterIndex]);
-      } else {
-        setBibleText(['Chapter not found. Please check your selection.']);
-      }
-    } else {
-      setBibleText(['Book not found. Please check your selection.']);
     }
   };
 
