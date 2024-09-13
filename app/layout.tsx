@@ -1,23 +1,39 @@
 // app/layout.tsx
-import './globals.css'
-import { Inter } from 'next/font/google'
-import ClientNavbar from '@/components/ClientNavbar' // Import the Client Navbar
-import Link from 'next/link'
+import './globals.css';
+import { Inter } from 'next/font/google';
+import ClientNavbar from '@/components/ClientNavbar'; // Import the Client Navbar
+import Link from 'next/link';
+import Script from 'next/script'; // Import the Next.js Script component
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'asBible | Read Bible',
   description: 'Explore the scriptures, read our blog, find daily inspiration, and watch inspiring videos.',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-250XKLDNC4"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-250XKLDNC4');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen bg-background">
           <ClientNavbar /> {/* Use the Client Component here */}
@@ -38,5 +54,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  )
+  );
 }
