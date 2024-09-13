@@ -19,7 +19,6 @@ const options = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node: any, children: ReactNode | ReactNode[]) => {
-      // Ensure children is an array and handle line breaks within paragraphs
       const paragraphText = Array.isArray(children)
         ? children.map((child: ReactNode, index: number) => {
             if (typeof child === "string") {
@@ -37,16 +36,16 @@ const options = {
       return <p className="mb-4">{paragraphText}</p>;
     },
     [BLOCKS.HEADING_1]: (node: any, children: ReactNode) => (
-      <h1 className="text-4xl font-bold mb-4">{children}</h1>
+      <h1 className="text-3xl md:text-4xl font-bold mb-4">{children}</h1>
     ),
     [BLOCKS.HEADING_2]: (node: any, children: ReactNode) => (
-      <h2 className="text-3xl font-bold mb-3">{children}</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-3">{children}</h2>
     ),
     [BLOCKS.HEADING_3]: (node: any, children: ReactNode) => (
-      <h3 className="text-2xl font-bold mb-2">{children}</h3>
+      <h3 className="text-xl md:text-2xl font-bold mb-2">{children}</h3>
     ),
     [BLOCKS.HEADING_4]: (node: any, children: ReactNode) => (
-      <h4 className="text-2xl font-bold mb-1">{children}</h4>
+      <h4 className="text-lg md:text-xl font-bold mb-1">{children}</h4>
     ),
     [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
       <ul className="list-disc pl-5 mb-4">{children}</ul>
@@ -124,7 +123,7 @@ export default async function BlogPostPage({
   const content = article?.content as unknown as Document;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24 bg-white">
       <section className="w-full max-w-3xl">
         <div className="space-y-12">
           {/* Go Back Button */}
@@ -135,10 +134,10 @@ export default async function BlogPostPage({
           </div>
 
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
               {article?.title}
             </h1>
-            <p className="text-zinc-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
+            <p className="text-zinc-500 text-sm md:text-base/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
               {article?.excerpt}
             </p>
           </div>
@@ -150,9 +149,9 @@ export default async function BlogPostPage({
                 <Image
                   src={coverImageUrl}
                   alt={article.title || "Article Image"}
-                  width={1200} // Adjust as per need
-                  height={630} // Adjust as per need
-                  className="rounded-xl"
+                  width={1200}
+                  height={630}
+                  className="rounded-xl w-full"
                   priority
                 />
               </div>

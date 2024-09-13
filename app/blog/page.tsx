@@ -15,23 +15,19 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        let allPosts: Article[] = []; // Explicitly type as Article[]
-        let limit = 10; // Fetch in batches of 10
+        let allPosts: Article[] = [];
+        let limit = 10;
         let morePostsAvailable = true;
         let skip = 0;
 
-        // Continue fetching while there are more posts available
         while (morePostsAvailable) {
-          // getAllArticles takes three arguments: limit, skip, and isDraftMode
-          const postsBatch = await getAllArticles(limit, skip, false); 
-          console.log("Fetched articles batch:", postsBatch); // Debug log to ensure articles are fetched
-          
+          const postsBatch = await getAllArticles(limit, skip, false);
           if (postsBatch.length > 0) {
             allPosts = [...allPosts, ...postsBatch];
-            skip += postsBatch.length; // Increment skip to fetch the next batch
+            skip += postsBatch.length;
           }
 
-          morePostsAvailable = postsBatch.length === limit; // If we get fewer than limit, we fetched all
+          morePostsAvailable = postsBatch.length === limit;
         }
 
         setAllPostsData(allPosts);
@@ -55,55 +51,50 @@ export default function BlogPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24 bg-white">
       <section className="w-full pt-12">
-        <div className="mx-auto container space-y-12 px-4 md:px-6">
+        <div className="mx-auto container space-y-6 md:space-y-12 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Welcome to the Blog
               </h1>
-              <p className="max-w-[900px] text-zinc-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
+              <p className="max-w-[900px] text-zinc-500 text-sm md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
                 Explore thought-provoking articles on faith, spirituality, and more.
               </p>
             </div>
           </div>
-          <div className="space-y-12">
+          <div className="space-y-6 md:space-y-12">
             {allPostsData.length > 0 ? (
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {allPostsData.map((post) => (
                   <article key={post.sys.id} className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden">
-                    {/* Render the cover image if it exists */}
                     {post.coverImage?.url && (
                       <Image
                         alt={post.title}
-                        className="aspect-[4/3] object-cover w-full"
+                        className="object-cover w-full aspect-[4/3]"
                         height="263"
                         src={post.coverImage.url}
                         width="350"
                       />
                     )}
-                    <div className="flex-1 p-6">
-                      {/* Post title with link */}
+                    <div className="flex-1 p-4 md:p-6">
                       <Link href={`/blog/${post.slug}`}>
-                        <h3 className="text-2xl font-bold leading-tight text-zinc-900 dark:text-zinc-50 py-4">
+                        <h3 className="text-xl md:text-2xl font-bold leading-tight text-zinc-900 dark:text-zinc-50 py-2 md:py-4">
                           {post.title}
                         </h3>
                       </Link>
-                      {/* Excerpt from the article */}
-                      <p className="max-w-none text-zinc-500 mt-4 mb-2 text-sm dark:text-zinc-400">
+                      <p className="text-sm md:text-base text-zinc-500 mt-2 md:mt-4 mb-1 md:mb-2 dark:text-zinc-400">
                         {post.excerpt}
                       </p>
-                      {/* Published date */}
                       {post.publishedDate && (
-                        <p className="max-w-none text-zinc-600 mt-2 mb-2 text-sm font-bold dark:text-zinc-400">
+                        <p className="text-xs md:text-sm text-zinc-600 mt-1 md:mt-2 mb-1 md:mb-2 font-bold dark:text-zinc-400">
                           Published on: {new Date(post.publishedDate).toLocaleDateString()}
                         </p>
                       )}
-                      {/* Read more link */}
                       <div className="flex justify-end">
                         <Link href={`/blog/${post.slug}`}>
-                          <Button variant="outline">Read More →</Button>
+                          <Button variant="outline" className="text-xs md:text-sm">Read More →</Button>
                         </Link>
                       </div>
                     </div>
