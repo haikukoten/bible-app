@@ -4,55 +4,60 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import Image from "next/image";  // Import the Image component
 import { getAllArticles } from "@/lib/contentful";
+import Redis from 'ioredis';
 
-// Define the structure of the Bible JSON data
-interface BibleBook {
-  abbrev: string;
-  chapters: string[][];
-}
+// Initialize Redis client
+const redis = new Redis(6379, 'localhost'); // Connect to Redis running on localhost:6379
 
-// Get the daily verse based on current date
-function getDailyVerse(): { book: string; chapter: number; verse: number; text: string } | null {
+// Cache key for storing the daily verse
+const DAILY_VERSE_KEY = 'dailyVerse';
+const CACHE_DURATION = 24 * 60 * 60; // 24 hours in seconds
+
+// Get a random verse from Redis
+async function getDailyVerse(): Promise<{ book: string; chapter: number; verse: number; text: string } | null> {
   try {
-    const bibleData: BibleBook[] = require('../public/json/en_kjv.json'); // Load the JSON file
-
-    const currentDate = new Date();
-    const dayOfYear = Math.floor(
-      (currentDate.getTime() - new Date(currentDate.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24
-    );
-
-    // Calculate the total number of verses in the Bible
-    const totalVerses = bibleData.reduce((total: number, book: BibleBook) => {
-      return total + book.chapters.reduce((chapterSum: number, chapter: string[]) => chapterSum + chapter.length, 0);
-    }, 0);
-
-    let verseIndex = dayOfYear % totalVerses;
-    let verseCount = 0;
-
-    // Find the verse based on the index
-    for (const book of bibleData) {
-      for (let chapterIndex = 0; chapterIndex < book.chapters.length; chapterIndex++) {
-        const chapter = book.chapters[chapterIndex];
-        for (let verseIndexInChapter = 0; verseIndexInChapter < chapter.length; verseIndexInChapter++) {
-          if (verseCount === verseIndex) {
-            const foundBook = books.find((b) => b.abbrev === book.abbrev);
-            const bookName = foundBook ? foundBook.name : "Unknown Book";
-
-            return {
-              book: bookName,
-              chapter: chapterIndex + 1,
-              verse: verseIndexInChapter + 1,
-              text: chapter[verseIndexInChapter],
-            };
-          }
-          verseCount++;
-        }
-      }
+    // Check if a daily verse is already cached in Redis
+    const cachedVerse = await redis.get(DAILY_VERSE_KEY);
+    if (cachedVerse) {
+      return JSON.parse(cachedVerse); // Return cached daily verse if it exists
     }
 
-    return null;
+    // Function to fetch and cache a new random verse
+    const fetchAndCacheVerse = async (): Promise<{ book: string; chapter: number; verse: number; text: string } | null> => {
+      const allBookAbbrevs = books.map((book) => book.abbrev);
+      const randomBookAbbrev = allBookAbbrevs[Math.floor(Math.random() * allBookAbbrevs.length)];
+      const selectedBook = books.find((book) => book.abbrev === randomBookAbbrev);
+      if (!selectedBook) return null;
+
+      const randomChapter = Math.floor(Math.random() * selectedBook.chapters) + 1;
+      const redisKey = `bible:en_kjv:${randomBookAbbrev}:${randomChapter}`;
+      const chapterData = await redis.get(redisKey);
+
+      if (chapterData) {
+        const verses = JSON.parse(chapterData);
+        const randomVerseIndex = Math.floor(Math.random() * verses.length);
+        const verseText = verses[randomVerseIndex];
+
+        const dailyVerse = {
+          book: selectedBook.name,
+          chapter: randomChapter,
+          verse: randomVerseIndex + 1,
+          text: verseText,
+        };
+
+        // Cache the daily verse in Redis for 24 hours
+        await redis.set(DAILY_VERSE_KEY, JSON.stringify(dailyVerse), 'EX', CACHE_DURATION);
+
+        return dailyVerse;
+      }
+
+      return null;
+    };
+
+    // Fetch and cache a new verse if not cached
+    return await fetchAndCacheVerse();
   } catch (error) {
-    console.error("Error reading Bible data:", error);
+    console.error("Error fetching daily verse:", error);
     return null;
   }
 }
@@ -60,7 +65,9 @@ function getDailyVerse(): { book: string; chapter: number; verse: number; text: 
 export default async function Home() {
   // Fetch latest posts from Contentful
   const allPostsData = await getAllArticles(4, 0, false); // Fetch 4 latest posts
-  const dailyVerse = getDailyVerse(); // Get the daily verse
+
+  // Fetch the daily verse (cached in Redis)
+  const dailyVerse = await getDailyVerse();
 
   return (
     <>

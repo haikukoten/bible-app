@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input"; // Input for the search functionality
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Modal from 'react-modal';
-import { books, bookNameToAbbrevMap } from "@/lib/bibleBooks"; // Adjust the path as needed
+import { bibleVersions } from "@/lib/bibleBooks"; // Import Bible versions and books
 
 export default function BiblePage() {
   const [bibleVersion, setBibleVersion] = useState<string>('en_kjv'); // default version
@@ -14,82 +15,81 @@ export default function BiblePage() {
   const [chapter, setChapter] = useState<string>('1');
   const [bibleText, setBibleText] = useState<string[]>([]);
   const [fontSize, setFontSize] = useState<string>('large');
-  const [bibleData, setBibleData] = useState<any>(null); // Explicitly set type to `any` or appropriate type
-  const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false); // State for controlling chapter modal
-  const [bibleVersions, setBibleVersions] = useState<{ name: string; abbreviation: string }[]>([]); // For storing versions
-  const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state for Bible text
+  const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [currentBooks, setCurrentBooks] = useState<any[]>([]);
+
+  const [versionSearch, setVersionSearch] = useState<string>(''); // Search state for Bible Versions
+  const [bookSearch, setBookSearch] = useState<string>(''); // Search state for Books
+
+  const versionInputRef = useRef<HTMLInputElement | null>(null);
+  const bookInputRef = useRef<HTMLInputElement | null>(null);
 
   // Fetch Bible versions on page load
   useEffect(() => {
     fetchBibleVersions();
   }, []);
 
-  // Wrapping fetchBibleData in useCallback
-  const fetchBibleData = useCallback(async () => {
-    try {
-      setIsLoading(true); // Start loading
-      const response = await fetch(`/json/${bibleVersion}.json`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setBibleData(data);
-      setIsLoading(false); // End loading
-    } catch (error) {
-      console.error('Error loading Bible data:', error);
-      setBibleText(['Error loading Bible data. Please try again.']);
-      setIsLoading(false); // End loading even if there was an error
+  // Focus the version search input when dropdown opens
+  useEffect(() => {
+    if (versionSearch && versionInputRef.current) {
+      versionInputRef.current?.focus();  // Safety check before focusing
+    }
+  }, [versionSearch]);
+
+  // Focus the book search input when dropdown opens
+  useEffect(() => {
+    if (bookSearch && bookInputRef.current) {
+      bookInputRef.current?.focus();  // Safety check before focusing
+    }
+  }, [bookSearch]);
+
+  // Fetch Bible versions dynamically
+  const fetchBibleVersions = useCallback(() => {
+    const selectedVersion = bibleVersions
+      .flatMap(language => language.versions)
+      .find(version => version.abbreviation === bibleVersion);
+
+    if (selectedVersion) {
+      setCurrentBooks(selectedVersion.books); // Set the books for the selected version
     }
   }, [bibleVersion]);
 
-  // Wrapping fetchBibleText in useCallback
-  const fetchBibleText = useCallback(() => {
-    if (!bibleData) return; // Early return if bibleData is null
+  // Fetch Bible text for the selected version, book, and chapter from the API
+  const fetchBibleText = useCallback(async () => {
+    setIsLoading(true);
 
-    const bookAbbrev = bookNameToAbbrevMap[book];
-    if (!bookAbbrev) {
-      setBibleText(['Book abbreviation not found.']);
-      return;
-    }
+    try {
+      const bookAbbrev = currentBooks.find(b => b.name === book)?.abbrev;
 
-    const bookData = bibleData.find((b: any) => b.abbrev.toLowerCase() === bookAbbrev.toLowerCase());
-    if (bookData) {
-      const chapterIndex = parseInt(chapter, 10) - 1;
-      if (bookData.chapters[chapterIndex]) {
-        setBibleText(bookData.chapters[chapterIndex]);
-      } else {
-        setBibleText(['Chapter not found.']);
+      // Check if the book abbreviation exists
+      if (!bookAbbrev) {
+        throw new Error('Book abbreviation not found.');
       }
-    } else {
-      setBibleText(['Book not found.']);
+
+      const response = await fetch(`/api/bible?version=${bibleVersion}&book=${bookAbbrev}&chapter=${chapter}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch Bible data');
+      }
+
+      const data = await response.json();
+      setBibleText(data);
+    } catch (error) {
+      setBibleText(['Error loading Bible data.']);
+    } finally {
+      setIsLoading(false);
     }
-  }, [book, chapter, bibleData]);
+  }, [bibleVersion, book, chapter, currentBooks]);
 
-  // Fetch Bible data when the version changes
-  useEffect(() => {
-    fetchBibleData();
-  }, [fetchBibleData]); // Now the dependency is stable
-
-  // Fetch Bible text when the book, chapter, or bibleData changes
+  // Fetch Bible text when book, chapter, or version changes
   useEffect(() => {
     fetchBibleText();
-  }, [fetchBibleText, book, chapter, bibleData]);
+  }, [fetchBibleText, book, chapter, bibleVersion]);
 
-  // Fetch the Bible versions dynamically from /json/index.json
-  const fetchBibleVersions = async () => {
-    try {
-      const response = await fetch('/json/index.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const versionData = await response.json();
-      const allVersions = versionData.reduce((acc: { name: string; abbreviation: string }[], languageEntry: any) => {
-        return acc.concat(languageEntry.versions);
-      }, []);
-      setBibleVersions(allVersions); // Store fetched versions
-    } catch (error) {
-      console.error('Error fetching Bible versions:', error);
-    }
+  // Handle book change
+  const handleBookChange = (newBook: string) => {
+    setBook(newBook);
+    setChapter('1');  // Always reset to chapter 1 when changing books
   };
 
   const handlePreviousChapter = () => {
@@ -111,10 +111,17 @@ export default function BiblePage() {
     setIsChapterModalOpen(true);  // Open the chapter selection modal
   };
 
-  const handleChapterSelect = (chapter: string) => {
-    setChapter(chapter);  // Set the selected chapter as a string
+  const handleChapterSelect = (selectedChapter: string) => {
+    setChapter(selectedChapter);  // Set the selected chapter
     setIsChapterModalOpen(false); // Close the modal
   };
+
+  // Filter versions and books based on the search input
+  const filteredBibleVersions = bibleVersions
+    .flatMap(language => language.versions)
+    .filter(version => version.name.toLowerCase().includes(versionSearch.toLowerCase()));
+  
+  const filteredBooks = currentBooks.filter(book => book.name.toLowerCase().includes(bookSearch.toLowerCase()));
 
   return (
     <>
@@ -130,34 +137,48 @@ export default function BiblePage() {
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
-              {/* Bible Version Selector */}
+              {/* Bible Version Selector with Search */}
               <div>
                 <Select value={bibleVersion} onValueChange={handleVersionChange}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select Version" />
                   </SelectTrigger>
                   <SelectContent>
-                    {bibleVersions.length === 0 ? (
-                      <SelectItem value="disabled" disabled>No Versions Available</SelectItem>
-                    ) : (
-                      bibleVersions.map((version) => (
-                        <SelectItem key={version.abbreviation} value={version.abbreviation}>
-                          {version.name}
-                        </SelectItem>
-                      ))
-                    )}
+                    {/* Search Input inside the dropdown */}
+                    <div className="p-2">
+                      <Input 
+                        placeholder="Search Bible Versions..." 
+                        value={versionSearch}
+                        onChange={(e) => setVersionSearch(e.target.value)} 
+                        ref={versionInputRef}  // Use useRef for better control
+                      />
+                    </div>
+                    {filteredBibleVersions.map(version => (
+                      <SelectItem key={version.abbreviation} value={version.abbreviation}>
+                        {version.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Book Selector */}
+              {/* Book Selector with Search */}
               <div>
-                <Select value={book} onValueChange={setBook}>
+                <Select value={book} onValueChange={handleBookChange}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select Book" />
                   </SelectTrigger>
                   <SelectContent>
-                    {books.map((book) => (
+                    {/* Search Input inside the dropdown */}
+                    <div className="p-2">
+                      <Input 
+                        placeholder="Search Books..." 
+                        value={bookSearch}
+                        onChange={(e) => setBookSearch(e.target.value)} 
+                        ref={bookInputRef}  // Use useRef for better control
+                      />
+                    </div>
+                    {filteredBooks.map((book) => (
                       <SelectItem key={book.abbrev} value={book.name}>
                         {book.name}
                       </SelectItem>
@@ -234,7 +255,7 @@ export default function BiblePage() {
         >
           <h2 className="text-lg font-semibold mb-4">Select Chapter for {book}</h2>
           <div className="grid grid-cols-5 gap-2">
-            {Array.from({ length: books.find(b => b.name === book)?.chapters || 0 }, (_, i) => (
+            {Array.from({ length: currentBooks.find(b => b.name === book)?.chapters || 0 }, (_, i) => (
               <Button key={i} onClick={() => handleChapterSelect(String(i + 1))}>
                 {i + 1}
               </Button>
