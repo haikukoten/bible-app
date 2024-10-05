@@ -25,10 +25,21 @@ export default function BiblePage() {
   const versionInputRef = useRef<HTMLInputElement | null>(null);
   const bookInputRef = useRef<HTMLInputElement | null>(null);
 
+  // Fetch Bible versions dynamically
+  const fetchBibleVersions = useCallback(() => {
+    const selectedVersion = bibleVersions
+      .flatMap(language => language.versions)
+      .find(version => version.abbreviation === bibleVersion);
+
+    if (selectedVersion) {
+      setCurrentBooks(selectedVersion.books); // Set the books for the selected version
+    }
+  }, [bibleVersion]);
+
   // Fetch Bible versions on page load
   useEffect(() => {
     fetchBibleVersions();
-  }, []);
+  }, [fetchBibleVersions]);
 
   // Focus the version search input when dropdown opens
   useEffect(() => {
@@ -43,17 +54,6 @@ export default function BiblePage() {
       bookInputRef.current?.focus();  // Safety check before focusing
     }
   }, [bookSearch]);
-
-  // Fetch Bible versions dynamically
-  const fetchBibleVersions = useCallback(() => {
-    const selectedVersion = bibleVersions
-      .flatMap(language => language.versions)
-      .find(version => version.abbreviation === bibleVersion);
-
-    if (selectedVersion) {
-      setCurrentBooks(selectedVersion.books); // Set the books for the selected version
-    }
-  }, [bibleVersion]);
 
   // Fetch Bible text for the selected version, book, and chapter from the API
   const fetchBibleText = useCallback(async () => {
