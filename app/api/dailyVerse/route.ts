@@ -1,171 +1,117 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
-import axios from 'axios';
+import { NextRequest } from 'next/server';
 
-const GPT4_API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
-const GPT4_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 
-async function generateVerse(date: string): Promise<{ verse: string, book: string, chapter: number, verse_number: number }> {
-  try {
-    const response = await axios.post(
-      GPT4_API_ENDPOINT,
-      {
-        model: 'gpt-4o-2024-08-06',
-        messages: [
-          {
-            role: 'system',
-            content: `You are a helpful assistant. The current date is ${date}. You help users by generating an inspirational Bible verse, including the book name, chapter, and verse number. Generate the verse based on a significant historical or cultural event that aligns with this date, but do not mention the event in your output.`
-          },
-          {
-            role: 'user',
-            content: `Generate an inspirational Bible verse that aligns with today's date, and provide it in a structured JSON format. The output should look like:
-            {
-              "verse": "The inspirational verse content.",
-              "book": "The name of the Bible book.",
-              "chapter": "The chapter number as an integer.",
-              "verse_number": "The verse number as an integer."
-            }`
-          }
-        ],
-        tools: [
-          {
-            type: 'function',
-            function: {
-              name: 'query',
-              description: 'Execute a query.',
-              strict: true,
-              parameters: {
-                type: 'object',
-                properties: {
-                  table_name: {
-                    type: 'string',
-                    enum: ['orders'] // Not relevant for your use-case, but included for syntax matching
-                  },
-                  columns: {
-                    type: 'array',
-                    items: {
-                      type: 'string',
-                      enum: [
-                        'id',
-                        'status',
-                        'expected_delivery_date',
-                        'delivered_at',
-                        'shipped_at',
-                        'ordered_at',
-                        'canceled_at'
-                      ]
-                    }
-                  },
-                  conditions: {
-                    type: 'array',
-                    items: {
-                      type: 'object',
-                      properties: {
-                        column: {
-                          type: 'string'
-                        },
-                        operator: {
-                          type: 'string',
-                          enum: ['=', '>', '<', '>=', '<=', '!=']
-                        },
-                        value: {
-                          anyOf: [
-                            {
-                              type: 'string'
-                            },
-                            {
-                              type: 'number'
-                            },
-                            {
-                              type: 'object',
-                              properties: {
-                                column_name: {
-                                  type: 'string'
-                                }
-                              },
-                              required: ['column_name'],
-                              additionalProperties: false
-                            }
-                          ]
-                        }
-                      },
-                      required: ['column', 'operator', 'value'],
-                      additionalProperties: false
-                    }
-                  },
-                  order_by: {
-                    type: 'string',
-                    enum: ['asc', 'desc']
-                  }
-                },
-                required: ['table_name', 'columns', 'conditions', 'order_by'],
-                additionalProperties: false
-              }
-            }
-          }
-        ]
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${GPT4_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+type DailyVersePayload = {
+  verse: string;
+  book: string;
+  chapter: number;
+  verse_number: number;
+};
 
-    const responseContent = response.data.choices[0].message.content.trim();
-
-    // Parse the JSON output from GPT-4
-    const jsonResponse = JSON.parse(responseContent);
-
-    return {
-      verse: jsonResponse.verse,
-      book: jsonResponse.book,
-      chapter: jsonResponse.chapter,
-      verse_number: jsonResponse.verse_number,
-    };
-
-  } catch (error: unknown) {
-    const err = error as any;
-    console.error('Error generating verse:', err.response?.data || err.message);
-    return {
-      verse: 'Failed to generate verse',
-      book: 'N/A',
-      chapter: 0,
-      verse_number: 0,
-    };
-  }
+function parseDailyVerse(raw: unknown): DailyVersePayload | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const o = raw as Record<string, unknown>;
+  if (typeof o.verse !== 'string' || typeof o.book !== 'string') return null;
+  const chapter = Number(o.chapter);
+  const verse_number = Number(o.verse_number);
+  if (!Number.isFinite(chapter) || !Number.isFinite(verse_number)) return null;
+  return { verse: o.verse, book: o.book, chapter, verse_number };
 }
 
+async function generateVerse(date: string): Promise<DailyVersePayload | null> {
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) return null;
 
-// Named export for the POST request
-export async function POST() {
+  const res = await fetch(OPENAI_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o-mini',
+      response_format: { type: 'json_object' },
+      messages: [
+        {
+          role: 'system',
+          content: `You output only valid JSON (no markdown). Current date: ${date}. Suggest one short inspirational Bible verse: include exact verse text, book name, chapter and verse numbers as integers. Base the choice loosely on the calendar date; do not mention any historical event in the output.`,
+        },
+        {
+          role: 'user',
+          content: `Return a JSON object with keys: verse (string), book (string), chapter (number), verse_number (number).`,
+        },
+      ],
+      max_tokens: 400,
+      temperature: 0.6,
+    }),
+  });
+
+  const data = (await res.json()) as {
+    choices?: { message?: { content?: string } }[];
+  };
+
+  const text = data.choices?.[0]?.message?.content?.trim();
+  if (!text) return null;
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return null;
+  }
+
+  return parseDailyVerse(parsed);
+}
+
+function authorize(request: NextRequest): boolean {
+  const secret = process.env.CRON_SECRET;
+  if (!secret) return false;
+  const auth = request.headers.get('authorization');
+  if (!auth?.startsWith('Bearer ')) return false;
+  const token = auth.slice(7);
+  return token.length > 0 && token === secret;
+}
+
+export async function POST(request: NextRequest) {
+  if (!authorize(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  if (!process.env.OPENAI_API_KEY) {
+    return NextResponse.json(
+      { error: 'OpenAI is not configured.' },
+      { status: 503 }
+    );
+  }
+
   const date = new Date().toISOString().split('T')[0];
 
   try {
     const verse = await generateVerse(date);
+    if (!verse) {
+      return NextResponse.json(
+        { error: 'Could not generate daily verse.' },
+        { status: 502 }
+      );
+    }
 
-    // Directly write the verse object to the file
     const filePath = path.join(process.cwd(), 'public', 'dailyVerse.json');
-    fs.writeFileSync(filePath, JSON.stringify(verse, null, 2)); 
+    await fs.writeFile(filePath, JSON.stringify(verse, null, 2), 'utf-8');
 
-    return NextResponse.json({ message: 'Daily verse generated and saved successfully' });
+    return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error('Error generating daily verse:', error);
-    return NextResponse.json({ message: 'Failed to generate daily verse' }, { status: 500 });
+    console.error('dailyVerse POST:', error);
+    return NextResponse.json(
+      { error: 'Failed to write daily verse.' },
+      { status: 500 }
+    );
   }
 }
 
-// Optional: Handle unsupported methods
 export async function GET() {
-  return NextResponse.json({ message: 'Method GET Not Allowed' }, { status: 405 });
-}
-
-export async function PUT() {
-  return NextResponse.json({ message: 'Method PUT Not Allowed' }, { status: 405 });
-}
-
-export async function DELETE() {
-  return NextResponse.json({ message: 'Method DELETE Not Allowed' }, { status: 405 });
+  return NextResponse.json({ error: 'Method Not Allowed' }, { status: 405 });
 }

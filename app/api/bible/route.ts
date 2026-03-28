@@ -1,45 +1,52 @@
-// app/api/bible/route.ts
 import { NextResponse } from 'next/server';
-import Redis from 'ioredis';
-
-// Initialize Redis connection
-const redis = new Redis();
+import {
+  getChapterVerses,
+  isAllowedVersion,
+  isValidBookAbbrev,
+} from '@/lib/bibleJson';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const version = searchParams.get('version');
   const book = searchParams.get('book');
-  const chapter = searchParams.get('chapter');
+  const chapterParam = searchParams.get('chapter');
 
-  // Validate query parameters
-  if (!version || !book || !chapter) {
+  if (!version || !book || !chapterParam) {
     return NextResponse.json(
       { error: 'Missing version, book, or chapter' },
       { status: 400 }
     );
   }
 
+  if (!isAllowedVersion(version)) {
+    return NextResponse.json({ error: 'Unknown Bible version' }, { status: 400 });
+  }
+
+  if (!isValidBookAbbrev(book)) {
+    return NextResponse.json({ error: 'Invalid book parameter' }, { status: 400 });
+  }
+
+  const chapterNum = parseInt(chapterParam, 10);
+  if (Number.isNaN(chapterNum)) {
+    return NextResponse.json({ error: 'Invalid chapter' }, { status: 400 });
+  }
+
   try {
-    // Construct the Redis key
-    const redisKey = `bible:${version}:${book}:${chapter}`;
-
-    // Fetch the data from Redis
-    const chapterData = await redis.get(redisKey);
-
-    if (!chapterData) {
+    const verses = await getChapterVerses(version, book, chapterNum);
+    if (!verses) {
       return NextResponse.json(
-        { error: 'Bible data not found for the requested version, book, and chapter.' },
+        { error: 'Chapter not found for this version and book.' },
         { status: 404 }
       );
     }
 
-    // Return the chapter data as JSON
-    return NextResponse.json(JSON.parse(chapterData));
+    return NextResponse.json(verses, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
+      },
+    });
   } catch (error) {
-    console.error('Error fetching Bible data from Redis:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
+    console.error('Error loading Bible chapter:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

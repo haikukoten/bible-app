@@ -308,3 +308,8 @@ export const bibleVersions = [
     ],
   },
 ];
+
+/** Abbreviations that match `public/json/<abbrev>.json` — used to validate API and avoid path traversal. */
+export const ALLOWED_BIBLE_VERSION_ABBREVS = new Set(
+  bibleVersions.flatMap((lang) => lang.versions.map((v) => v.abbreviation))
+);
