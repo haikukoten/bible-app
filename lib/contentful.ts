@@ -31,9 +31,9 @@ export interface Article {
   };
   title: string;
   slug: string;
-  excerpt?: string; // Optional
+  excerpt?: string;
   content: {
-    json: any;
+    json: unknown;
     links: {
       assets: {
         block: {
@@ -46,70 +46,117 @@ export interface Article {
       };
     };
   };
-  publishedDate?: string; // Optional, depending on content model use
-  coverImage: {
+  publishedDate?: string;
+  coverImage?: {
     url: string;
-  };
+  } | null;
 }
 
-async function fetchGraphQL(query: string, preview = false): Promise<any> {
+function hasContentfulEnv(): boolean {
+  return !!(
+    process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID &&
+    process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
+  );
+}
+
+async function fetchGraphQL(
+  query: string,
+  preview: boolean,
+  variables?: Record<string, unknown>
+): Promise<unknown> {
+  if (!hasContentfulEnv()) {
+    console.warn(
+      'Contentful: set NEXT_PUBLIC_CONTENTFUL_SPACE_ID and NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN'
+    );
+    return { data: { blogCollection: { items: [] } } };
+  }
+
+  const token = preview
+    ? process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN ||
+      process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
+    : process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
+
   const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          preview
-            ? process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN
-            : process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
-        }`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ query }),
-      next: { tags: ["articles"] },
+      body: JSON.stringify({ query, variables: variables ?? {} }),
+      next: { tags: ['articles'] },
     }
   );
 
-  return await response.json();
+  return response.json();
 }
 
-function extractArticleEntries(fetchResponse: any): Article[] {
-  return fetchResponse?.data?.blogCollection?.items || [];
+function extractArticleEntries(fetchResponse: unknown): Article[] {
+  const fr = fetchResponse as {
+    errors?: { message: string }[];
+    data?: { blogCollection?: { items?: Article[] } };
+  };
+  if (fr.errors?.length) {
+    console.error(
+      'Contentful GraphQL:',
+      fr.errors.map((e) => e.message).join('; ')
+    );
+  }
+  return fr.data?.blogCollection?.items ?? [];
 }
 
 export async function getAllArticles(
-  limit = 10, // Default limit per request
-  skip = 0,   // Default skip for pagination
+  limit = 10,
+  skip = 0,
   isDraftMode = false
 ): Promise<Article[]> {
-  const query = `query {
-    blogCollection(where: { slug_exists: true }, order: publishedDate_DESC, limit: ${limit}, skip: ${skip}, preview: ${
-      isDraftMode ? "true" : "false"
-    }) {
+  const query = `query AllArticles($limit: Int!, $skip: Int!) {
+    blogCollection(
+      where: { slug_exists: true }
+      order: publishedDate_DESC
+      limit: $limit
+      skip: $skip
+      preview: ${isDraftMode ? 'true' : 'false'}
+    ) {
       items {
         ${ARTICLE_GRAPHQL_FIELDS}
       }
     }
   }`;
 
-  const articles = await fetchGraphQL(query, isDraftMode);
-  return extractArticleEntries(articles);
+  const raw = await fetchGraphQL(query, isDraftMode, { limit, skip });
+  return extractArticleEntries(raw);
 }
+
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/i;
 
 export async function getArticle(
   slug: string,
   isDraftMode = false
 ): Promise<Article | null> {
-  const query = `query {
-    blogCollection(where: { slug: "${slug}" }, limit: 1, preview: ${
-      isDraftMode ? "true" : "false"
-    }) {
+  if (!SLUG_PATTERN.test(slug) || slug.length > 200) {
+    return null;
+  }
+
+  const query = `query ArticleBySlug($slug: String!) {
+    blogCollection(
+      where: { slug: $slug }
+      limit: 1
+      preview: ${isDraftMode ? 'true' : 'false'}
+    ) {
       items {
         ${ARTICLE_GRAPHQL_FIELDS}
       }
     }
   }`;
 
-  const article = extractArticleEntries(await fetchGraphQL(query, isDraftMode))[0];
-  return article ? { ...article, content: article.content.json } : null;
+  const raw = await fetchGraphQL(query, isDraftMode, { slug });
+  const article = extractArticleEntries(raw)[0];
+  if (!article?.content?.json) return null;
+
+  return {
+    ...article,
+    content: article.content.json,
+  } as Article;
 }

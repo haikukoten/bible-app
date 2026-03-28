@@ -1,0 +1,11 @@
+# Add these blocks to /etc/caddy/Caddyfile alongside your other sites.
+# Caddy matches by hostname — no interference with other domains.
+
+asbible.com {
+	encode gzip zstd
+	reverse_proxy 127.0.0.1:3000
+}
+
+www.asbible.com {
+	redir https://asbible.com{uri} permanent
+}

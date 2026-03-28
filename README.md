@@ -37,6 +37,16 @@ Create a `.env.local` (or configure your host) with:
 | `CONTENTFUL_REVALIDATE_SECRET` | Optional | Webhook → `/api/revalidation` |
 | `CONTENTFUL_PREVIEW_SECRET` | Optional | `/api/draft` preview links |
 | `CRON_SECRET` | For `POST /api/dailyVerse` | Long random string; same value in `Authorization: Bearer …` |
+| `NEXT_PUBLIC_SITE_URL` | Recommended | Canonical site URL (e.g. `https://asbible.com`) for metadata / Open Graph |
+
+### Connecting the blog (Contentful)
+
+1. In Contentful, open **Settings → API keys** and copy **Space ID** and the **Content Delivery API — access token** (published content). Optionally copy the **Content Preview API** token for draft preview.
+2. Paste them into **`.env.local`** (see `.env.example`). Prefer the **Copy** buttons in the UI; characters are easy to misread from screenshots.
+3. **Content model** must match what `lib/contentful.ts` queries: a content type with API ID **`blog`**, with fields **`title`**, **`slug`**, **`excerpt`**, **`content`** (Rich text), **`publishedDate`**, and **`coverImage`** (Media, one asset). If your field IDs differ, update the GraphQL fields in `lib/contentful.ts`.
+4. After changing env vars, run **`npm run build`** again (Next.js inlines `NEXT_PUBLIC_*` at build time), then **`pm2 reload asbible`** (or restart PM2).
+
+If the build log shows `Contentful GraphQL: Authentication failed`, the Space ID or Delivery token is wrong or revoked — create a new API key in Contentful and update `.env.local`.
 
 ## Local development
 
@@ -50,11 +60,38 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Production build
 
 ```bash
+npm ci
 npm run build
 npm start
 ```
 
-`ecosystem.config.js` is included for **PM2** (`npm run start`).
+### PM2 + Caddy (e.g. asbible.com)
+
+The app listens on **`127.0.0.1:3000`** only (see `ecosystem.config.js`) so it is not exposed publicly; **Caddy** terminates TLS and reverse-proxies by hostname. Other sites on the same Caddy instance use **different `host` blocks** — they do not interfere.
+
+1. **Env:** copy `.env.local` (from `.env.example`) on the server and set Contentful + `NEXT_PUBLIC_SITE_URL` (see **Connecting the blog** above).
+
+2. **Build and start with PM2** (from the repo directory):
+
+   ```bash
+   npm ci
+   npm run build
+   pm2 start ecosystem.config.js
+   pm2 save
+   ```
+
+   Optional: `pm2 startup` to revive processes after reboot.
+
+3. **Caddy:** merge the blocks in `deploy/caddy-asbible.snippet` into `/etc/caddy/Caddyfile` (keep your existing sites, e.g. `pdfs.onl`, in the same file). Then:
+
+   ```bash
+   sudo caddy validate --config /etc/caddy/Caddyfile
+   sudo systemctl reload caddy
+   ```
+
+4. **DNS:** point **A/AAAA** records for `asbible.com` and (if used) `www.asbible.com` to this server’s IP. Caddy will obtain certificates automatically.
+
+5. **Health:** `curl -I https://asbible.com` and `pm2 logs asbible`.
 
 ## Bible data
 

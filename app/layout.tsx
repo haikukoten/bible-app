@@ -7,7 +7,11 @@ import Script from 'next/script'; // Import the Next.js Script component
 
 const inter = Inter({ subsets: ['latin'] });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://asbible.com';
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'asBible | Read Bible',
   description: 'Explore the scriptures, read our blog, find daily inspiration, and watch inspiring videos.',
 };
