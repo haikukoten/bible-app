@@ -1,6 +1,7 @@
 "use client";
 
 import { getAllArticles, Article } from "@/lib/contentful"; // Article is now exported
+import { blogPostHref } from "@/lib/blogPath";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -79,7 +80,7 @@ export default function BlogPage() {
                       />
                     )}
                     <div className="flex-1 p-4 md:p-6">
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link href={blogPostHref(post.slug)}>
                         <h3 className="text-xl md:text-2xl font-bold leading-tight text-zinc-900 dark:text-zinc-50 py-2 md:py-4">
                           {post.title}
                         </h3>
@@ -93,7 +94,7 @@ export default function BlogPage() {
                         </p>
                       )}
                       <div className="flex justify-end">
-                        <Link href={`/blog/${post.slug}`}>
+                        <Link href={blogPostHref(post.slug)}>
                           <Button variant="outline" className="text-xs md:text-sm">Read More →</Button>
                         </Link>
                       </div>

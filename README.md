@@ -115,6 +115,16 @@ curl -X POST -H "Authorization: Bearer $CRON_SECRET" https://your-domain/api/dai
 
 Point a Contentful webhook to `POST https://<your-domain>/api/revalidation` with header `x-vercel-reval-key: <CONTENTFUL_REVALIDATE_SECRET>` to invalidate cached articles (`revalidateTag('articles')`).
 
+## Automated blog publisher (optional)
+
+The folder **`contentful-blog-publisher/`** is a separate Node service that reads **`config.txt`**, optional **`topics.txt`** (keyword + language per line, rotating each run), uses **OpenAI** for article text and cover images (DALL·E), creates a **GitHub Gist** with the brief, and publishes to Contentful on a **~3-day** schedule with random jitter. See **`contentful-blog-publisher/README.md`**.
+
+## Blog URLs and Unicode slugs
+
+- Links use **`blogPostHref()`** (`lib/blogPath.ts`) so slugs with accents or spaces work in the browser.
+- **`getArticle`** accepts Unicode slugs; it previously rejected them and caused **404** — that is fixed.
+- To **require ASCII-only** slugs and return 404 for others, set **`BLOG_SLUG_ASCII_ONLY=true`** in the environment (default: allow Unicode).
+
 ## License
 
 Private project; see repository owner.

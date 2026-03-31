@@ -32,7 +32,10 @@ export const GET = async (req) => {
   // Create a list of URLs for static and dynamic (blog) pages
   const urls = [
     ...staticPages.map((page) => `${baseUrl}${page}`),                  // Static pages
-    ...allArticles.map((article) => `${baseUrl}/blog/${article.slug}`), // Dynamic blog post URLs
+    ...allArticles.map(
+      (article) =>
+        `${baseUrl}/blog/${encodeURIComponent(article.slug)}`
+    ),
   ];
 
   // Generate sitemap XML

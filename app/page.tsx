@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import Image from "next/image";
 import { getAllArticles } from "@/lib/contentful";
+import { blogPostHref } from "@/lib/blogPath";
 import dynamic from 'next/dynamic';
 
 // Import DailyVerse dynamically to disable SSR (as it uses client-side hooks)
@@ -70,7 +71,7 @@ export default async function Home() {
                   </CardContent>
                 </div>
                 <CardFooter className="flex justify-between mt-auto">
-                  <Link href={`/blog/${post.slug}`} passHref>
+                  <Link href={blogPostHref(post.slug)} passHref>
                     <Button variant="outline">Read More</Button>
                   </Link>
                   {post.publishedDate && (

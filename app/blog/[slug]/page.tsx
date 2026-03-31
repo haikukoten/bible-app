@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { getArticle, getAllArticles } from "@/lib/contentful";
+import { blogPostHref } from "@/lib/blogPath";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import Link from "next/link";
@@ -98,8 +99,10 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
+  const slugParam = params.slug.normalize("NFC");
+
   // Fetch article based on slug
-  const article = await getArticle(params.slug);
+  const article = await getArticle(slugParam);
 
   if (!article) {
     notFound();
@@ -108,8 +111,10 @@ export default async function BlogPostPage({
   // Get all articles to determine prev/next article
   const allArticles = await getAllArticles();
 
-  // Find the current article index
-  const currentIndex = allArticles.findIndex((a) => a.slug === params.slug);
+  // Find the current article index (Unicode-safe compare)
+  const currentIndex = allArticles.findIndex(
+    (a) => a.slug.normalize("NFC") === slugParam
+  );
 
   // Previous and Next articles
   const prevArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
@@ -175,7 +180,7 @@ export default async function BlogPostPage({
 
             {/* Previous and Next buttons */}
             <div className="mt-8 flex justify-between">
-              <Link href={prevArticle ? `/blog/${prevArticle.slug}` : "#"}>
+              <Link href={prevArticle ? blogPostHref(prevArticle.slug) : "#"}>
                 <Button
                   variant="outline"
                   disabled={!prevArticle}
@@ -185,7 +190,7 @@ export default async function BlogPostPage({
                 </Button>
               </Link>
 
-              <Link href={nextArticle ? `/blog/${nextArticle.slug}` : "#"}>
+              <Link href={nextArticle ? blogPostHref(nextArticle.slug) : "#"}>
                 <Button variant="outline" disabled={!nextArticle}>
                   Next →
                 </Button>

@@ -129,13 +129,27 @@ export async function getAllArticles(
   return extractArticleEntries(raw);
 }
 
-const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/i;
+/**
+ * Allow Unicode letters (e.g. Hungarian titles). Block path injection and control chars.
+ * Set BLOG_SLUG_ASCII_ONLY=true to reject non-ASCII slugs (404).
+ */
+function isValidContentfulSlug(slug: string): boolean {
+  if (slug.length === 0 || slug.length > 500) return false;
+  if (/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/.test(slug)) return false;
+  if (slug.includes('/') || slug.includes('\\')) return false;
+  if (slug.includes('..')) return false;
+  if (process.env.BLOG_SLUG_ASCII_ONLY === 'true') {
+    if (!/^[\x20-\x7E]+$/.test(slug)) return false;
+  }
+  return true;
+}
 
 export async function getArticle(
   slug: string,
   isDraftMode = false
 ): Promise<Article | null> {
-  if (!SLUG_PATTERN.test(slug) || slug.length > 200) {
+  const normalized = slug.normalize('NFC');
+  if (!isValidContentfulSlug(normalized)) {
     return null;
   }
 
@@ -151,7 +165,7 @@ export async function getArticle(
     }
   }`;
 
-  const raw = await fetchGraphQL(query, isDraftMode, { slug });
+  const raw = await fetchGraphQL(query, isDraftMode, { slug: normalized });
   const article = extractArticleEntries(raw)[0];
   if (!article?.content?.json) return null;
 

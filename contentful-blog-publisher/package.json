@@ -1,0 +1,23 @@
+{
+  "name": "contentful-blog-publisher",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "run-once": "tsx src/index.ts --once",
+    "verify-contentful": "tsx src/verify-contentful.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@contentful/rich-text-types": "^16.3.0",
+    "contentful-management": "^11.35.1",
+    "dotenv": "^16.4.5",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

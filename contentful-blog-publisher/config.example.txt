@@ -1,0 +1,17 @@
+# Editorial brief for automated blog posts (read by Gemini as plain text)
+#
+# Describe: themes (faith, prayer, daily devotion, apologetics, etc.), tone (warm, scholarly, simple),
+# target audience, approximate length, language (English), SEO keywords, topics to favor or avoid,
+# and any brand voice notes for asBible.
+
+Audience: readers seeking accessible, orthodox Christian encouragement rooted in Scripture.
+
+Tone: warm, clear, non-polemical. Prefer practical application over controversy.
+
+Topics: hope in trials, prayer, forgiveness, God’s faithfulness, short reflections tied to Christian living.
+
+Length: roughly 900–1200 words in the final article.
+
+Language: English (US).
+
+Avoid: political campaigning, sensationalism, or invented Bible quotes.

@@ -1,0 +1,7 @@
+# One topic per line: keyword|language
+# On each scheduled run (~every 3 days) the next line is used; language sets the article language for Gemini.
+# Copy to topics.txt and edit (topics.txt is gitignored).
+
+Malakiás próféta|Hungarian
+Hope in difficult times|English
+Prayer and peace|English
