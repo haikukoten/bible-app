@@ -34,7 +34,7 @@ const options = {
           })
         : children;
 
-      return <p className="mb-4">{paragraphText}</p>;
+      return <p className="mb-6 text-xl leading-relaxed">{paragraphText}</p>;
     },
     [BLOCKS.HEADING_1]: (node: any, children: ReactNode) => (
       <h1 className="text-3xl md:text-4xl font-bold mb-4">{children}</h1>
@@ -49,10 +49,10 @@ const options = {
       <h4 className="text-lg md:text-xl font-bold mb-1">{children}</h4>
     ),
     [BLOCKS.UL_LIST]: (node: any, children: ReactNode) => (
-      <ul className="list-disc pl-5 mb-4">{children}</ul>
+      <ul className="list-disc pl-5 mb-6 text-xl leading-relaxed">{children}</ul>
     ),
     [BLOCKS.OL_LIST]: (node: any, children: ReactNode) => (
-      <ol className="list-decimal pl-5 mb-4">{children}</ol>
+      <ol className="list-decimal pl-5 mb-6 text-xl leading-relaxed">{children}</ol>
     ),
     [BLOCKS.LIST_ITEM]: (node: any, children: ReactNode) => <li>{children}</li>,
     [BLOCKS.QUOTE]: (node: any, children: ReactNode) => (
@@ -142,7 +142,7 @@ export default async function BlogPostPage({
             <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
               {article?.title}
             </h1>
-            <p className="text-sm md:text-base/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            <p className="text-lg md:text-xl/relaxed xl:text-2xl/relaxed text-muted-foreground">
               {article?.excerpt}
             </p>
           </div>
