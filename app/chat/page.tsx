@@ -89,7 +89,7 @@ export default function ChatWithBible() {
           <ScrollArea className="h-[400px] mb-4 p-4 border rounded-md">
             {messages.map((message, index) => (
               <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
-                <div className={`inline-block p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
+                <div className={`inline-block p-2 border ${message.role === 'user' ? 'bg-background text-foreground' : 'bg-card text-card-foreground'}`}>
                   {message.content}
                 </div>
               </div>

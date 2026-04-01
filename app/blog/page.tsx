@@ -52,7 +52,7 @@ export default function BlogPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24 bg-white">
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24">
       <section className="w-full pt-12">
         <div className="mx-auto container space-y-6 md:space-y-12 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -60,7 +60,7 @@ export default function BlogPage() {
               <h1 className="text-2xl md:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Welcome to the Blog
               </h1>
-              <p className="max-w-[900px] text-zinc-500 text-sm md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
+              <p className="max-w-[900px] text-sm md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Explore thought-provoking articles on faith, spirituality, and more.
               </p>
             </div>
@@ -85,11 +85,11 @@ export default function BlogPage() {
                           {post.title}
                         </h3>
                       </Link>
-                      <p className="text-sm md:text-base text-zinc-500 mt-2 md:mt-4 mb-1 md:mb-2 dark:text-zinc-400">
+                      <p className="text-sm md:text-base mt-2 md:mt-4 mb-1 md:mb-2 border-b pb-2">
                         {post.excerpt}
                       </p>
                       {post.publishedDate && (
-                        <p className="text-xs md:text-sm text-zinc-600 mt-1 md:mt-2 mb-1 md:mb-2 font-bold dark:text-zinc-400">
+                        <p className="text-xs md:text-sm mt-1 md:mt-2 mb-1 md:mb-2 font-bold">
                           Published on: {new Date(post.publishedDate).toLocaleDateString()}
                         </p>
                       )}

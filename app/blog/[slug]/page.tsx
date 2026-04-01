@@ -15,7 +15,7 @@ const options = {
     [MARKS.ITALIC]: (text: ReactNode) => <em className="italic">{text}</em>,
     [MARKS.UNDERLINE]: (text: ReactNode) => <u>{text}</u>,
     [MARKS.CODE]: (text: ReactNode) => (
-      <code className="font-mono bg-gray-100 p-1 rounded">{text}</code>
+      <code className="font-mono p-1">{text}</code>
     ),
   },
   renderNode: {
@@ -128,7 +128,7 @@ export default async function BlogPostPage({
   const content = article?.content as unknown as Document;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24 bg-white">
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24">
       <section className="w-full max-w-3xl">
         <div className="space-y-12">
           {/* Go Back Button */}
@@ -142,7 +142,7 @@ export default async function BlogPostPage({
             <h1 className="text-3xl md:text-4xl font-bold tracking-tighter sm:text-5xl">
               {article?.title}
             </h1>
-            <p className="text-zinc-500 text-sm md:text-base/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400">
+            <p className="text-sm md:text-base/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               {article?.excerpt}
             </p>
           </div>

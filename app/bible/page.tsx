@@ -125,14 +125,14 @@ export default function BiblePage() {
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-4 md:py-6 lg:py-8">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                 Bible
               </h1>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+              <p className="mx-auto max-w-[700px] md:text-xl">
                 Search and read the scriptures.
               </p>
             </div>
@@ -192,7 +192,7 @@ export default function BiblePage() {
       </section>
 
       {/* Bible Content */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+      <section className="w-full py-4 md:py-6 lg:py-8">
         <div className="container px-4 md:px-6">
           <Card className="w-full max-w-3xl mx-auto">
             <CardHeader className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:items-center md:justify-between">
@@ -250,7 +250,7 @@ export default function BiblePage() {
           isOpen={isChapterModalOpen}
           onRequestClose={() => setIsChapterModalOpen(false)}
           contentLabel="Select Chapter"
-          className="bg-white p-4 rounded shadow-lg max-w-xs mx-auto"
+          className="p-4 rounded shadow-lg max-w-xs mx-auto bg-card text-card-foreground"
           overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
         >
           <h2 className="text-lg font-semibold mb-4">Select Chapter for {book}</h2>

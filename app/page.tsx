@@ -19,14 +19,14 @@ export default async function Home() {
   return (
     <>
       {/* Page Content */}
-      <section className="w-full py-8 md:py-16 lg:py-20 xl:py-24">
+      <section className="w-full py-4 md:py-6 lg:py-8">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                 Welcome to asBible
               </h1>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+              <p className="mx-auto max-w-[700px] md:text-xl">
                 Explore the scriptures, read our blog, and find daily inspiration.
               </p>
             </div>
@@ -35,7 +35,7 @@ export default async function Home() {
       </section>
 
       {/* Verse of the Day */}
-      <section className="w-full py-8 md:py-16 lg:py-20 bg-gray-100 dark:bg-gray-800">
+      <section className="w-full py-4 md:py-6 lg:py-8 border-b">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <DailyVerse /> {/* Use DailyVerse component here */}
@@ -44,7 +44,7 @@ export default async function Home() {
       </section>
 
       {/* Latest Blog Posts */}
-      <section className="w-full py-6 md:py-12 lg:py-16 bg-white dark:bg-gray-900">
+      <section className="w-full py-6 md:py-12 lg:py-16">
         <div className="container px-4 md:px-6 max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl lg:text-6xl mb-8">
             Latest Blog Posts
@@ -67,7 +67,7 @@ export default async function Home() {
                         className="rounded-lg object-cover w-full"
                       />
                     )}
-                    <p className="text-gray-500 dark:text-gray-400 mt-4">{post.excerpt}</p>
+                    <p className="mt-4">{post.excerpt}</p>
                   </CardContent>
                 </div>
                 <CardFooter className="flex justify-between mt-auto">
@@ -75,7 +75,7 @@ export default async function Home() {
                     <Button variant="outline">Read More</Button>
                   </Link>
                   {post.publishedDate && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm">
                       {new Date(post.publishedDate).toLocaleDateString()}
                     </p>
                   )}
