@@ -3,6 +3,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import { NextRequest } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 
 type DailyVersePayload = {
@@ -113,5 +115,49 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
-  return NextResponse.json({ error: 'Method Not Allowed' }, { status: 405 });
+  const filePath = path.join(process.cwd(), 'public', 'dailyVerse.json');
+  let needsUpdate = false;
+  let currentData = null;
+  const todayDate = new Date().toISOString().split('T')[0];
+
+  try {
+    const stats = await fs.stat(filePath);
+    const fileDate = stats.mtime.toISOString().split('T')[0];
+    
+    if (fileDate !== todayDate) {
+      needsUpdate = true;
+    } else {
+      const fileContent = await fs.readFile(filePath, 'utf-8');
+      currentData = JSON.parse(fileContent);
+    }
+  } catch {
+    // File doesn't exist or is invalid
+    needsUpdate = true;
+  }
+
+  if (!needsUpdate && currentData) {
+    return NextResponse.json(currentData);
+  }
+
+  // Generate new verse if needed
+  if (!process.env.OPENAI_API_KEY) {
+    // If no API key, return old data if it exists
+    if (currentData) return NextResponse.json(currentData);
+    return NextResponse.json({ error: 'OpenAI is not configured.' }, { status: 503 });
+  }
+
+  try {
+    const verse = await generateVerse(todayDate);
+    if (!verse) {
+      if (currentData) return NextResponse.json(currentData);
+      return NextResponse.json({ error: 'Could not generate daily verse.' }, { status: 502 });
+    }
+
+    await fs.writeFile(filePath, JSON.stringify(verse, null, 2), 'utf-8');
+    return NextResponse.json(verse);
+  } catch (error) {
+    console.error('dailyVerse GET:', error);
+    if (currentData) return NextResponse.json(currentData);
+    return NextResponse.json({ error: 'Failed to write daily verse.' }, { status: 500 });
+  }
 }

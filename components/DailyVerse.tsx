@@ -10,8 +10,8 @@ const DailyVerse: React.FC = () => {
   useEffect(() => {
     const fetchVerse = async () => {
       try {
-        // Fetching directly from the public folder
-        const response = await fetch('/dailyVerse.json');
+        // Fetching from the API to handle 24h auto-updates
+        const response = await fetch('/api/dailyVerse');
         if (!response.ok) {
           throw new Error(`Error fetching daily verse: ${response.statusText}`);
         }
