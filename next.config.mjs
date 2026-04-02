@@ -29,6 +29,26 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/2026每日读经表',
+        destination: '/2026-daily-reading-plan',
+      },
+      {
+        source: '/2026 每日读经表',
+        destination: '/2026-daily-reading-plan',
+      },
+      {
+        source: '/2026%E6%AF%8F%E6%97%A5%E8%AF%BB%E7%BB%8F%E8%A1%A8',
+        destination: '/2026-daily-reading-plan',
+      },
+      {
+        source: '/2026%20%E6%AF%8F%E6%97%A5%E8%AF%BB%E7%BB%8F%E8%A1%A8',
+        destination: '/2026-daily-reading-plan',
+      }
+    ];
+  },
 };
 
 export default nextConfig;
