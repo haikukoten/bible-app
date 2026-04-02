@@ -29,14 +29,6 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: '/2026 每日读经表',
-        destination: '/2026-每日读经表',
-      },
-    ];
-  },
 };
 
 export default nextConfig;
