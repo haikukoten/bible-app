@@ -14,6 +14,18 @@ export default function BiblePage() {
   const [book, setBook] = useState<string>('Genesis');
   const [chapter, setChapter] = useState<string>('1');
   const [bibleText, setBibleText] = useState<string[]>([]);
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const bookParam = params.get('book');
+      const chapterParam = params.get('chapter');
+      const versionParam = params.get('version');
+      if (bookParam) setBook(bookParam);
+      if (chapterParam) setChapter(chapterParam);
+      if (versionParam) setBibleVersion(versionParam);
+    }
+  }, []);
   const [fontSize, setFontSize] = useState<string>('large');
   const [isChapterModalOpen, setIsChapterModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);

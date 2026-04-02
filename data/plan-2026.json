@@ -1,0 +1,7302 @@
+[
+  {
+    "day": 1,
+    "readings": [
+      {
+        "display": "太 1",
+        "book": "Matthew",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 1",
+        "book": "Psalms",
+        "chapter": "1"
+      },
+      {
+        "display": "創 1:1-2:25",
+        "book": "Genesis",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 2,
+    "readings": [
+      {
+        "display": "太 2",
+        "book": "Matthew",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 2",
+        "book": "Psalms",
+        "chapter": "2"
+      },
+      {
+        "display": "創 3",
+        "book": "Genesis",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 3,
+    "readings": [
+      {
+        "display": "太 3",
+        "book": "Matthew",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 3",
+        "book": "Psalms",
+        "chapter": "3"
+      },
+      {
+        "display": "創 4",
+        "book": "Genesis",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 4,
+    "readings": [
+      {
+        "display": "太 4",
+        "book": "Matthew",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 4",
+        "book": "Psalms",
+        "chapter": "4"
+      },
+      {
+        "display": "創 5:1-6:22",
+        "book": "Genesis",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 5,
+    "readings": [
+      {
+        "display": "太 5:1-20",
+        "book": "Matthew",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 5",
+        "book": "Psalms",
+        "chapter": "5"
+      },
+      {
+        "display": "創 7:1-8:22",
+        "book": "Genesis",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 6,
+    "readings": [
+      {
+        "display": "太 5:21-48",
+        "book": "Matthew",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 6",
+        "book": "Psalms",
+        "chapter": "6"
+      },
+      {
+        "display": "創 9",
+        "book": "Genesis",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 7,
+    "readings": [
+      {
+        "display": "太 6",
+        "book": "Matthew",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 7",
+        "book": "Psalms",
+        "chapter": "7"
+      },
+      {
+        "display": "創 10",
+        "book": "Genesis",
+        "chapter": "10"
+      }
+    ]
+  },
+  {
+    "day": 8,
+    "readings": [
+      {
+        "display": "太 7",
+        "book": "Matthew",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 8",
+        "book": "Psalms",
+        "chapter": "8"
+      },
+      {
+        "display": "創 11:1-12:20",
+        "book": "Genesis",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 9,
+    "readings": [
+      {
+        "display": "太 8:1-22",
+        "book": "Matthew",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 9",
+        "book": "Psalms",
+        "chapter": "9"
+      },
+      {
+        "display": "創 13:1-14:24",
+        "book": "Genesis",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 10,
+    "readings": [
+      {
+        "display": "太 8:23-34",
+        "book": "Matthew",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 10",
+        "book": "Psalms",
+        "chapter": "10"
+      },
+      {
+        "display": "創 15:1-16:16",
+        "book": "Genesis",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 11,
+    "readings": [
+      {
+        "display": "太 9",
+        "book": "Matthew",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 11",
+        "book": "Psalms",
+        "chapter": "11"
+      },
+      {
+        "display": "創 17:1-18:33",
+        "book": "Genesis",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 12,
+    "readings": [
+      {
+        "display": "太 10:1-20",
+        "book": "Matthew",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 12",
+        "book": "Psalms",
+        "chapter": "12"
+      },
+      {
+        "display": "創 19:1-20:18",
+        "book": "Genesis",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 13,
+    "readings": [
+      {
+        "display": "太 10:21-42",
+        "book": "Matthew",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 13",
+        "book": "Psalms",
+        "chapter": "13"
+      },
+      {
+        "display": "創 21:1-22:24",
+        "book": "Genesis",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 14,
+    "readings": [
+      {
+        "display": "太 11:1-19",
+        "book": "Matthew",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 14",
+        "book": "Psalms",
+        "chapter": "14"
+      },
+      {
+        "display": "創 23",
+        "book": "Genesis",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 15,
+    "readings": [
+      {
+        "display": "太 11:20-30",
+        "book": "Matthew",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 15",
+        "book": "Psalms",
+        "chapter": "15"
+      },
+      {
+        "display": "創 24",
+        "book": "Genesis",
+        "chapter": "24"
+      }
+    ]
+  },
+  {
+    "day": 16,
+    "readings": [
+      {
+        "display": "太 12:1-21",
+        "book": "Matthew",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 16",
+        "book": "Psalms",
+        "chapter": "16"
+      },
+      {
+        "display": "創 25",
+        "book": "Genesis",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 17,
+    "readings": [
+      {
+        "display": "太 12:22-50",
+        "book": "Matthew",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 17",
+        "book": "Psalms",
+        "chapter": "17"
+      },
+      {
+        "display": "創 26",
+        "book": "Genesis",
+        "chapter": "26"
+      }
+    ]
+  },
+  {
+    "day": 18,
+    "readings": [
+      {
+        "display": "太 13:1-35",
+        "book": "Matthew",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 18:1-24",
+        "book": "Psalms",
+        "chapter": "18"
+      },
+      {
+        "display": "創 27:1-28:22",
+        "book": "Genesis",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 19,
+    "readings": [
+      {
+        "display": "太 13:36-58",
+        "book": "Matthew",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 18:25-50",
+        "book": "Psalms",
+        "chapter": "18"
+      },
+      {
+        "display": "創 29:1-30:43",
+        "book": "Genesis",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 20,
+    "readings": [
+      {
+        "display": "太 14:1-21",
+        "book": "Matthew",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 19",
+        "book": "Psalms",
+        "chapter": "19"
+      },
+      {
+        "display": "創 31",
+        "book": "Genesis",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 21,
+    "readings": [
+      {
+        "display": "太 14:22-36",
+        "book": "Matthew",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 20",
+        "book": "Psalms",
+        "chapter": "20"
+      },
+      {
+        "display": "創 32:1-33:20",
+        "book": "Genesis",
+        "chapter": "32"
+      }
+    ]
+  },
+  {
+    "day": 22,
+    "readings": [
+      {
+        "display": "太 15:1-20",
+        "book": "Matthew",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 21",
+        "book": "Psalms",
+        "chapter": "21"
+      },
+      {
+        "display": "創 34:1-35:29",
+        "book": "Genesis",
+        "chapter": "34"
+      }
+    ]
+  },
+  {
+    "day": 23,
+    "readings": [
+      {
+        "display": "太 15:21-39",
+        "book": "Matthew",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 22:1-11",
+        "book": "Psalms",
+        "chapter": "22"
+      },
+      {
+        "display": "創 36",
+        "book": "Genesis",
+        "chapter": "36"
+      }
+    ]
+  },
+  {
+    "day": 24,
+    "readings": [
+      {
+        "display": "太 16",
+        "book": "Matthew",
+        "chapter": "16"
+      },
+      {
+        "display": "詩 22:12-31",
+        "book": "Psalms",
+        "chapter": "22"
+      },
+      {
+        "display": "創 37:1-38:30",
+        "book": "Genesis",
+        "chapter": "37"
+      }
+    ]
+  },
+  {
+    "day": 25,
+    "readings": [
+      {
+        "display": "太 17",
+        "book": "Matthew",
+        "chapter": "17"
+      },
+      {
+        "display": "詩 23",
+        "book": "Psalms",
+        "chapter": "23"
+      },
+      {
+        "display": "創 39:1-40:23",
+        "book": "Genesis",
+        "chapter": "39"
+      }
+    ]
+  },
+  {
+    "day": 26,
+    "readings": [
+      {
+        "display": "太 18",
+        "book": "Matthew",
+        "chapter": "18"
+      },
+      {
+        "display": "詩 24",
+        "book": "Psalms",
+        "chapter": "24"
+      },
+      {
+        "display": "創 41",
+        "book": "Genesis",
+        "chapter": "41"
+      }
+    ]
+  },
+  {
+    "day": 27,
+    "readings": [
+      {
+        "display": "太 19",
+        "book": "Matthew",
+        "chapter": "19"
+      },
+      {
+        "display": "詩 25",
+        "book": "Psalms",
+        "chapter": "25"
+      },
+      {
+        "display": "創 42:1-43:34",
+        "book": "Genesis",
+        "chapter": "42"
+      }
+    ]
+  },
+  {
+    "day": 28,
+    "readings": [
+      {
+        "display": "太 20",
+        "book": "Matthew",
+        "chapter": "20"
+      },
+      {
+        "display": "詩 26",
+        "book": "Psalms",
+        "chapter": "26"
+      },
+      {
+        "display": "創 44:1-45:28",
+        "book": "Genesis",
+        "chapter": "44"
+      }
+    ]
+  },
+  {
+    "day": 29,
+    "readings": [
+      {
+        "display": "太 21:1-22",
+        "book": "Matthew",
+        "chapter": "21"
+      },
+      {
+        "display": "詩 27",
+        "book": "Psalms",
+        "chapter": "27"
+      },
+      {
+        "display": "創 46:1-47:31",
+        "book": "Genesis",
+        "chapter": "46"
+      }
+    ]
+  },
+  {
+    "day": 30,
+    "readings": [
+      {
+        "display": "太 21:23-46",
+        "book": "Matthew",
+        "chapter": "21"
+      },
+      {
+        "display": "詩 28",
+        "book": "Psalms",
+        "chapter": "28"
+      },
+      {
+        "display": "創 48",
+        "book": "Genesis",
+        "chapter": "48"
+      }
+    ]
+  },
+  {
+    "day": 31,
+    "readings": [
+      {
+        "display": "太 22:1-22",
+        "book": "Matthew",
+        "chapter": "22"
+      },
+      {
+        "display": "詩 29",
+        "book": "Psalms",
+        "chapter": "29"
+      },
+      {
+        "display": "創 49:1-50:26",
+        "book": "Genesis",
+        "chapter": "49"
+      }
+    ]
+  },
+  {
+    "day": 32,
+    "readings": [
+      {
+        "display": "太 22:23-46",
+        "book": "Matthew",
+        "chapter": "22"
+      },
+      {
+        "display": "詩 30",
+        "book": "Psalms",
+        "chapter": "30"
+      },
+      {
+        "display": "出 1",
+        "book": "Exodus",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 33,
+    "readings": [
+      {
+        "display": "太 23",
+        "book": "Matthew",
+        "chapter": "23"
+      },
+      {
+        "display": "詩 31",
+        "book": "Psalms",
+        "chapter": "31"
+      },
+      {
+        "display": "出 2",
+        "book": "Exodus",
+        "chapter": "2"
+      }
+    ]
+  },
+  {
+    "day": 34,
+    "readings": [
+      {
+        "display": "太 24:1-35",
+        "book": "Matthew",
+        "chapter": "24"
+      },
+      {
+        "display": "詩 32",
+        "book": "Psalms",
+        "chapter": "32"
+      },
+      {
+        "display": "出 3:1-4:31",
+        "book": "Exodus",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 35,
+    "readings": [
+      {
+        "display": "太 24:36-51",
+        "book": "Matthew",
+        "chapter": "24"
+      },
+      {
+        "display": "詩 33",
+        "book": "Psalms",
+        "chapter": "33"
+      },
+      {
+        "display": "出 5:1-6:30",
+        "book": "Exodus",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 36,
+    "readings": [
+      {
+        "display": "太 25:1-30",
+        "book": "Matthew",
+        "chapter": "25"
+      },
+      {
+        "display": "詩 34",
+        "book": "Psalms",
+        "chapter": "34"
+      },
+      {
+        "display": "出 7",
+        "book": "Exodus",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 37,
+    "readings": [
+      {
+        "display": "太 25:31-46",
+        "book": "Matthew",
+        "chapter": "25"
+      },
+      {
+        "display": "詩 35",
+        "book": "Psalms",
+        "chapter": "35"
+      },
+      {
+        "display": "出 8:1-9:35",
+        "book": "Exodus",
+        "chapter": "8"
+      }
+    ]
+  },
+  {
+    "day": 38,
+    "readings": [
+      {
+        "display": "太 26:1-35",
+        "book": "Matthew",
+        "chapter": "26"
+      },
+      {
+        "display": "詩 36",
+        "book": "Psalms",
+        "chapter": "36"
+      },
+      {
+        "display": "出 10:1-11:10",
+        "book": "Exodus",
+        "chapter": "10"
+      }
+    ]
+  },
+  {
+    "day": 39,
+    "readings": [
+      {
+        "display": "太 26:36-56",
+        "book": "Matthew",
+        "chapter": "26"
+      },
+      {
+        "display": "詩 37:1-22",
+        "book": "Psalms",
+        "chapter": "37"
+      },
+      {
+        "display": "出 12",
+        "book": "Exodus",
+        "chapter": "12"
+      }
+    ]
+  },
+  {
+    "day": 40,
+    "readings": [
+      {
+        "display": "太 26:57-75",
+        "book": "Matthew",
+        "chapter": "26"
+      },
+      {
+        "display": "詩 37:23-40",
+        "book": "Psalms",
+        "chapter": "37"
+      },
+      {
+        "display": "出 13:1-14:31",
+        "book": "Exodus",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 41,
+    "readings": [
+      {
+        "display": "太 27:1-26",
+        "book": "Matthew",
+        "chapter": "27"
+      },
+      {
+        "display": "詩 38",
+        "book": "Psalms",
+        "chapter": "38"
+      },
+      {
+        "display": "出 15",
+        "book": "Exodus",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 42,
+    "readings": [
+      {
+        "display": "太 27:27-44",
+        "book": "Matthew",
+        "chapter": "27"
+      },
+      {
+        "display": "詩 39",
+        "book": "Psalms",
+        "chapter": "39"
+      },
+      {
+        "display": "出 16",
+        "book": "Exodus",
+        "chapter": "16"
+      }
+    ]
+  },
+  {
+    "day": 43,
+    "readings": [
+      {
+        "display": "太 27:45-66",
+        "book": "Matthew",
+        "chapter": "27"
+      },
+      {
+        "display": "詩 40",
+        "book": "Psalms",
+        "chapter": "40"
+      },
+      {
+        "display": "出 17:1-18:27",
+        "book": "Exodus",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 44,
+    "readings": [
+      {
+        "display": "太 28",
+        "book": "Matthew",
+        "chapter": "28"
+      },
+      {
+        "display": "詩 41",
+        "book": "Psalms",
+        "chapter": "41"
+      },
+      {
+        "display": "出 19:1-20:26",
+        "book": "Exodus",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 45,
+    "readings": [
+      {
+        "display": "可 1:1-20",
+        "book": "Mark",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 42",
+        "book": "Psalms",
+        "chapter": "42"
+      },
+      {
+        "display": "出 21",
+        "book": "Exodus",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 46,
+    "readings": [
+      {
+        "display": "可 1:21-45",
+        "book": "Mark",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 43",
+        "book": "Psalms",
+        "chapter": "43"
+      },
+      {
+        "display": "出 22",
+        "book": "Exodus",
+        "chapter": "22"
+      }
+    ]
+  },
+  {
+    "day": 47,
+    "readings": [
+      {
+        "display": "可 2",
+        "book": "Mark",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 44",
+        "book": "Psalms",
+        "chapter": "44"
+      },
+      {
+        "display": "出 23:1-24:18",
+        "book": "Exodus",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 48,
+    "readings": [
+      {
+        "display": "可 3:1-19",
+        "book": "Mark",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 45",
+        "book": "Psalms",
+        "chapter": "45"
+      },
+      {
+        "display": "出 25",
+        "book": "Exodus",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 49,
+    "readings": [
+      {
+        "display": "可 3:20-35",
+        "book": "Mark",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 46",
+        "book": "Psalms",
+        "chapter": "46"
+      },
+      {
+        "display": "出 26",
+        "book": "Exodus",
+        "chapter": "26"
+      }
+    ]
+  },
+  {
+    "day": 50,
+    "readings": [
+      {
+        "display": "可 4:1-20",
+        "book": "Mark",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 47",
+        "book": "Psalms",
+        "chapter": "47"
+      },
+      {
+        "display": "出 27:1-28:43",
+        "book": "Exodus",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 51,
+    "readings": [
+      {
+        "display": "可 4:21-41",
+        "book": "Mark",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 48",
+        "book": "Psalms",
+        "chapter": "48"
+      },
+      {
+        "display": "出 29",
+        "book": "Exodus",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 52,
+    "readings": [
+      {
+        "display": "可 5:1-20",
+        "book": "Mark",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 49",
+        "book": "Psalms",
+        "chapter": "49"
+      },
+      {
+        "display": "出 30",
+        "book": "Exodus",
+        "chapter": "30"
+      }
+    ]
+  },
+  {
+    "day": 53,
+    "readings": [
+      {
+        "display": "可 5:21-43",
+        "book": "Mark",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 50",
+        "book": "Psalms",
+        "chapter": "50"
+      },
+      {
+        "display": "出 31:1-32:35",
+        "book": "Exodus",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 54,
+    "readings": [
+      {
+        "display": "可 6:1-29",
+        "book": "Mark",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 51",
+        "book": "Psalms",
+        "chapter": "51"
+      },
+      {
+        "display": "出 33:1-34:35",
+        "book": "Exodus",
+        "chapter": "33"
+      }
+    ]
+  },
+  {
+    "day": 55,
+    "readings": [
+      {
+        "display": "可 6:30-56",
+        "book": "Mark",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 52",
+        "book": "Psalms",
+        "chapter": "52"
+      },
+      {
+        "display": "出 35",
+        "book": "Exodus",
+        "chapter": "35"
+      }
+    ]
+  },
+  {
+    "day": 56,
+    "readings": [
+      {
+        "display": "可 7:1-23",
+        "book": "Mark",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 53",
+        "book": "Psalms",
+        "chapter": "53"
+      },
+      {
+        "display": "出 36",
+        "book": "Exodus",
+        "chapter": "36"
+      }
+    ]
+  },
+  {
+    "day": 57,
+    "readings": [
+      {
+        "display": "可 7:24-37",
+        "book": "Mark",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 54",
+        "book": "Psalms",
+        "chapter": "54"
+      },
+      {
+        "display": "出 37:1-38:31",
+        "book": "Exodus",
+        "chapter": "37"
+      }
+    ]
+  },
+  {
+    "day": 58,
+    "readings": [
+      {
+        "display": "可 8:1-21",
+        "book": "Mark",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 55",
+        "book": "Psalms",
+        "chapter": "55"
+      },
+      {
+        "display": "出 39",
+        "book": "Exodus",
+        "chapter": "39"
+      }
+    ]
+  },
+  {
+    "day": 59,
+    "readings": [
+      {
+        "display": "可 8:22-38",
+        "book": "Mark",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 56",
+        "book": "Psalms",
+        "chapter": "56"
+      },
+      {
+        "display": "出 40",
+        "book": "Exodus",
+        "chapter": "40"
+      }
+    ]
+  },
+  {
+    "day": 60,
+    "readings": [
+      {
+        "display": "可 9:1-32",
+        "book": "Mark",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 57",
+        "book": "Psalms",
+        "chapter": "57"
+      },
+      {
+        "display": "利 1:1-2:16",
+        "book": "Leviticus",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 61,
+    "readings": [
+      {
+        "display": "可 9:33-50",
+        "book": "Mark",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 58",
+        "book": "Psalms",
+        "chapter": "58"
+      },
+      {
+        "display": "利 3",
+        "book": "Leviticus",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 62,
+    "readings": [
+      {
+        "display": "可 10:1-31",
+        "book": "Mark",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 59",
+        "book": "Psalms",
+        "chapter": "59"
+      },
+      {
+        "display": "利 4",
+        "book": "Leviticus",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 63,
+    "readings": [
+      {
+        "display": "可 10:32-52",
+        "book": "Mark",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 60",
+        "book": "Psalms",
+        "chapter": "60"
+      },
+      {
+        "display": "利 5:1-6:30",
+        "book": "Leviticus",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 64,
+    "readings": [
+      {
+        "display": "可 11:1-19",
+        "book": "Mark",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 61",
+        "book": "Psalms",
+        "chapter": "61"
+      },
+      {
+        "display": "利 7:1-8:36",
+        "book": "Leviticus",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 65,
+    "readings": [
+      {
+        "display": "可 11:20-33",
+        "book": "Mark",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 62",
+        "book": "Psalms",
+        "chapter": "62"
+      },
+      {
+        "display": "利 9:1-10:20",
+        "book": "Leviticus",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 66,
+    "readings": [
+      {
+        "display": "可 12:1-27",
+        "book": "Mark",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 63",
+        "book": "Psalms",
+        "chapter": "63"
+      },
+      {
+        "display": "利 11:1-12:8",
+        "book": "Leviticus",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 67,
+    "readings": [
+      {
+        "display": "可 12:28-44",
+        "book": "Mark",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 64",
+        "book": "Psalms",
+        "chapter": "64"
+      },
+      {
+        "display": "利 13",
+        "book": "Leviticus",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 68,
+    "readings": [
+      {
+        "display": "可 13",
+        "book": "Mark",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 65",
+        "book": "Psalms",
+        "chapter": "65"
+      },
+      {
+        "display": "利 14",
+        "book": "Leviticus",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 69,
+    "readings": [
+      {
+        "display": "可 14:1-31",
+        "book": "Mark",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 66",
+        "book": "Psalms",
+        "chapter": "66"
+      },
+      {
+        "display": "利 15",
+        "book": "Leviticus",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 70,
+    "readings": [
+      {
+        "display": "可 14:32-52",
+        "book": "Mark",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 67",
+        "book": "Psalms",
+        "chapter": "67"
+      },
+      {
+        "display": "利 16",
+        "book": "Leviticus",
+        "chapter": "16"
+      }
+    ]
+  },
+  {
+    "day": 71,
+    "readings": [
+      {
+        "display": "可 14:53-72",
+        "book": "Mark",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 68",
+        "book": "Psalms",
+        "chapter": "68"
+      },
+      {
+        "display": "利 17:1-18:30",
+        "book": "Leviticus",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 72,
+    "readings": [
+      {
+        "display": "可 15:1-32",
+        "book": "Mark",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 69:1-18",
+        "book": "Psalms",
+        "chapter": "69"
+      },
+      {
+        "display": "利 19:1-20:27",
+        "book": "Leviticus",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 73,
+    "readings": [
+      {
+        "display": "可 15:33-47",
+        "book": "Mark",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 69:19-36",
+        "book": "Psalms",
+        "chapter": "69"
+      },
+      {
+        "display": "利 21:1-22:33",
+        "book": "Leviticus",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 74,
+    "readings": [
+      {
+        "display": "可 16",
+        "book": "Mark",
+        "chapter": "16"
+      },
+      {
+        "display": "詩 70",
+        "book": "Psalms",
+        "chapter": "70"
+      },
+      {
+        "display": "利 23:1-24:23",
+        "book": "Leviticus",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 75,
+    "readings": [
+      {
+        "display": "路 1:1-38",
+        "book": "Luke",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 71",
+        "book": "Psalms",
+        "chapter": "71"
+      },
+      {
+        "display": "利 25",
+        "book": "Leviticus",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 76,
+    "readings": [
+      {
+        "display": "路 1:39-66",
+        "book": "Luke",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 72",
+        "book": "Psalms",
+        "chapter": "72"
+      },
+      {
+        "display": "利 26",
+        "book": "Leviticus",
+        "chapter": "26"
+      }
+    ]
+  },
+  {
+    "day": 77,
+    "readings": [
+      {
+        "display": "路 1:67-80",
+        "book": "Luke",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 73",
+        "book": "Psalms",
+        "chapter": "73"
+      },
+      {
+        "display": "利 27",
+        "book": "Leviticus",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 78,
+    "readings": [
+      {
+        "display": "路 2:1-20",
+        "book": "Luke",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 74",
+        "book": "Psalms",
+        "chapter": "74"
+      },
+      {
+        "display": "民 1:1-2:34",
+        "book": "Numbers",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 79,
+    "readings": [
+      {
+        "display": "路 2:21-52",
+        "book": "Luke",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 75",
+        "book": "Psalms",
+        "chapter": "75"
+      },
+      {
+        "display": "民 3",
+        "book": "Numbers",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 80,
+    "readings": [
+      {
+        "display": "路 3:1-20",
+        "book": "Luke",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 76",
+        "book": "Psalms",
+        "chapter": "76"
+      },
+      {
+        "display": "民 4",
+        "book": "Numbers",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 81,
+    "readings": [
+      {
+        "display": "路 3:21-38",
+        "book": "Luke",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 77",
+        "book": "Psalms",
+        "chapter": "77"
+      },
+      {
+        "display": "民 5:1-6:27",
+        "book": "Numbers",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 82,
+    "readings": [
+      {
+        "display": "路 4:1-30",
+        "book": "Luke",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 78:1-39",
+        "book": "Psalms",
+        "chapter": "78"
+      },
+      {
+        "display": "民 7:1-8:26",
+        "book": "Numbers",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 83,
+    "readings": [
+      {
+        "display": "路 4:31-44",
+        "book": "Luke",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 78:40-72",
+        "book": "Psalms",
+        "chapter": "78"
+      },
+      {
+        "display": "民 9:1-10:36",
+        "book": "Numbers",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 84,
+    "readings": [
+      {
+        "display": "路 5:1-26",
+        "book": "Luke",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 79",
+        "book": "Psalms",
+        "chapter": "79"
+      },
+      {
+        "display": "民 11",
+        "book": "Numbers",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 85,
+    "readings": [
+      {
+        "display": "路 5:27-39",
+        "book": "Luke",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 80",
+        "book": "Psalms",
+        "chapter": "80"
+      },
+      {
+        "display": "民 12:1-13:33",
+        "book": "Numbers",
+        "chapter": "12"
+      }
+    ]
+  },
+  {
+    "day": 86,
+    "readings": [
+      {
+        "display": "路 6:1-26",
+        "book": "Luke",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 81",
+        "book": "Psalms",
+        "chapter": "81"
+      },
+      {
+        "display": "民 14",
+        "book": "Numbers",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 87,
+    "readings": [
+      {
+        "display": "路 6:27-49",
+        "book": "Luke",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 82",
+        "book": "Psalms",
+        "chapter": "82"
+      },
+      {
+        "display": "民 15",
+        "book": "Numbers",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 88,
+    "readings": [
+      {
+        "display": "路 7:1-35",
+        "book": "Luke",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 83",
+        "book": "Psalms",
+        "chapter": "83"
+      },
+      {
+        "display": "民 16",
+        "book": "Numbers",
+        "chapter": "16"
+      }
+    ]
+  },
+  {
+    "day": 89,
+    "readings": [
+      {
+        "display": "路 7:36-50",
+        "book": "Luke",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 84",
+        "book": "Psalms",
+        "chapter": "84"
+      },
+      {
+        "display": "民 17:1-18:32",
+        "book": "Numbers",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 90,
+    "readings": [
+      {
+        "display": "路 8:1-25",
+        "book": "Luke",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 85",
+        "book": "Psalms",
+        "chapter": "85"
+      },
+      {
+        "display": "民 19:1-20:29",
+        "book": "Numbers",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 91,
+    "readings": [
+      {
+        "display": "路 8:26-56",
+        "book": "Luke",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 86",
+        "book": "Psalms",
+        "chapter": "86"
+      },
+      {
+        "display": "民 21",
+        "book": "Numbers",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 92,
+    "readings": [
+      {
+        "display": "路 9:1-36",
+        "book": "Luke",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 87",
+        "book": "Psalms",
+        "chapter": "87"
+      },
+      {
+        "display": "民 22",
+        "book": "Numbers",
+        "chapter": "22"
+      }
+    ]
+  },
+  {
+    "day": 93,
+    "readings": [
+      {
+        "display": "路 9:37-62",
+        "book": "Luke",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 88",
+        "book": "Psalms",
+        "chapter": "88"
+      },
+      {
+        "display": "民 23",
+        "book": "Numbers",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 94,
+    "readings": [
+      {
+        "display": "路 10:1-24",
+        "book": "Luke",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 89:1-18",
+        "book": "Psalms",
+        "chapter": "89"
+      },
+      {
+        "display": "民 24:1-25:18",
+        "book": "Numbers",
+        "chapter": "24"
+      }
+    ]
+  },
+  {
+    "day": 95,
+    "readings": [
+      {
+        "display": "路 10:25-42",
+        "book": "Luke",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 89:19-52",
+        "book": "Psalms",
+        "chapter": "89"
+      },
+      {
+        "display": "民 26",
+        "book": "Numbers",
+        "chapter": "26"
+      }
+    ]
+  },
+  {
+    "day": 96,
+    "readings": [
+      {
+        "display": "路 11:1-28",
+        "book": "Luke",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 90",
+        "book": "Psalms",
+        "chapter": "90"
+      },
+      {
+        "display": "民 27:1-28:31",
+        "book": "Numbers",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 97,
+    "readings": [
+      {
+        "display": "路 11:29-54",
+        "book": "Luke",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 91",
+        "book": "Psalms",
+        "chapter": "91"
+      },
+      {
+        "display": "民 29:1-30:16",
+        "book": "Numbers",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 98,
+    "readings": [
+      {
+        "display": "路 12:1-34",
+        "book": "Luke",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 92",
+        "book": "Psalms",
+        "chapter": "92"
+      },
+      {
+        "display": "民 31",
+        "book": "Numbers",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 99,
+    "readings": [
+      {
+        "display": "路 12:35-59",
+        "book": "Luke",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 93",
+        "book": "Psalms",
+        "chapter": "93"
+      },
+      {
+        "display": "民 32",
+        "book": "Numbers",
+        "chapter": "32"
+      }
+    ]
+  },
+  {
+    "day": 100,
+    "readings": [
+      {
+        "display": "路 13:1-17",
+        "book": "Luke",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 94",
+        "book": "Psalms",
+        "chapter": "94"
+      },
+      {
+        "display": "民 33:1-34:29",
+        "book": "Numbers",
+        "chapter": "33"
+      }
+    ]
+  },
+  {
+    "day": 101,
+    "readings": [
+      {
+        "display": "路 13:18-35",
+        "book": "Luke",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 95",
+        "book": "Psalms",
+        "chapter": "95"
+      },
+      {
+        "display": "民 35:1-36:13",
+        "book": "Numbers",
+        "chapter": "35"
+      }
+    ]
+  },
+  {
+    "day": 102,
+    "readings": [
+      {
+        "display": "路 14",
+        "book": "Luke",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 96",
+        "book": "Psalms",
+        "chapter": "96"
+      },
+      {
+        "display": "申 1",
+        "book": "Deuteronomy",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 103,
+    "readings": [
+      {
+        "display": "路 15",
+        "book": "Luke",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 97",
+        "book": "Psalms",
+        "chapter": "97"
+      },
+      {
+        "display": "申 2",
+        "book": "Deuteronomy",
+        "chapter": "2"
+      }
+    ]
+  },
+  {
+    "day": 104,
+    "readings": [
+      {
+        "display": "路 16",
+        "book": "Luke",
+        "chapter": "16"
+      },
+      {
+        "display": "詩 98",
+        "book": "Psalms",
+        "chapter": "98"
+      },
+      {
+        "display": "申 3:1-4:49",
+        "book": "Deuteronomy",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 105,
+    "readings": [
+      {
+        "display": "路 17:1-19",
+        "book": "Luke",
+        "chapter": "17"
+      },
+      {
+        "display": "詩 99",
+        "book": "Psalms",
+        "chapter": "99"
+      },
+      {
+        "display": "申 5:1-6:25",
+        "book": "Deuteronomy",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 106,
+    "readings": [
+      {
+        "display": "路 17:20-37",
+        "book": "Luke",
+        "chapter": "17"
+      },
+      {
+        "display": "詩 100",
+        "book": "Psalms",
+        "chapter": "100"
+      },
+      {
+        "display": "申 7",
+        "book": "Deuteronomy",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 107,
+    "readings": [
+      {
+        "display": "路 18:1-17",
+        "book": "Luke",
+        "chapter": "18"
+      },
+      {
+        "display": "詩 101",
+        "book": "Psalms",
+        "chapter": "101"
+      },
+      {
+        "display": "申 8:1-9:29",
+        "book": "Deuteronomy",
+        "chapter": "8"
+      }
+    ]
+  },
+  {
+    "day": 108,
+    "readings": [
+      {
+        "display": "路 18:18-43",
+        "book": "Luke",
+        "chapter": "18"
+      },
+      {
+        "display": "詩 102",
+        "book": "Psalms",
+        "chapter": "102"
+      },
+      {
+        "display": "申 10:1-11:32",
+        "book": "Deuteronomy",
+        "chapter": "10"
+      }
+    ]
+  },
+  {
+    "day": 109,
+    "readings": [
+      {
+        "display": "路 19:1-27",
+        "book": "Luke",
+        "chapter": "19"
+      },
+      {
+        "display": "詩 103",
+        "book": "Psalms",
+        "chapter": "103"
+      },
+      {
+        "display": "申 12:1-13:18",
+        "book": "Deuteronomy",
+        "chapter": "12"
+      }
+    ]
+  },
+  {
+    "day": 110,
+    "readings": [
+      {
+        "display": "路 19:28-48",
+        "book": "Luke",
+        "chapter": "19"
+      },
+      {
+        "display": "詩 104",
+        "book": "Psalms",
+        "chapter": "104"
+      },
+      {
+        "display": "申 14",
+        "book": "Deuteronomy",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 111,
+    "readings": [
+      {
+        "display": "路 20:1-26",
+        "book": "Luke",
+        "chapter": "20"
+      },
+      {
+        "display": "詩 105",
+        "book": "Psalms",
+        "chapter": "105"
+      },
+      {
+        "display": "申 15:1-16:22",
+        "book": "Deuteronomy",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 112,
+    "readings": [
+      {
+        "display": "路 20:27-47",
+        "book": "Luke",
+        "chapter": "20"
+      },
+      {
+        "display": "詩 106:1-23",
+        "book": "Psalms",
+        "chapter": "106"
+      },
+      {
+        "display": "申 17:1-18:22",
+        "book": "Deuteronomy",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 113,
+    "readings": [
+      {
+        "display": "路 21:1-19",
+        "book": "Luke",
+        "chapter": "21"
+      },
+      {
+        "display": "詩 106:24-48",
+        "book": "Psalms",
+        "chapter": "106"
+      },
+      {
+        "display": "申 19",
+        "book": "Deuteronomy",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 114,
+    "readings": [
+      {
+        "display": "路 21:20-38",
+        "book": "Luke",
+        "chapter": "21"
+      },
+      {
+        "display": "詩 107",
+        "book": "Psalms",
+        "chapter": "107"
+      },
+      {
+        "display": "申 20",
+        "book": "Deuteronomy",
+        "chapter": "20"
+      }
+    ]
+  },
+  {
+    "day": 115,
+    "readings": [
+      {
+        "display": "路 22:1-38",
+        "book": "Luke",
+        "chapter": "22"
+      },
+      {
+        "display": "詩 108",
+        "book": "Psalms",
+        "chapter": "108"
+      },
+      {
+        "display": "申 21:1-22:30",
+        "book": "Deuteronomy",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 116,
+    "readings": [
+      {
+        "display": "路 22:39-53",
+        "book": "Luke",
+        "chapter": "22"
+      },
+      {
+        "display": "詩 109",
+        "book": "Psalms",
+        "chapter": "109"
+      },
+      {
+        "display": "申 23:1-24:22",
+        "book": "Deuteronomy",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 117,
+    "readings": [
+      {
+        "display": "路 22:54-71",
+        "book": "Luke",
+        "chapter": "22"
+      },
+      {
+        "display": "詩 110",
+        "book": "Psalms",
+        "chapter": "110"
+      },
+      {
+        "display": "申 25:1-26:19",
+        "book": "Deuteronomy",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 118,
+    "readings": [
+      {
+        "display": "路 23:1-25",
+        "book": "Luke",
+        "chapter": "23"
+      },
+      {
+        "display": "詩 111",
+        "book": "Psalms",
+        "chapter": "111"
+      },
+      {
+        "display": "申 27",
+        "book": "Deuteronomy",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 119,
+    "readings": [
+      {
+        "display": "路 23:26-56",
+        "book": "Luke",
+        "chapter": "23"
+      },
+      {
+        "display": "詩 112",
+        "book": "Psalms",
+        "chapter": "112"
+      },
+      {
+        "display": "申 28",
+        "book": "Deuteronomy",
+        "chapter": "28"
+      }
+    ]
+  },
+  {
+    "day": 120,
+    "readings": [
+      {
+        "display": "路 24:1-35",
+        "book": "Luke",
+        "chapter": "24"
+      },
+      {
+        "display": "詩 113",
+        "book": "Psalms",
+        "chapter": "113"
+      },
+      {
+        "display": "申 29:1-30:20",
+        "book": "Deuteronomy",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 121,
+    "readings": [
+      {
+        "display": "路 24:36-53",
+        "book": "Luke",
+        "chapter": "24"
+      },
+      {
+        "display": "詩 114",
+        "book": "Psalms",
+        "chapter": "114"
+      },
+      {
+        "display": "申 31:1-32:52",
+        "book": "Deuteronomy",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 122,
+    "readings": [
+      {
+        "display": "約 1:1-28",
+        "book": "John",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 115",
+        "book": "Psalms",
+        "chapter": "115"
+      },
+      {
+        "display": "申 33",
+        "book": "Deuteronomy",
+        "chapter": "33"
+      }
+    ]
+  },
+  {
+    "day": 123,
+    "readings": [
+      {
+        "display": "約 1:29-51",
+        "book": "John",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 116",
+        "book": "Psalms",
+        "chapter": "116"
+      },
+      {
+        "display": "申 34",
+        "book": "Deuteronomy",
+        "chapter": "34"
+      }
+    ]
+  },
+  {
+    "day": 124,
+    "readings": [
+      {
+        "display": "約 2",
+        "book": "John",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 117",
+        "book": "Psalms",
+        "chapter": "117"
+      },
+      {
+        "display": "書 1:1-2:24",
+        "book": "Joshua",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 125,
+    "readings": [
+      {
+        "display": "約 3:1-21",
+        "book": "John",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 118",
+        "book": "Psalms",
+        "chapter": "118"
+      },
+      {
+        "display": "書 3:1-4:24",
+        "book": "Joshua",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 126,
+    "readings": [
+      {
+        "display": "約 3:22-36",
+        "book": "John",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 119:1-8",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 5",
+        "book": "Joshua",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 127,
+    "readings": [
+      {
+        "display": "約 4:1-26",
+        "book": "John",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 119:9-16",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 6",
+        "book": "Joshua",
+        "chapter": "6"
+      }
+    ]
+  },
+  {
+    "day": 128,
+    "readings": [
+      {
+        "display": "約 4:27-54",
+        "book": "John",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 119:17-24",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 7:1-8:35",
+        "book": "Joshua",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 129,
+    "readings": [
+      {
+        "display": "約 5:1-15",
+        "book": "John",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 119:25-32",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 9:1-10:43",
+        "book": "Joshua",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 130,
+    "readings": [
+      {
+        "display": "約 5:16-47",
+        "book": "John",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 119:33-40",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 11:1-12:24",
+        "book": "Joshua",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 131,
+    "readings": [
+      {
+        "display": "約 6:1-40",
+        "book": "John",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 119:41-48",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 13",
+        "book": "Joshua",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 132,
+    "readings": [
+      {
+        "display": "約 6:41-71",
+        "book": "John",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 119:49-56",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 14",
+        "book": "Joshua",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 133,
+    "readings": [
+      {
+        "display": "約 7:1-24",
+        "book": "John",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 119:57-64",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 15:1-16:10",
+        "book": "Joshua",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 134,
+    "readings": [
+      {
+        "display": "約 7:25-52",
+        "book": "John",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 119:65-72",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 17:1-18:28",
+        "book": "Joshua",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 135,
+    "readings": [
+      {
+        "display": "約 8:1-30",
+        "book": "John",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 119:73-80",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 19",
+        "book": "Joshua",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 136,
+    "readings": [
+      {
+        "display": "約 8:31-59",
+        "book": "John",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 119:81-88",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 20:1-21:45",
+        "book": "Joshua",
+        "chapter": "20"
+      }
+    ]
+  },
+  {
+    "day": 137,
+    "readings": [
+      {
+        "display": "約 9:1-25",
+        "book": "John",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 119:89-96",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 22",
+        "book": "Joshua",
+        "chapter": "22"
+      }
+    ]
+  },
+  {
+    "day": 138,
+    "readings": [
+      {
+        "display": "約 9:26-41",
+        "book": "John",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 119:97-104",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "書 23:1-24:33",
+        "book": "Joshua",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 139,
+    "readings": [
+      {
+        "display": "約 10:1-21",
+        "book": "John",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 119:105-112",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 1:1-2:23",
+        "book": "Judges",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 140,
+    "readings": [
+      {
+        "display": "約 10:22-42",
+        "book": "John",
+        "chapter": "10"
+      },
+      {
+        "display": "詩 119:113-120",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 3:1-4:24",
+        "book": "Judges",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 141,
+    "readings": [
+      {
+        "display": "約 11:1-37",
+        "book": "John",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 119:121-128",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 5",
+        "book": "Judges",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 142,
+    "readings": [
+      {
+        "display": "約 11:38-57",
+        "book": "John",
+        "chapter": "11"
+      },
+      {
+        "display": "詩 119:129-136",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 6",
+        "book": "Judges",
+        "chapter": "6"
+      }
+    ]
+  },
+  {
+    "day": 143,
+    "readings": [
+      {
+        "display": "約 12:1-19",
+        "book": "John",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 119:137-144",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 7:1-8:35",
+        "book": "Judges",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 144,
+    "readings": [
+      {
+        "display": "約 12:20-36",
+        "book": "John",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 119:145-152",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 9",
+        "book": "Judges",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 145,
+    "readings": [
+      {
+        "display": "約 12:37-50",
+        "book": "John",
+        "chapter": "12"
+      },
+      {
+        "display": "詩 119:153-160",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 10",
+        "book": "Judges",
+        "chapter": "10"
+      }
+    ]
+  },
+  {
+    "day": 146,
+    "readings": [
+      {
+        "display": "約 13:1-17",
+        "book": "John",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 119:161-168",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 11",
+        "book": "Judges",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 147,
+    "readings": [
+      {
+        "display": "約 13:18-38",
+        "book": "John",
+        "chapter": "13"
+      },
+      {
+        "display": "詩 119:169-176",
+        "book": "Psalms",
+        "chapter": "119"
+      },
+      {
+        "display": "士 12:1-13:25",
+        "book": "Judges",
+        "chapter": "12"
+      }
+    ]
+  },
+  {
+    "day": 148,
+    "readings": [
+      {
+        "display": "約 14:1-14",
+        "book": "John",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 120",
+        "book": "Psalms",
+        "chapter": "120"
+      },
+      {
+        "display": "士 14:1-15:20",
+        "book": "Judges",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 149,
+    "readings": [
+      {
+        "display": "約 14:15-31",
+        "book": "John",
+        "chapter": "14"
+      },
+      {
+        "display": "詩 121",
+        "book": "Psalms",
+        "chapter": "121"
+      },
+      {
+        "display": "士 16",
+        "book": "Judges",
+        "chapter": "16"
+      }
+    ]
+  },
+  {
+    "day": 150,
+    "readings": [
+      {
+        "display": "約 15:1-17",
+        "book": "John",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 122",
+        "book": "Psalms",
+        "chapter": "122"
+      },
+      {
+        "display": "士 17:1-18:31",
+        "book": "Judges",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 151,
+    "readings": [
+      {
+        "display": "約 15:18-16:4",
+        "book": "John",
+        "chapter": "15"
+      },
+      {
+        "display": "詩 123",
+        "book": "Psalms",
+        "chapter": "123"
+      },
+      {
+        "display": "士 19:1-20:48",
+        "book": "Judges",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 152,
+    "readings": [
+      {
+        "display": "約 16:5-16",
+        "book": "John",
+        "chapter": "16"
+      },
+      {
+        "display": "詩 124",
+        "book": "Psalms",
+        "chapter": "124"
+      },
+      {
+        "display": "士 21",
+        "book": "Judges",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 153,
+    "readings": [
+      {
+        "display": "約 16:17-33",
+        "book": "John",
+        "chapter": "16"
+      },
+      {
+        "display": "詩 125",
+        "book": "Psalms",
+        "chapter": "125"
+      },
+      {
+        "display": "得 1",
+        "book": "Ruth",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 154,
+    "readings": [
+      {
+        "display": "約 17",
+        "book": "John",
+        "chapter": "17"
+      },
+      {
+        "display": "詩 126",
+        "book": "Psalms",
+        "chapter": "126"
+      },
+      {
+        "display": "得 2",
+        "book": "Ruth",
+        "chapter": "2"
+      }
+    ]
+  },
+  {
+    "day": 155,
+    "readings": [
+      {
+        "display": "約 18:1-27",
+        "book": "John",
+        "chapter": "18"
+      },
+      {
+        "display": "詩 127",
+        "book": "Psalms",
+        "chapter": "127"
+      },
+      {
+        "display": "得 3:1-4:22",
+        "book": "Ruth",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 156,
+    "readings": [
+      {
+        "display": "約 18:28-40",
+        "book": "John",
+        "chapter": "18"
+      },
+      {
+        "display": "詩 128",
+        "book": "Psalms",
+        "chapter": "128"
+      },
+      {
+        "display": "撒上 1",
+        "book": "1 Samuel",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 157,
+    "readings": [
+      {
+        "display": "約 19:1-27",
+        "book": "John",
+        "chapter": "19"
+      },
+      {
+        "display": "詩 129",
+        "book": "Psalms",
+        "chapter": "129"
+      },
+      {
+        "display": "撒上 2",
+        "book": "1 Samuel",
+        "chapter": "2"
+      }
+    ]
+  },
+  {
+    "day": 158,
+    "readings": [
+      {
+        "display": "約 19:28-42",
+        "book": "John",
+        "chapter": "19"
+      },
+      {
+        "display": "詩 130",
+        "book": "Psalms",
+        "chapter": "130"
+      },
+      {
+        "display": "撒上 3",
+        "book": "1 Samuel",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 159,
+    "readings": [
+      {
+        "display": "約 20:1-18",
+        "book": "John",
+        "chapter": "20"
+      },
+      {
+        "display": "詩 131",
+        "book": "Psalms",
+        "chapter": "131"
+      },
+      {
+        "display": "撒上 4",
+        "book": "1 Samuel",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 160,
+    "readings": [
+      {
+        "display": "約 20:19-31",
+        "book": "John",
+        "chapter": "20"
+      },
+      {
+        "display": "詩 132",
+        "book": "Psalms",
+        "chapter": "132"
+      },
+      {
+        "display": "撒上 5:1-6:21",
+        "book": "1 Samuel",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 161,
+    "readings": [
+      {
+        "display": "約 21:1-14",
+        "book": "John",
+        "chapter": "21"
+      },
+      {
+        "display": "詩 133",
+        "book": "Psalms",
+        "chapter": "133"
+      },
+      {
+        "display": "撒上 7:1-8:22",
+        "book": "1 Samuel",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 162,
+    "readings": [
+      {
+        "display": "約 21:15-25",
+        "book": "John",
+        "chapter": "21"
+      },
+      {
+        "display": "詩 134",
+        "book": "Psalms",
+        "chapter": "134"
+      },
+      {
+        "display": "撒上 9:1-10:27",
+        "book": "1 Samuel",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 163,
+    "readings": [
+      {
+        "display": "徒 1",
+        "book": "Acts",
+        "chapter": "1"
+      },
+      {
+        "display": "詩 135",
+        "book": "Psalms",
+        "chapter": "135"
+      },
+      {
+        "display": "撒上 11:1-12:25",
+        "book": "1 Samuel",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 164,
+    "readings": [
+      {
+        "display": "徒 2:1-21",
+        "book": "Acts",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 136",
+        "book": "Psalms",
+        "chapter": "136"
+      },
+      {
+        "display": "撒上 13",
+        "book": "1 Samuel",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 165,
+    "readings": [
+      {
+        "display": "徒 2:22-47",
+        "book": "Acts",
+        "chapter": "2"
+      },
+      {
+        "display": "詩 137",
+        "book": "Psalms",
+        "chapter": "137"
+      },
+      {
+        "display": "撒上 14",
+        "book": "1 Samuel",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 166,
+    "readings": [
+      {
+        "display": "徒 3:1-10",
+        "book": "Acts",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 138",
+        "book": "Psalms",
+        "chapter": "138"
+      },
+      {
+        "display": "撒上 15:1-16:23",
+        "book": "1 Samuel",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 167,
+    "readings": [
+      {
+        "display": "徒 3:11-26",
+        "book": "Acts",
+        "chapter": "3"
+      },
+      {
+        "display": "詩 139",
+        "book": "Psalms",
+        "chapter": "139"
+      },
+      {
+        "display": "撒上 17",
+        "book": "1 Samuel",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 168,
+    "readings": [
+      {
+        "display": "徒 4:1-22",
+        "book": "Acts",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 140",
+        "book": "Psalms",
+        "chapter": "140"
+      },
+      {
+        "display": "撒上 18",
+        "book": "1 Samuel",
+        "chapter": "18"
+      }
+    ]
+  },
+  {
+    "day": 169,
+    "readings": [
+      {
+        "display": "徒 4:23-37",
+        "book": "Acts",
+        "chapter": "4"
+      },
+      {
+        "display": "詩 141",
+        "book": "Psalms",
+        "chapter": "141"
+      },
+      {
+        "display": "撒上 19:1-20:42",
+        "book": "1 Samuel",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 170,
+    "readings": [
+      {
+        "display": "徒 5:1-16",
+        "book": "Acts",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 142",
+        "book": "Psalms",
+        "chapter": "142"
+      },
+      {
+        "display": "撒上 21:1-22:23",
+        "book": "1 Samuel",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 171,
+    "readings": [
+      {
+        "display": "徒 5:17-42",
+        "book": "Acts",
+        "chapter": "5"
+      },
+      {
+        "display": "詩 143",
+        "book": "Psalms",
+        "chapter": "143"
+      },
+      {
+        "display": "撒上 23:1-24:22",
+        "book": "1 Samuel",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 172,
+    "readings": [
+      {
+        "display": "徒 6",
+        "book": "Acts",
+        "chapter": "6"
+      },
+      {
+        "display": "詩 144",
+        "book": "Psalms",
+        "chapter": "144"
+      },
+      {
+        "display": "撒上 25",
+        "book": "1 Samuel",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 173,
+    "readings": [
+      {
+        "display": "徒 7:1-38",
+        "book": "Acts",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 145",
+        "book": "Psalms",
+        "chapter": "145"
+      },
+      {
+        "display": "撒上 26",
+        "book": "1 Samuel",
+        "chapter": "26"
+      }
+    ]
+  },
+  {
+    "day": 174,
+    "readings": [
+      {
+        "display": "徒 7:39-60",
+        "book": "Acts",
+        "chapter": "7"
+      },
+      {
+        "display": "詩 146",
+        "book": "Psalms",
+        "chapter": "146"
+      },
+      {
+        "display": "撒上 27:1-28:25",
+        "book": "1 Samuel",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 175,
+    "readings": [
+      {
+        "display": "徒 8:1-25",
+        "book": "Acts",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 147",
+        "book": "Psalms",
+        "chapter": "147"
+      },
+      {
+        "display": "撒上 29:1-30:31",
+        "book": "1 Samuel",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 176,
+    "readings": [
+      {
+        "display": "徒 8:26-40",
+        "book": "Acts",
+        "chapter": "8"
+      },
+      {
+        "display": "詩 148",
+        "book": "Psalms",
+        "chapter": "148"
+      },
+      {
+        "display": "撒上 31",
+        "book": "1 Samuel",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 177,
+    "readings": [
+      {
+        "display": "徒 9:1-19a",
+        "book": "Acts",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 149",
+        "book": "Psalms",
+        "chapter": "149"
+      },
+      {
+        "display": "撒下 1:1-2:32",
+        "book": "2 Samuel",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 178,
+    "readings": [
+      {
+        "display": "徒 9:19b-43",
+        "book": "Acts",
+        "chapter": "9"
+      },
+      {
+        "display": "詩 150",
+        "book": "Psalms",
+        "chapter": "150"
+      },
+      {
+        "display": "撒下 3",
+        "book": "2 Samuel",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 179,
+    "readings": [
+      {
+        "display": "徒 10:1-23a",
+        "book": "Acts",
+        "chapter": "10"
+      },
+      {
+        "display": "箴 1:1-19",
+        "book": "Proverbs",
+        "chapter": "1"
+      },
+      {
+        "display": "撒下 4:1-5:12",
+        "book": "2 Samuel",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 180,
+    "readings": [
+      {
+        "display": "徒 10:23b-48",
+        "book": "Acts",
+        "chapter": "10"
+      },
+      {
+        "display": "箴 1:20-33",
+        "book": "Proverbs",
+        "chapter": "1"
+      },
+      {
+        "display": "撒下 6:1-7:29",
+        "book": "2 Samuel",
+        "chapter": "6"
+      }
+    ]
+  },
+  {
+    "day": 181,
+    "readings": [
+      {
+        "display": "徒 11:1-18",
+        "book": "Acts",
+        "chapter": "11"
+      },
+      {
+        "display": "箴 2",
+        "book": "Proverbs",
+        "chapter": "2"
+      },
+      {
+        "display": "撒下 8:1-9:13",
+        "book": "2 Samuel",
+        "chapter": "8"
+      }
+    ]
+  },
+  {
+    "day": 182,
+    "readings": [
+      {
+        "display": "徒 11:19-30",
+        "book": "Acts",
+        "chapter": "11"
+      },
+      {
+        "display": "箴 3",
+        "book": "Proverbs",
+        "chapter": "3"
+      },
+      {
+        "display": "撒下 10:1-11:27",
+        "book": "2 Samuel",
+        "chapter": "10"
+      }
+    ]
+  },
+  {
+    "day": 183,
+    "readings": [
+      {
+        "display": "徒 12",
+        "book": "Acts",
+        "chapter": "12"
+      },
+      {
+        "display": "箴 4",
+        "book": "Proverbs",
+        "chapter": "4"
+      },
+      {
+        "display": "撒下 12:1-13:39",
+        "book": "2 Samuel",
+        "chapter": "12"
+      }
+    ]
+  },
+  {
+    "day": 184,
+    "readings": [
+      {
+        "display": "徒 13:1-25",
+        "book": "Acts",
+        "chapter": "13"
+      },
+      {
+        "display": "箴 5",
+        "book": "Proverbs",
+        "chapter": "5"
+      },
+      {
+        "display": "撒下 14",
+        "book": "2 Samuel",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 185,
+    "readings": [
+      {
+        "display": "徒 13:26-52",
+        "book": "Acts",
+        "chapter": "13"
+      },
+      {
+        "display": "箴 6:1-19",
+        "book": "Proverbs",
+        "chapter": "6"
+      },
+      {
+        "display": "撒下 15",
+        "book": "2 Samuel",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 186,
+    "readings": [
+      {
+        "display": "徒 14:1-20a",
+        "book": "Acts",
+        "chapter": "14"
+      },
+      {
+        "display": "箴 6:20-35",
+        "book": "Proverbs",
+        "chapter": "6"
+      },
+      {
+        "display": "撒下 16:1-17:29",
+        "book": "2 Samuel",
+        "chapter": "16"
+      }
+    ]
+  },
+  {
+    "day": 187,
+    "readings": [
+      {
+        "display": "徒 14:20b-28",
+        "book": "Acts",
+        "chapter": "14"
+      },
+      {
+        "display": "箴 7:1-8:36",
+        "book": "Proverbs",
+        "chapter": "7"
+      },
+      {
+        "display": "撒下 18",
+        "book": "2 Samuel",
+        "chapter": "18"
+      }
+    ]
+  },
+  {
+    "day": 188,
+    "readings": [
+      {
+        "display": "徒 15:1-21",
+        "book": "Acts",
+        "chapter": "15"
+      },
+      {
+        "display": "箴 9",
+        "book": "Proverbs",
+        "chapter": "9"
+      },
+      {
+        "display": "撒下 19",
+        "book": "2 Samuel",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 189,
+    "readings": [
+      {
+        "display": "徒 15:22-41",
+        "book": "Acts",
+        "chapter": "15"
+      },
+      {
+        "display": "箴 10",
+        "book": "Proverbs",
+        "chapter": "10"
+      },
+      {
+        "display": "撒下 20:1-21:22",
+        "book": "2 Samuel",
+        "chapter": "20"
+      }
+    ]
+  },
+  {
+    "day": 190,
+    "readings": [
+      {
+        "display": "徒 16:1-15",
+        "book": "Acts",
+        "chapter": "16"
+      },
+      {
+        "display": "箴 11",
+        "book": "Proverbs",
+        "chapter": "11"
+      },
+      {
+        "display": "撒下 22",
+        "book": "2 Samuel",
+        "chapter": "22"
+      }
+    ]
+  },
+  {
+    "day": 191,
+    "readings": [
+      {
+        "display": "徒 16:16-40",
+        "book": "Acts",
+        "chapter": "16"
+      },
+      {
+        "display": "箴 12",
+        "book": "Proverbs",
+        "chapter": "12"
+      },
+      {
+        "display": "撒下 23:1-24:25",
+        "book": "2 Samuel",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 192,
+    "readings": [
+      {
+        "display": "徒 17:1-15",
+        "book": "Acts",
+        "chapter": "17"
+      },
+      {
+        "display": "箴 13",
+        "book": "Proverbs",
+        "chapter": "13"
+      },
+      {
+        "display": "王上 1",
+        "book": "1 Kings",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 193,
+    "readings": [
+      {
+        "display": "徒 17:16-34",
+        "book": "Acts",
+        "chapter": "17"
+      },
+      {
+        "display": "箴 14",
+        "book": "Proverbs",
+        "chapter": "14"
+      },
+      {
+        "display": "王上 2",
+        "book": "1 Kings",
+        "chapter": "2"
+      }
+    ]
+  },
+  {
+    "day": 194,
+    "readings": [
+      {
+        "display": "徒 18:1-17",
+        "book": "Acts",
+        "chapter": "18"
+      },
+      {
+        "display": "箴 15",
+        "book": "Proverbs",
+        "chapter": "15"
+      },
+      {
+        "display": "王上 3:1-4:34",
+        "book": "1 Kings",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 195,
+    "readings": [
+      {
+        "display": "徒 18:18-28",
+        "book": "Acts",
+        "chapter": "18"
+      },
+      {
+        "display": "箴 16",
+        "book": "Proverbs",
+        "chapter": "16"
+      },
+      {
+        "display": "王上 5:1-6:38",
+        "book": "1 Kings",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 196,
+    "readings": [
+      {
+        "display": "徒 19:1-22",
+        "book": "Acts",
+        "chapter": "19"
+      },
+      {
+        "display": "箴 17",
+        "book": "Proverbs",
+        "chapter": "17"
+      },
+      {
+        "display": "王上 7",
+        "book": "1 Kings",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 197,
+    "readings": [
+      {
+        "display": "徒 19:23-41",
+        "book": "Acts",
+        "chapter": "19"
+      },
+      {
+        "display": "箴 18",
+        "book": "Proverbs",
+        "chapter": "18"
+      },
+      {
+        "display": "王上 8",
+        "book": "1 Kings",
+        "chapter": "8"
+      }
+    ]
+  },
+  {
+    "day": 198,
+    "readings": [
+      {
+        "display": "徒 20:1-12",
+        "book": "Acts",
+        "chapter": "20"
+      },
+      {
+        "display": "箴 19",
+        "book": "Proverbs",
+        "chapter": "19"
+      },
+      {
+        "display": "王上 9:1-10:29",
+        "book": "1 Kings",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 199,
+    "readings": [
+      {
+        "display": "徒 20:13-38",
+        "book": "Acts",
+        "chapter": "20"
+      },
+      {
+        "display": "箴 20",
+        "book": "Proverbs",
+        "chapter": "20"
+      },
+      {
+        "display": "王上 11:1-12:33",
+        "book": "1 Kings",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 200,
+    "readings": [
+      {
+        "display": "徒 21:1-26",
+        "book": "Acts",
+        "chapter": "21"
+      },
+      {
+        "display": "箴 21",
+        "book": "Proverbs",
+        "chapter": "21"
+      },
+      {
+        "display": "王上 13",
+        "book": "1 Kings",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 201,
+    "readings": [
+      {
+        "display": "徒 21:27-40",
+        "book": "Acts",
+        "chapter": "21"
+      },
+      {
+        "display": "箴 22",
+        "book": "Proverbs",
+        "chapter": "22"
+      },
+      {
+        "display": "王上 14",
+        "book": "1 Kings",
+        "chapter": "14"
+      }
+    ]
+  },
+  {
+    "day": 202,
+    "readings": [
+      {
+        "display": "徒 22:1-21",
+        "book": "Acts",
+        "chapter": "22"
+      },
+      {
+        "display": "箴 23",
+        "book": "Proverbs",
+        "chapter": "23"
+      },
+      {
+        "display": "王上 15:1-16:34",
+        "book": "1 Kings",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 203,
+    "readings": [
+      {
+        "display": "徒 22:22-23:11",
+        "book": "Acts",
+        "chapter": "22"
+      },
+      {
+        "display": "箴 24:1-22",
+        "book": "Proverbs",
+        "chapter": "24"
+      },
+      {
+        "display": "王上 17:1-18:46",
+        "book": "1 Kings",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 204,
+    "readings": [
+      {
+        "display": "徒 23:12-35",
+        "book": "Acts",
+        "chapter": "23"
+      },
+      {
+        "display": "箴 24:23-34",
+        "book": "Proverbs",
+        "chapter": "24"
+      },
+      {
+        "display": "王上 19:1-20:43",
+        "book": "1 Kings",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 205,
+    "readings": [
+      {
+        "display": "徒 24",
+        "book": "Acts",
+        "chapter": "24"
+      },
+      {
+        "display": "箴 25",
+        "book": "Proverbs",
+        "chapter": "25"
+      },
+      {
+        "display": "王上 21:1-22:53",
+        "book": "1 Kings",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 206,
+    "readings": [
+      {
+        "display": "徒 25",
+        "book": "Acts",
+        "chapter": "25"
+      },
+      {
+        "display": "箴 26",
+        "book": "Proverbs",
+        "chapter": "26"
+      },
+      {
+        "display": "王下 1:1-2:25",
+        "book": "2 Kings",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 207,
+    "readings": [
+      {
+        "display": "徒 26:1-18",
+        "book": "Acts",
+        "chapter": "26"
+      },
+      {
+        "display": "箴 27",
+        "book": "Proverbs",
+        "chapter": "27"
+      },
+      {
+        "display": "王下 3:1-4:44",
+        "book": "2 Kings",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 208,
+    "readings": [
+      {
+        "display": "徒 26:19-32",
+        "book": "Acts",
+        "chapter": "26"
+      },
+      {
+        "display": "箴 28",
+        "book": "Proverbs",
+        "chapter": "28"
+      },
+      {
+        "display": "王下 5:1-6:33",
+        "book": "2 Kings",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 209,
+    "readings": [
+      {
+        "display": "徒 27:1-26",
+        "book": "Acts",
+        "chapter": "27"
+      },
+      {
+        "display": "箴 29",
+        "book": "Proverbs",
+        "chapter": "29"
+      },
+      {
+        "display": "王下 7:1-8:29",
+        "book": "2 Kings",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 210,
+    "readings": [
+      {
+        "display": "徒 27:27-44",
+        "book": "Acts",
+        "chapter": "27"
+      },
+      {
+        "display": "箴 30",
+        "book": "Proverbs",
+        "chapter": "30"
+      },
+      {
+        "display": "王下 9:1-10:36",
+        "book": "2 Kings",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 211,
+    "readings": [
+      {
+        "display": "徒 28:1-16",
+        "book": "Acts",
+        "chapter": "28"
+      },
+      {
+        "display": "箴 31:1-9",
+        "book": "Proverbs",
+        "chapter": "31"
+      },
+      {
+        "display": "王下 11:1-12:21",
+        "book": "2 Kings",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 212,
+    "readings": [
+      {
+        "display": "徒 28:17-31",
+        "book": "Acts",
+        "chapter": "28"
+      },
+      {
+        "display": "箴 31:10-31",
+        "book": "Proverbs",
+        "chapter": "31"
+      },
+      {
+        "display": "王下 13:1-14:29",
+        "book": "2 Kings",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 213,
+    "readings": [
+      {
+        "display": "羅 1",
+        "book": "Romans",
+        "chapter": "1"
+      },
+      {
+        "display": "傳 1:1-11",
+        "book": "Ecclesiastes",
+        "chapter": "1"
+      },
+      {
+        "display": "王下 15:1-16:20",
+        "book": "2 Kings",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 214,
+    "readings": [
+      {
+        "display": "羅 2",
+        "book": "Romans",
+        "chapter": "2"
+      },
+      {
+        "display": "傳 1:12-18",
+        "book": "Ecclesiastes",
+        "chapter": "1"
+      },
+      {
+        "display": "王下 17:1-18:37",
+        "book": "2 Kings",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 215,
+    "readings": [
+      {
+        "display": "羅 3",
+        "book": "Romans",
+        "chapter": "3"
+      },
+      {
+        "display": "傳 2:1-11",
+        "book": "Ecclesiastes",
+        "chapter": "2"
+      },
+      {
+        "display": "王下 19",
+        "book": "2 Kings",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 216,
+    "readings": [
+      {
+        "display": "羅 4",
+        "book": "Romans",
+        "chapter": "4"
+      },
+      {
+        "display": "傳 2:12-16",
+        "book": "Ecclesiastes",
+        "chapter": "2"
+      },
+      {
+        "display": "王下 20",
+        "book": "2 Kings",
+        "chapter": "20"
+      }
+    ]
+  },
+  {
+    "day": 217,
+    "readings": [
+      {
+        "display": "羅 5",
+        "book": "Romans",
+        "chapter": "5"
+      },
+      {
+        "display": "傳 2:17-26",
+        "book": "Ecclesiastes",
+        "chapter": "2"
+      },
+      {
+        "display": "王下 21:1-22:20",
+        "book": "2 Kings",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 218,
+    "readings": [
+      {
+        "display": "羅 6",
+        "book": "Romans",
+        "chapter": "6"
+      },
+      {
+        "display": "傳 3",
+        "book": "Ecclesiastes",
+        "chapter": "3"
+      },
+      {
+        "display": "王下 23:1-24:20",
+        "book": "2 Kings",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 219,
+    "readings": [
+      {
+        "display": "羅 7",
+        "book": "Romans",
+        "chapter": "7"
+      },
+      {
+        "display": "傳 4:1-12",
+        "book": "Ecclesiastes",
+        "chapter": "4"
+      },
+      {
+        "display": "王下 25",
+        "book": "2 Kings",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 220,
+    "readings": [
+      {
+        "display": "羅 8",
+        "book": "Romans",
+        "chapter": "8"
+      },
+      {
+        "display": "傳 4:13-16",
+        "book": "Ecclesiastes",
+        "chapter": "4"
+      },
+      {
+        "display": "代上 1",
+        "book": "1 Chronicles",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 221,
+    "readings": [
+      {
+        "display": "羅 9:1-29",
+        "book": "Romans",
+        "chapter": "9"
+      },
+      {
+        "display": "傳 5:1-7",
+        "book": "Ecclesiastes",
+        "chapter": "5"
+      },
+      {
+        "display": "代上 2",
+        "book": "1 Chronicles",
+        "chapter": "2"
+      }
+    ]
+  },
+  {
+    "day": 222,
+    "readings": [
+      {
+        "display": "羅 9:30-10:21",
+        "book": "Romans",
+        "chapter": "9"
+      },
+      {
+        "display": "傳 5:8-20",
+        "book": "Ecclesiastes",
+        "chapter": "5"
+      },
+      {
+        "display": "代上 3:1-4:43",
+        "book": "1 Chronicles",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 223,
+    "readings": [
+      {
+        "display": "羅 11",
+        "book": "Romans",
+        "chapter": "11"
+      },
+      {
+        "display": "傳 6",
+        "book": "Ecclesiastes",
+        "chapter": "6"
+      },
+      {
+        "display": "代上 5:1-6:81",
+        "book": "1 Chronicles",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 224,
+    "readings": [
+      {
+        "display": "羅 12",
+        "book": "Romans",
+        "chapter": "12"
+      },
+      {
+        "display": "傳 7",
+        "book": "Ecclesiastes",
+        "chapter": "7"
+      },
+      {
+        "display": "代上 7:1-8:40",
+        "book": "1 Chronicles",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 225,
+    "readings": [
+      {
+        "display": "羅 13",
+        "book": "Romans",
+        "chapter": "13"
+      },
+      {
+        "display": "傳 8",
+        "book": "Ecclesiastes",
+        "chapter": "8"
+      },
+      {
+        "display": "代上 9:1-10:14",
+        "book": "1 Chronicles",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 226,
+    "readings": [
+      {
+        "display": "羅 14",
+        "book": "Romans",
+        "chapter": "14"
+      },
+      {
+        "display": "傳 9",
+        "book": "Ecclesiastes",
+        "chapter": "9"
+      },
+      {
+        "display": "代上 11:1-12:40",
+        "book": "1 Chronicles",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 227,
+    "readings": [
+      {
+        "display": "羅 15",
+        "book": "Romans",
+        "chapter": "15"
+      },
+      {
+        "display": "傳 10",
+        "book": "Ecclesiastes",
+        "chapter": "10"
+      },
+      {
+        "display": "代上 13:1-14:17",
+        "book": "1 Chronicles",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 228,
+    "readings": [
+      {
+        "display": "羅 16",
+        "book": "Romans",
+        "chapter": "16"
+      },
+      {
+        "display": "傳 11:1-6",
+        "book": "Ecclesiastes",
+        "chapter": "11"
+      },
+      {
+        "display": "代上 15:1-16:43",
+        "book": "1 Chronicles",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 229,
+    "readings": [
+      {
+        "display": "林前 1:1-17",
+        "book": "1 Corinthians",
+        "chapter": "1"
+      },
+      {
+        "display": "傳 11:7-10",
+        "book": "Ecclesiastes",
+        "chapter": "11"
+      },
+      {
+        "display": "代上 17:1-18:17",
+        "book": "1 Chronicles",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 230,
+    "readings": [
+      {
+        "display": "林前 1:18-31",
+        "book": "1 Corinthians",
+        "chapter": "1"
+      },
+      {
+        "display": "傳 12:1-8",
+        "book": "Ecclesiastes",
+        "chapter": "12"
+      },
+      {
+        "display": "代上 19:1-20:8",
+        "book": "1 Chronicles",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 231,
+    "readings": [
+      {
+        "display": "林前 2",
+        "book": "1 Corinthians",
+        "chapter": "2"
+      },
+      {
+        "display": "傳 12:9-14",
+        "book": "Ecclesiastes",
+        "chapter": "12"
+      },
+      {
+        "display": "代上 21:1-22:18",
+        "book": "1 Chronicles",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 232,
+    "readings": [
+      {
+        "display": "林前 3",
+        "book": "1 Corinthians",
+        "chapter": "3"
+      },
+      {
+        "display": "歌 1:1-7",
+        "book": "Song of Solomon",
+        "chapter": "1"
+      },
+      {
+        "display": "代上 23:1-24:31",
+        "book": "1 Chronicles",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 233,
+    "readings": [
+      {
+        "display": "林前 4",
+        "book": "1 Corinthians",
+        "chapter": "4"
+      },
+      {
+        "display": "歌 1:8-17",
+        "book": "Song of Solomon",
+        "chapter": "1"
+      },
+      {
+        "display": "代上 25:1-26:32",
+        "book": "1 Chronicles",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 234,
+    "readings": [
+      {
+        "display": "林前 5",
+        "book": "1 Corinthians",
+        "chapter": "5"
+      },
+      {
+        "display": "歌 2:1-7",
+        "book": "Song of Solomon",
+        "chapter": "2"
+      },
+      {
+        "display": "代上 27:1-28:21",
+        "book": "1 Chronicles",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 235,
+    "readings": [
+      {
+        "display": "林前 6",
+        "book": "1 Corinthians",
+        "chapter": "6"
+      },
+      {
+        "display": "歌 2:8-17",
+        "book": "Song of Solomon",
+        "chapter": "2"
+      },
+      {
+        "display": "代上 29",
+        "book": "1 Chronicles",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 236,
+    "readings": [
+      {
+        "display": "林前 7:1-16",
+        "book": "1 Corinthians",
+        "chapter": "7"
+      },
+      {
+        "display": "歌 3:1-5",
+        "book": "Song of Solomon",
+        "chapter": "3"
+      },
+      {
+        "display": "代下 1:1-2:18",
+        "book": "2 Chronicles",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 237,
+    "readings": [
+      {
+        "display": "林前 7:17-40",
+        "book": "1 Corinthians",
+        "chapter": "7"
+      },
+      {
+        "display": "歌 3:6-11",
+        "book": "Song of Solomon",
+        "chapter": "3"
+      },
+      {
+        "display": "代下 3:1-4:22",
+        "book": "2 Chronicles",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 238,
+    "readings": [
+      {
+        "display": "林前 8",
+        "book": "1 Corinthians",
+        "chapter": "8"
+      },
+      {
+        "display": "歌 4:1-7",
+        "book": "Song of Solomon",
+        "chapter": "4"
+      },
+      {
+        "display": "代下 5",
+        "book": "2 Chronicles",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 239,
+    "readings": [
+      {
+        "display": "林前 9",
+        "book": "1 Corinthians",
+        "chapter": "9"
+      },
+      {
+        "display": "歌 4:8-16",
+        "book": "Song of Solomon",
+        "chapter": "4"
+      },
+      {
+        "display": "代下 6",
+        "book": "2 Chronicles",
+        "chapter": "6"
+      }
+    ]
+  },
+  {
+    "day": 240,
+    "readings": [
+      {
+        "display": "林前 10:1-22",
+        "book": "1 Corinthians",
+        "chapter": "10"
+      },
+      {
+        "display": "歌 5:1-9",
+        "book": "Song of Solomon",
+        "chapter": "5"
+      },
+      {
+        "display": "代下 7:1-8:18",
+        "book": "2 Chronicles",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 241,
+    "readings": [
+      {
+        "display": "林前 10:23-11:1",
+        "book": "1 Corinthians",
+        "chapter": "10"
+      },
+      {
+        "display": "歌 5:10-16",
+        "book": "Song of Solomon",
+        "chapter": "5"
+      },
+      {
+        "display": "代下 9:1-10:19",
+        "book": "2 Chronicles",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 242,
+    "readings": [
+      {
+        "display": "林前 11:2-16",
+        "book": "1 Corinthians",
+        "chapter": "11"
+      },
+      {
+        "display": "歌 6",
+        "book": "Song of Solomon",
+        "chapter": "6"
+      },
+      {
+        "display": "代下 11:1-12:16",
+        "book": "2 Chronicles",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 243,
+    "readings": [
+      {
+        "display": "林前 11:17-34",
+        "book": "1 Corinthians",
+        "chapter": "11"
+      },
+      {
+        "display": "歌 7:1-9",
+        "book": "Song of Solomon",
+        "chapter": "7"
+      },
+      {
+        "display": "代下 13:1-14:15",
+        "book": "2 Chronicles",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 244,
+    "readings": [
+      {
+        "display": "林前 12:1-11",
+        "book": "1 Corinthians",
+        "chapter": "12"
+      },
+      {
+        "display": "歌 7:10-13",
+        "book": "Song of Solomon",
+        "chapter": "7"
+      },
+      {
+        "display": "代下 15",
+        "book": "2 Chronicles",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 245,
+    "readings": [
+      {
+        "display": "林前 12:12-31",
+        "book": "1 Corinthians",
+        "chapter": "12"
+      },
+      {
+        "display": "歌 8:1-7",
+        "book": "Song of Solomon",
+        "chapter": "8"
+      },
+      {
+        "display": "代下 16",
+        "book": "2 Chronicles",
+        "chapter": "16"
+      }
+    ]
+  },
+  {
+    "day": 246,
+    "readings": [
+      {
+        "display": "林前 13",
+        "book": "1 Corinthians",
+        "chapter": "13"
+      },
+      {
+        "display": "歌 8:8-14",
+        "book": "Song of Solomon",
+        "chapter": "8"
+      },
+      {
+        "display": "代下 17:1-18:34",
+        "book": "2 Chronicles",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 247,
+    "readings": [
+      {
+        "display": "林前 14:1-25",
+        "book": "1 Corinthians",
+        "chapter": "14"
+      },
+      {
+        "display": "伯 1:1-12",
+        "book": "Job",
+        "chapter": "1"
+      },
+      {
+        "display": "代下 19",
+        "book": "2 Chronicles",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 248,
+    "readings": [
+      {
+        "display": "林前 14:26-40",
+        "book": "1 Corinthians",
+        "chapter": "14"
+      },
+      {
+        "display": "伯 1:13-22",
+        "book": "Job",
+        "chapter": "1"
+      },
+      {
+        "display": "代下 20",
+        "book": "2 Chronicles",
+        "chapter": "20"
+      }
+    ]
+  },
+  {
+    "day": 249,
+    "readings": [
+      {
+        "display": "林前 15:1-34",
+        "book": "1 Corinthians",
+        "chapter": "15"
+      },
+      {
+        "display": "伯 2:1-10",
+        "book": "Job",
+        "chapter": "2"
+      },
+      {
+        "display": "代下 21:1-22:12",
+        "book": "2 Chronicles",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 250,
+    "readings": [
+      {
+        "display": "林前 15:35-58",
+        "book": "1 Corinthians",
+        "chapter": "15"
+      },
+      {
+        "display": "伯 2:11-13",
+        "book": "Job",
+        "chapter": "2"
+      },
+      {
+        "display": "代下 23:1-24:27",
+        "book": "2 Chronicles",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 251,
+    "readings": [
+      {
+        "display": "林前 16",
+        "book": "1 Corinthians",
+        "chapter": "16"
+      },
+      {
+        "display": "伯 3",
+        "book": "Job",
+        "chapter": "3"
+      },
+      {
+        "display": "代下 25",
+        "book": "2 Chronicles",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 252,
+    "readings": [
+      {
+        "display": "林後 1:1-2:4",
+        "book": "2 Corinthians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 4",
+        "book": "Job",
+        "chapter": "4"
+      },
+      {
+        "display": "代下 26:1-27:9",
+        "book": "2 Chronicles",
+        "chapter": "26"
+      }
+    ]
+  },
+  {
+    "day": 253,
+    "readings": [
+      {
+        "display": "林後 2:5-3:6",
+        "book": "2 Corinthians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 5",
+        "book": "Job",
+        "chapter": "5"
+      },
+      {
+        "display": "代下 28",
+        "book": "2 Chronicles",
+        "chapter": "28"
+      }
+    ]
+  },
+  {
+    "day": 254,
+    "readings": [
+      {
+        "display": "林後 3:7-4:18",
+        "book": "2 Corinthians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 6",
+        "book": "Job",
+        "chapter": "6"
+      },
+      {
+        "display": "代下 29",
+        "book": "2 Chronicles",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 255,
+    "readings": [
+      {
+        "display": "林後 5:1-6:2",
+        "book": "2 Corinthians",
+        "chapter": "5"
+      },
+      {
+        "display": "伯 7",
+        "book": "Job",
+        "chapter": "7"
+      },
+      {
+        "display": "代下 30",
+        "book": "2 Chronicles",
+        "chapter": "30"
+      }
+    ]
+  },
+  {
+    "day": 256,
+    "readings": [
+      {
+        "display": "林後 6:3-7:1",
+        "book": "2 Corinthians",
+        "chapter": "6"
+      },
+      {
+        "display": "伯 8",
+        "book": "Job",
+        "chapter": "8"
+      },
+      {
+        "display": "代下 31:1-32:33",
+        "book": "2 Chronicles",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 257,
+    "readings": [
+      {
+        "display": "林後 7:2-16",
+        "book": "2 Corinthians",
+        "chapter": "7"
+      },
+      {
+        "display": "伯 9:1-20",
+        "book": "Job",
+        "chapter": "9"
+      },
+      {
+        "display": "代下 33:1-34:33",
+        "book": "2 Chronicles",
+        "chapter": "33"
+      }
+    ]
+  },
+  {
+    "day": 258,
+    "readings": [
+      {
+        "display": "林後 8",
+        "book": "2 Corinthians",
+        "chapter": "8"
+      },
+      {
+        "display": "伯 9:21-35",
+        "book": "Job",
+        "chapter": "9"
+      },
+      {
+        "display": "代下 35:1-36:23",
+        "book": "2 Chronicles",
+        "chapter": "35"
+      }
+    ]
+  },
+  {
+    "day": 259,
+    "readings": [
+      {
+        "display": "林後 9",
+        "book": "2 Corinthians",
+        "chapter": "9"
+      },
+      {
+        "display": "伯 10",
+        "book": "Job",
+        "chapter": "10"
+      },
+      {
+        "display": "拉 1:1-2:70",
+        "book": "Ezra",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 260,
+    "readings": [
+      {
+        "display": "林後 10",
+        "book": "2 Corinthians",
+        "chapter": "10"
+      },
+      {
+        "display": "伯 11",
+        "book": "Job",
+        "chapter": "11"
+      },
+      {
+        "display": "拉 3:1-4:24",
+        "book": "Ezra",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 261,
+    "readings": [
+      {
+        "display": "林後 11",
+        "book": "2 Corinthians",
+        "chapter": "11"
+      },
+      {
+        "display": "伯 12",
+        "book": "Job",
+        "chapter": "12"
+      },
+      {
+        "display": "拉 5:1-6:22",
+        "book": "Ezra",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 262,
+    "readings": [
+      {
+        "display": "林後 12",
+        "book": "2 Corinthians",
+        "chapter": "12"
+      },
+      {
+        "display": "伯 13",
+        "book": "Job",
+        "chapter": "13"
+      },
+      {
+        "display": "拉 7:1-8:36",
+        "book": "Ezra",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 263,
+    "readings": [
+      {
+        "display": "林後 13",
+        "book": "2 Corinthians",
+        "chapter": "13"
+      },
+      {
+        "display": "伯 14",
+        "book": "Job",
+        "chapter": "14"
+      },
+      {
+        "display": "拉 9:1-10:44",
+        "book": "Ezra",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 264,
+    "readings": [
+      {
+        "display": "加 1",
+        "book": "Galatians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 15:1-16",
+        "book": "Job",
+        "chapter": "15"
+      },
+      {
+        "display": "尼 1:1-2:20",
+        "book": "Nehemiah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 265,
+    "readings": [
+      {
+        "display": "加 2",
+        "book": "Galatians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 15:17-35",
+        "book": "Job",
+        "chapter": "15"
+      },
+      {
+        "display": "尼 3:1-4:23",
+        "book": "Nehemiah",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 266,
+    "readings": [
+      {
+        "display": "加 3",
+        "book": "Galatians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 16",
+        "book": "Job",
+        "chapter": "16"
+      },
+      {
+        "display": "尼 5:1-6:19",
+        "book": "Nehemiah",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 267,
+    "readings": [
+      {
+        "display": "加 4",
+        "book": "Galatians",
+        "chapter": "4"
+      },
+      {
+        "display": "伯 17",
+        "book": "Job",
+        "chapter": "17"
+      },
+      {
+        "display": "尼 7:1-8:18",
+        "book": "Nehemiah",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 268,
+    "readings": [
+      {
+        "display": "加 5",
+        "book": "Galatians",
+        "chapter": "5"
+      },
+      {
+        "display": "伯 18",
+        "book": "Job",
+        "chapter": "18"
+      },
+      {
+        "display": "尼 9:1-10:39",
+        "book": "Nehemiah",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 269,
+    "readings": [
+      {
+        "display": "加 6",
+        "book": "Galatians",
+        "chapter": "6"
+      },
+      {
+        "display": "伯 19",
+        "book": "Job",
+        "chapter": "19"
+      },
+      {
+        "display": "尼 11:1-13:31",
+        "book": "Nehemiah",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 270,
+    "readings": [
+      {
+        "display": "弗 1",
+        "book": "Ephesians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 20",
+        "book": "Job",
+        "chapter": "20"
+      },
+      {
+        "display": "斯 1:1-2:23",
+        "book": "Esther",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 271,
+    "readings": [
+      {
+        "display": "弗 2",
+        "book": "Ephesians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 21:1-21",
+        "book": "Job",
+        "chapter": "21"
+      },
+      {
+        "display": "斯 3:1-4:17",
+        "book": "Esther",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 272,
+    "readings": [
+      {
+        "display": "弗 3",
+        "book": "Ephesians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 21:22-34",
+        "book": "Job",
+        "chapter": "21"
+      },
+      {
+        "display": "斯 5:1-6:14",
+        "book": "Esther",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 273,
+    "readings": [
+      {
+        "display": "弗 4",
+        "book": "Ephesians",
+        "chapter": "4"
+      },
+      {
+        "display": "伯 22",
+        "book": "Job",
+        "chapter": "22"
+      },
+      {
+        "display": "斯 7:1-8:17",
+        "book": "Esther",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 274,
+    "readings": [
+      {
+        "display": "弗 5",
+        "book": "Ephesians",
+        "chapter": "5"
+      },
+      {
+        "display": "伯 23",
+        "book": "Job",
+        "chapter": "23"
+      },
+      {
+        "display": "斯 9:1-10:3",
+        "book": "Esther",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 275,
+    "readings": [
+      {
+        "display": "弗 6",
+        "book": "Ephesians",
+        "chapter": "6"
+      },
+      {
+        "display": "伯 24",
+        "book": "Job",
+        "chapter": "24"
+      },
+      {
+        "display": "耶 1:1-2:37",
+        "book": "Jeremiah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 276,
+    "readings": [
+      {
+        "display": "腓 1",
+        "book": "Philippians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 25",
+        "book": "Job",
+        "chapter": "25"
+      },
+      {
+        "display": "耶 3:1-4:31",
+        "book": "Jeremiah",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 277,
+    "readings": [
+      {
+        "display": "腓 2",
+        "book": "Philippians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 26",
+        "book": "Job",
+        "chapter": "26"
+      },
+      {
+        "display": "耶 5:1-6:30",
+        "book": "Jeremiah",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 278,
+    "readings": [
+      {
+        "display": "腓 3",
+        "book": "Philippians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 27",
+        "book": "Job",
+        "chapter": "27"
+      },
+      {
+        "display": "耶 7:1-8:22",
+        "book": "Jeremiah",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 279,
+    "readings": [
+      {
+        "display": "腓 4",
+        "book": "Philippians",
+        "chapter": "4"
+      },
+      {
+        "display": "伯 28",
+        "book": "Job",
+        "chapter": "28"
+      },
+      {
+        "display": "耶 9:1-10:25",
+        "book": "Jeremiah",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 280,
+    "readings": [
+      {
+        "display": "西 1",
+        "book": "Colossians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 29",
+        "book": "Job",
+        "chapter": "29"
+      },
+      {
+        "display": "耶 11:1-12:17",
+        "book": "Jeremiah",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 281,
+    "readings": [
+      {
+        "display": "西 2",
+        "book": "Colossians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 30",
+        "book": "Job",
+        "chapter": "30"
+      },
+      {
+        "display": "耶 13:1-14:22",
+        "book": "Jeremiah",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 282,
+    "readings": [
+      {
+        "display": "西 3",
+        "book": "Colossians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 31:1-23",
+        "book": "Job",
+        "chapter": "31"
+      },
+      {
+        "display": "耶 15:1-16:21",
+        "book": "Jeremiah",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 283,
+    "readings": [
+      {
+        "display": "西 4",
+        "book": "Colossians",
+        "chapter": "4"
+      },
+      {
+        "display": "伯 31:24-40",
+        "book": "Job",
+        "chapter": "31"
+      },
+      {
+        "display": "耶 17:1-18:23",
+        "book": "Jeremiah",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 284,
+    "readings": [
+      {
+        "display": "帖前 1",
+        "book": "1 Thessalonians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 32",
+        "book": "Job",
+        "chapter": "32"
+      },
+      {
+        "display": "耶 19:1-20:18",
+        "book": "Jeremiah",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 285,
+    "readings": [
+      {
+        "display": "帖前 2",
+        "book": "1 Thessalonians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 33:1-11",
+        "book": "Job",
+        "chapter": "33"
+      },
+      {
+        "display": "耶 21:1-22:30",
+        "book": "Jeremiah",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 286,
+    "readings": [
+      {
+        "display": "帖前 3",
+        "book": "1 Thessalonians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 33:12-33",
+        "book": "Job",
+        "chapter": "33"
+      },
+      {
+        "display": "耶 23:1-24:10",
+        "book": "Jeremiah",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 287,
+    "readings": [
+      {
+        "display": "帖前 4",
+        "book": "1 Thessalonians",
+        "chapter": "4"
+      },
+      {
+        "display": "伯 34:1-20",
+        "book": "Job",
+        "chapter": "34"
+      },
+      {
+        "display": "耶 25:1-26:24",
+        "book": "Jeremiah",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 288,
+    "readings": [
+      {
+        "display": "帖前 5",
+        "book": "1 Thessalonians",
+        "chapter": "5"
+      },
+      {
+        "display": "伯 34:21-37",
+        "book": "Job",
+        "chapter": "34"
+      },
+      {
+        "display": "耶 27:1-28:17",
+        "book": "Jeremiah",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 289,
+    "readings": [
+      {
+        "display": "帖後 1",
+        "book": "2 Thessalonians",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 35",
+        "book": "Job",
+        "chapter": "35"
+      },
+      {
+        "display": "耶 29:1-30:24",
+        "book": "Jeremiah",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 290,
+    "readings": [
+      {
+        "display": "帖後 2",
+        "book": "2 Thessalonians",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 36:1-15",
+        "book": "Job",
+        "chapter": "36"
+      },
+      {
+        "display": "耶 31",
+        "book": "Jeremiah",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 291,
+    "readings": [
+      {
+        "display": "帖後 3",
+        "book": "2 Thessalonians",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 36:16-33",
+        "book": "Job",
+        "chapter": "36"
+      },
+      {
+        "display": "耶 32",
+        "book": "Jeremiah",
+        "chapter": "32"
+      }
+    ]
+  },
+  {
+    "day": 292,
+    "readings": [
+      {
+        "display": "提前 1",
+        "book": "1 Timothy",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 37",
+        "book": "Job",
+        "chapter": "37"
+      },
+      {
+        "display": "耶 33:1-34:22",
+        "book": "Jeremiah",
+        "chapter": "33"
+      }
+    ]
+  },
+  {
+    "day": 293,
+    "readings": [
+      {
+        "display": "提前 2",
+        "book": "1 Timothy",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 38:1-21",
+        "book": "Job",
+        "chapter": "38"
+      },
+      {
+        "display": "耶 35:1-36:32",
+        "book": "Jeremiah",
+        "chapter": "35"
+      }
+    ]
+  },
+  {
+    "day": 294,
+    "readings": [
+      {
+        "display": "提前 3",
+        "book": "1 Timothy",
+        "chapter": "3"
+      },
+      {
+        "display": "伯 38:22-41",
+        "book": "Job",
+        "chapter": "38"
+      },
+      {
+        "display": "耶 37",
+        "book": "Jeremiah",
+        "chapter": "37"
+      }
+    ]
+  },
+  {
+    "day": 295,
+    "readings": [
+      {
+        "display": "提前 4",
+        "book": "1 Timothy",
+        "chapter": "4"
+      },
+      {
+        "display": "伯 39",
+        "book": "Job",
+        "chapter": "39"
+      },
+      {
+        "display": "耶 38",
+        "book": "Jeremiah",
+        "chapter": "38"
+      }
+    ]
+  },
+  {
+    "day": 296,
+    "readings": [
+      {
+        "display": "提前 5",
+        "book": "1 Timothy",
+        "chapter": "5"
+      },
+      {
+        "display": "伯 40",
+        "book": "Job",
+        "chapter": "40"
+      },
+      {
+        "display": "耶 39:1-40:16",
+        "book": "Jeremiah",
+        "chapter": "39"
+      }
+    ]
+  },
+  {
+    "day": 297,
+    "readings": [
+      {
+        "display": "提前 6",
+        "book": "1 Timothy",
+        "chapter": "6"
+      },
+      {
+        "display": "伯 41:1-11",
+        "book": "Job",
+        "chapter": "41"
+      },
+      {
+        "display": "耶 41:1-42:22",
+        "book": "Jeremiah",
+        "chapter": "41"
+      }
+    ]
+  },
+  {
+    "day": 298,
+    "readings": [
+      {
+        "display": "提後 1",
+        "book": "2 Timothy",
+        "chapter": "1"
+      },
+      {
+        "display": "伯 41:12-34",
+        "book": "Job",
+        "chapter": "41"
+      },
+      {
+        "display": "耶 43:1-44:30",
+        "book": "Jeremiah",
+        "chapter": "43"
+      }
+    ]
+  },
+  {
+    "day": 299,
+    "readings": [
+      {
+        "display": "提後 2",
+        "book": "2 Timothy",
+        "chapter": "2"
+      },
+      {
+        "display": "伯 42",
+        "book": "Job",
+        "chapter": "42"
+      },
+      {
+        "display": "耶 45:1-46:28",
+        "book": "Jeremiah",
+        "chapter": "45"
+      }
+    ]
+  },
+  {
+    "day": 300,
+    "readings": [
+      {
+        "display": "提後 3",
+        "book": "2 Timothy",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 1",
+        "book": "Isaiah",
+        "chapter": "1"
+      },
+      {
+        "display": "耶 47:1-48:47",
+        "book": "Jeremiah",
+        "chapter": "47"
+      }
+    ]
+  },
+  {
+    "day": 301,
+    "readings": [
+      {
+        "display": "提後 4",
+        "book": "2 Timothy",
+        "chapter": "4"
+      },
+      {
+        "display": "賽 2",
+        "book": "Isaiah",
+        "chapter": "2"
+      },
+      {
+        "display": "耶 49:1-50:46",
+        "book": "Jeremiah",
+        "chapter": "49"
+      }
+    ]
+  },
+  {
+    "day": 302,
+    "readings": [
+      {
+        "display": "多 1",
+        "book": "Titus",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 3:1-4:1",
+        "book": "Isaiah",
+        "chapter": "3"
+      },
+      {
+        "display": "耶 51:1-52:34",
+        "book": "Jeremiah",
+        "chapter": "51"
+      }
+    ]
+  },
+  {
+    "day": 303,
+    "readings": [
+      {
+        "display": "多 2",
+        "book": "Titus",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 4:2-5:7",
+        "book": "Isaiah",
+        "chapter": "4"
+      },
+      {
+        "display": "哀 1:1-2:22",
+        "book": "Lamentations",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 304,
+    "readings": [
+      {
+        "display": "多 3",
+        "book": "Titus",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 5:8-30",
+        "book": "Isaiah",
+        "chapter": "5"
+      },
+      {
+        "display": "哀 3:1-4:22",
+        "book": "Lamentations",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 305,
+    "readings": [
+      {
+        "display": "門 1:1-25",
+        "book": "Philemon",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 6",
+        "book": "Isaiah",
+        "chapter": "6"
+      },
+      {
+        "display": "哀 5",
+        "book": "Lamentations",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 306,
+    "readings": [
+      {
+        "display": "來 1",
+        "book": "Hebrews",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 7",
+        "book": "Isaiah",
+        "chapter": "7"
+      },
+      {
+        "display": "結 1:1-2:10",
+        "book": "Ezekiel",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 307,
+    "readings": [
+      {
+        "display": "來 2",
+        "book": "Hebrews",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 8",
+        "book": "Isaiah",
+        "chapter": "8"
+      },
+      {
+        "display": "結 3:1-4:17",
+        "book": "Ezekiel",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 308,
+    "readings": [
+      {
+        "display": "來 3",
+        "book": "Hebrews",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 9:1-10:4",
+        "book": "Isaiah",
+        "chapter": "9"
+      },
+      {
+        "display": "結 5:1-6:14",
+        "book": "Ezekiel",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 309,
+    "readings": [
+      {
+        "display": "來 4",
+        "book": "Hebrews",
+        "chapter": "4"
+      },
+      {
+        "display": "賽 10:5-34",
+        "book": "Isaiah",
+        "chapter": "10"
+      },
+      {
+        "display": "結 7:1-8:18",
+        "book": "Ezekiel",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 310,
+    "readings": [
+      {
+        "display": "來 5",
+        "book": "Hebrews",
+        "chapter": "5"
+      },
+      {
+        "display": "賽 11",
+        "book": "Isaiah",
+        "chapter": "11"
+      },
+      {
+        "display": "結 9:1-10:22",
+        "book": "Ezekiel",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 311,
+    "readings": [
+      {
+        "display": "來 6",
+        "book": "Hebrews",
+        "chapter": "6"
+      },
+      {
+        "display": "賽 12",
+        "book": "Isaiah",
+        "chapter": "12"
+      },
+      {
+        "display": "結 11:1-12:28",
+        "book": "Ezekiel",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 312,
+    "readings": [
+      {
+        "display": "來 7",
+        "book": "Hebrews",
+        "chapter": "7"
+      },
+      {
+        "display": "賽 13",
+        "book": "Isaiah",
+        "chapter": "13"
+      },
+      {
+        "display": "結 13:1-14:23",
+        "book": "Ezekiel",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 313,
+    "readings": [
+      {
+        "display": "來 8",
+        "book": "Hebrews",
+        "chapter": "8"
+      },
+      {
+        "display": "賽 14",
+        "book": "Isaiah",
+        "chapter": "14"
+      },
+      {
+        "display": "結 15:1-16:63",
+        "book": "Ezekiel",
+        "chapter": "15"
+      }
+    ]
+  },
+  {
+    "day": 314,
+    "readings": [
+      {
+        "display": "來 9",
+        "book": "Hebrews",
+        "chapter": "9"
+      },
+      {
+        "display": "賽 15",
+        "book": "Isaiah",
+        "chapter": "15"
+      },
+      {
+        "display": "結 17:1-18:32",
+        "book": "Ezekiel",
+        "chapter": "17"
+      }
+    ]
+  },
+  {
+    "day": 315,
+    "readings": [
+      {
+        "display": "來 10",
+        "book": "Hebrews",
+        "chapter": "10"
+      },
+      {
+        "display": "賽 16",
+        "book": "Isaiah",
+        "chapter": "16"
+      },
+      {
+        "display": "結 19:1-20:49",
+        "book": "Ezekiel",
+        "chapter": "19"
+      }
+    ]
+  },
+  {
+    "day": 316,
+    "readings": [
+      {
+        "display": "來 11",
+        "book": "Hebrews",
+        "chapter": "11"
+      },
+      {
+        "display": "賽 17",
+        "book": "Isaiah",
+        "chapter": "17"
+      },
+      {
+        "display": "結 21:1-22:31",
+        "book": "Ezekiel",
+        "chapter": "21"
+      }
+    ]
+  },
+  {
+    "day": 317,
+    "readings": [
+      {
+        "display": "來 12:1-13",
+        "book": "Hebrews",
+        "chapter": "12"
+      },
+      {
+        "display": "賽 18",
+        "book": "Isaiah",
+        "chapter": "18"
+      },
+      {
+        "display": "結 23:1-24:27",
+        "book": "Ezekiel",
+        "chapter": "23"
+      }
+    ]
+  },
+  {
+    "day": 318,
+    "readings": [
+      {
+        "display": "來 12:14-29",
+        "book": "Hebrews",
+        "chapter": "12"
+      },
+      {
+        "display": "賽 19",
+        "book": "Isaiah",
+        "chapter": "19"
+      },
+      {
+        "display": "結 25:1-26:21",
+        "book": "Ezekiel",
+        "chapter": "25"
+      }
+    ]
+  },
+  {
+    "day": 319,
+    "readings": [
+      {
+        "display": "來 13",
+        "book": "Hebrews",
+        "chapter": "13"
+      },
+      {
+        "display": "賽 20",
+        "book": "Isaiah",
+        "chapter": "20"
+      },
+      {
+        "display": "結 27:1-28:26",
+        "book": "Ezekiel",
+        "chapter": "27"
+      }
+    ]
+  },
+  {
+    "day": 320,
+    "readings": [
+      {
+        "display": "雅 1",
+        "book": "James",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 21",
+        "book": "Isaiah",
+        "chapter": "21"
+      },
+      {
+        "display": "結 29:1-30:26",
+        "book": "Ezekiel",
+        "chapter": "29"
+      }
+    ]
+  },
+  {
+    "day": 321,
+    "readings": [
+      {
+        "display": "雅 2",
+        "book": "James",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 22",
+        "book": "Isaiah",
+        "chapter": "22"
+      },
+      {
+        "display": "結 31:1-32:32",
+        "book": "Ezekiel",
+        "chapter": "31"
+      }
+    ]
+  },
+  {
+    "day": 322,
+    "readings": [
+      {
+        "display": "雅 3",
+        "book": "James",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 23",
+        "book": "Isaiah",
+        "chapter": "23"
+      },
+      {
+        "display": "結 33:1-34:31",
+        "book": "Ezekiel",
+        "chapter": "33"
+      }
+    ]
+  },
+  {
+    "day": 323,
+    "readings": [
+      {
+        "display": "雅 4",
+        "book": "James",
+        "chapter": "4"
+      },
+      {
+        "display": "賽 24",
+        "book": "Isaiah",
+        "chapter": "24"
+      },
+      {
+        "display": "結 35:1-36:38",
+        "book": "Ezekiel",
+        "chapter": "35"
+      }
+    ]
+  },
+  {
+    "day": 324,
+    "readings": [
+      {
+        "display": "雅 5",
+        "book": "James",
+        "chapter": "5"
+      },
+      {
+        "display": "賽 25",
+        "book": "Isaiah",
+        "chapter": "25"
+      },
+      {
+        "display": "結 37:1-38:23",
+        "book": "Ezekiel",
+        "chapter": "37"
+      }
+    ]
+  },
+  {
+    "day": 325,
+    "readings": [
+      {
+        "display": "彼前 1",
+        "book": "1 Peter",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 26",
+        "book": "Isaiah",
+        "chapter": "26"
+      },
+      {
+        "display": "結 39:1-40:49",
+        "book": "Ezekiel",
+        "chapter": "39"
+      }
+    ]
+  },
+  {
+    "day": 326,
+    "readings": [
+      {
+        "display": "彼前 2",
+        "book": "1 Peter",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 27",
+        "book": "Isaiah",
+        "chapter": "27"
+      },
+      {
+        "display": "結 41:1-42:20",
+        "book": "Ezekiel",
+        "chapter": "41"
+      }
+    ]
+  },
+  {
+    "day": 327,
+    "readings": [
+      {
+        "display": "彼前 3",
+        "book": "1 Peter",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 28",
+        "book": "Isaiah",
+        "chapter": "28"
+      },
+      {
+        "display": "結 43:1-44:31",
+        "book": "Ezekiel",
+        "chapter": "43"
+      }
+    ]
+  },
+  {
+    "day": 328,
+    "readings": [
+      {
+        "display": "彼前 4",
+        "book": "1 Peter",
+        "chapter": "4"
+      },
+      {
+        "display": "賽 29",
+        "book": "Isaiah",
+        "chapter": "29"
+      },
+      {
+        "display": "結 45:1-46:24",
+        "book": "Ezekiel",
+        "chapter": "45"
+      }
+    ]
+  },
+  {
+    "day": 329,
+    "readings": [
+      {
+        "display": "彼前 5",
+        "book": "1 Peter",
+        "chapter": "5"
+      },
+      {
+        "display": "賽 30",
+        "book": "Isaiah",
+        "chapter": "30"
+      },
+      {
+        "display": "結 47:1-48:35",
+        "book": "Ezekiel",
+        "chapter": "47"
+      }
+    ]
+  },
+  {
+    "day": 330,
+    "readings": [
+      {
+        "display": "彼後 1",
+        "book": "2 Peter",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 31",
+        "book": "Isaiah",
+        "chapter": "31"
+      },
+      {
+        "display": "但 1:1-2:49",
+        "book": "Daniel",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 331,
+    "readings": [
+      {
+        "display": "彼後 2",
+        "book": "2 Peter",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 32",
+        "book": "Isaiah",
+        "chapter": "32"
+      },
+      {
+        "display": "但 3:1-4:37",
+        "book": "Daniel",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 332,
+    "readings": [
+      {
+        "display": "彼後 3",
+        "book": "2 Peter",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 33",
+        "book": "Isaiah",
+        "chapter": "33"
+      },
+      {
+        "display": "但 5:1-6:28",
+        "book": "Daniel",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 333,
+    "readings": [
+      {
+        "display": "約一 1",
+        "book": "1 John",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 34",
+        "book": "Isaiah",
+        "chapter": "34"
+      },
+      {
+        "display": "但 7:1-8:27",
+        "book": "Daniel",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 334,
+    "readings": [
+      {
+        "display": "約一 2",
+        "book": "1 John",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 35",
+        "book": "Isaiah",
+        "chapter": "35"
+      },
+      {
+        "display": "但 9:1-10:21",
+        "book": "Daniel",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 335,
+    "readings": [
+      {
+        "display": "約一 3",
+        "book": "1 John",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 36",
+        "book": "Isaiah",
+        "chapter": "36"
+      },
+      {
+        "display": "但 11:1-12:13",
+        "book": "Daniel",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 336,
+    "readings": [
+      {
+        "display": "約一 4",
+        "book": "1 John",
+        "chapter": "4"
+      },
+      {
+        "display": "賽 37",
+        "book": "Isaiah",
+        "chapter": "37"
+      },
+      {
+        "display": "何 1:1-2:23",
+        "book": "Hosea",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 337,
+    "readings": [
+      {
+        "display": "約一 5",
+        "book": "1 John",
+        "chapter": "5"
+      },
+      {
+        "display": "賽 38",
+        "book": "Isaiah",
+        "chapter": "38"
+      },
+      {
+        "display": "何 3:1-4:19",
+        "book": "Hosea",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 338,
+    "readings": [
+      {
+        "display": "約二 1:1-13",
+        "book": "2 John",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 39",
+        "book": "Isaiah",
+        "chapter": "39"
+      },
+      {
+        "display": "何 5:1-6:11",
+        "book": "Hosea",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 339,
+    "readings": [
+      {
+        "display": "約三 1:1-15",
+        "book": "3 John",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 40",
+        "book": "Isaiah",
+        "chapter": "40"
+      },
+      {
+        "display": "何 7:1-8:14",
+        "book": "Hosea",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 340,
+    "readings": [
+      {
+        "display": "猶 1:1-16",
+        "book": "Jude",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 41",
+        "book": "Isaiah",
+        "chapter": "41"
+      },
+      {
+        "display": "何 9:1-10:15",
+        "book": "Hosea",
+        "chapter": "9"
+      }
+    ]
+  },
+  {
+    "day": 341,
+    "readings": [
+      {
+        "display": "猶 1:17-25",
+        "book": "Jude",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 42",
+        "book": "Isaiah",
+        "chapter": "42"
+      },
+      {
+        "display": "何 11:1-12:14",
+        "book": "Hosea",
+        "chapter": "11"
+      }
+    ]
+  },
+  {
+    "day": 342,
+    "readings": [
+      {
+        "display": "啟 1",
+        "book": "Revelation",
+        "chapter": "1"
+      },
+      {
+        "display": "賽 43",
+        "book": "Isaiah",
+        "chapter": "43"
+      },
+      {
+        "display": "何 13:1-14:9",
+        "book": "Hosea",
+        "chapter": "13"
+      }
+    ]
+  },
+  {
+    "day": 343,
+    "readings": [
+      {
+        "display": "啟 2:1-17",
+        "book": "Revelation",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 44",
+        "book": "Isaiah",
+        "chapter": "44"
+      },
+      {
+        "display": "珥 1:1-2:32",
+        "book": "Joel",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 344,
+    "readings": [
+      {
+        "display": "啟 2:18-29",
+        "book": "Revelation",
+        "chapter": "2"
+      },
+      {
+        "display": "賽 45",
+        "book": "Isaiah",
+        "chapter": "45"
+      },
+      {
+        "display": "珥 3",
+        "book": "Joel",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 345,
+    "readings": [
+      {
+        "display": "啟 3:1-13",
+        "book": "Revelation",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 46",
+        "book": "Isaiah",
+        "chapter": "46"
+      },
+      {
+        "display": "摩 1:1-2:16",
+        "book": "Amos",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 346,
+    "readings": [
+      {
+        "display": "啟 3:14-22",
+        "book": "Revelation",
+        "chapter": "3"
+      },
+      {
+        "display": "賽 47",
+        "book": "Isaiah",
+        "chapter": "47"
+      },
+      {
+        "display": "摩 3:1-4:13",
+        "book": "Amos",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 347,
+    "readings": [
+      {
+        "display": "啟 4",
+        "book": "Revelation",
+        "chapter": "4"
+      },
+      {
+        "display": "賽 48",
+        "book": "Isaiah",
+        "chapter": "48"
+      },
+      {
+        "display": "摩 5:1-6:14",
+        "book": "Amos",
+        "chapter": "5"
+      }
+    ]
+  },
+  {
+    "day": 348,
+    "readings": [
+      {
+        "display": "啟 5",
+        "book": "Revelation",
+        "chapter": "5"
+      },
+      {
+        "display": "賽 49",
+        "book": "Isaiah",
+        "chapter": "49"
+      },
+      {
+        "display": "摩 7:1-9:15",
+        "book": "Amos",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 349,
+    "readings": [
+      {
+        "display": "啟 6",
+        "book": "Revelation",
+        "chapter": "6"
+      },
+      {
+        "display": "賽 50",
+        "book": "Isaiah",
+        "chapter": "50"
+      },
+      {
+        "display": "俄 1:1-21",
+        "book": "Obadiah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 350,
+    "readings": [
+      {
+        "display": "啟 7",
+        "book": "Revelation",
+        "chapter": "7"
+      },
+      {
+        "display": "賽 51",
+        "book": "Isaiah",
+        "chapter": "51"
+      },
+      {
+        "display": "拿 1:1-2:10",
+        "book": "Jonah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 351,
+    "readings": [
+      {
+        "display": "啟 8",
+        "book": "Revelation",
+        "chapter": "8"
+      },
+      {
+        "display": "賽 52",
+        "book": "Isaiah",
+        "chapter": "52"
+      },
+      {
+        "display": "拿 3:1-4:11",
+        "book": "Jonah",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 352,
+    "readings": [
+      {
+        "display": "啟 9",
+        "book": "Revelation",
+        "chapter": "9"
+      },
+      {
+        "display": "賽 53",
+        "book": "Isaiah",
+        "chapter": "53"
+      },
+      {
+        "display": "彌 1:1-3:12",
+        "book": "Micah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 353,
+    "readings": [
+      {
+        "display": "啟 10",
+        "book": "Revelation",
+        "chapter": "10"
+      },
+      {
+        "display": "賽 54",
+        "book": "Isaiah",
+        "chapter": "54"
+      },
+      {
+        "display": "彌 4:1-5:15",
+        "book": "Micah",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 354,
+    "readings": [
+      {
+        "display": "啟 11",
+        "book": "Revelation",
+        "chapter": "11"
+      },
+      {
+        "display": "賽 55",
+        "book": "Isaiah",
+        "chapter": "55"
+      },
+      {
+        "display": "彌 6:1-7:20",
+        "book": "Micah",
+        "chapter": "6"
+      }
+    ]
+  },
+  {
+    "day": 355,
+    "readings": [
+      {
+        "display": "啟 12",
+        "book": "Revelation",
+        "chapter": "12"
+      },
+      {
+        "display": "賽 56",
+        "book": "Isaiah",
+        "chapter": "56"
+      },
+      {
+        "display": "鴻 1:1-3:19",
+        "book": "Nahum",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 356,
+    "readings": [
+      {
+        "display": "啟 13",
+        "book": "Revelation",
+        "chapter": "13"
+      },
+      {
+        "display": "賽 57",
+        "book": "Isaiah",
+        "chapter": "57"
+      },
+      {
+        "display": "哈 1:1-3:19",
+        "book": "Habakkuk",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 357,
+    "readings": [
+      {
+        "display": "啟 14",
+        "book": "Revelation",
+        "chapter": "14"
+      },
+      {
+        "display": "賽 58",
+        "book": "Isaiah",
+        "chapter": "58"
+      },
+      {
+        "display": "番 1:1-2:15",
+        "book": "Zephaniah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 358,
+    "readings": [
+      {
+        "display": "啟 15",
+        "book": "Revelation",
+        "chapter": "15"
+      },
+      {
+        "display": "賽 59",
+        "book": "Isaiah",
+        "chapter": "59"
+      },
+      {
+        "display": "番 3",
+        "book": "Zephaniah",
+        "chapter": "3"
+      }
+    ]
+  },
+  {
+    "day": 359,
+    "readings": [
+      {
+        "display": "啟 16",
+        "book": "Revelation",
+        "chapter": "16"
+      },
+      {
+        "display": "賽 60",
+        "book": "Isaiah",
+        "chapter": "60"
+      },
+      {
+        "display": "該 1:1-2:23",
+        "book": "Haggai",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 360,
+    "readings": [
+      {
+        "display": "啟 17",
+        "book": "Revelation",
+        "chapter": "17"
+      },
+      {
+        "display": "賽 61",
+        "book": "Isaiah",
+        "chapter": "61"
+      },
+      {
+        "display": "亞 1:1-3:10",
+        "book": "Zechariah",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 361,
+    "readings": [
+      {
+        "display": "啟 18",
+        "book": "Revelation",
+        "chapter": "18"
+      },
+      {
+        "display": "賽 62",
+        "book": "Isaiah",
+        "chapter": "62"
+      },
+      {
+        "display": "亞 4:1-6:15",
+        "book": "Zechariah",
+        "chapter": "4"
+      }
+    ]
+  },
+  {
+    "day": 362,
+    "readings": [
+      {
+        "display": "啟 19",
+        "book": "Revelation",
+        "chapter": "19"
+      },
+      {
+        "display": "賽 63",
+        "book": "Isaiah",
+        "chapter": "63"
+      },
+      {
+        "display": "亞 7:1-9:17",
+        "book": "Zechariah",
+        "chapter": "7"
+      }
+    ]
+  },
+  {
+    "day": 363,
+    "readings": [
+      {
+        "display": "啟 20",
+        "book": "Revelation",
+        "chapter": "20"
+      },
+      {
+        "display": "賽 64",
+        "book": "Isaiah",
+        "chapter": "64"
+      },
+      {
+        "display": "亞 10:1-14:21",
+        "book": "Zechariah",
+        "chapter": "10"
+      }
+    ]
+  },
+  {
+    "day": 364,
+    "readings": [
+      {
+        "display": "啟 21",
+        "book": "Revelation",
+        "chapter": "21"
+      },
+      {
+        "display": "賽 65",
+        "book": "Isaiah",
+        "chapter": "65"
+      },
+      {
+        "display": "瑪 1:1-2:17",
+        "book": "Malachi",
+        "chapter": "1"
+      }
+    ]
+  },
+  {
+    "day": 365,
+    "readings": [
+      {
+        "display": "啟 22",
+        "book": "Revelation",
+        "chapter": "22"
+      },
+      {
+        "display": "賽 66",
+        "book": "Isaiah",
+        "chapter": "66"
+      },
+      {
+        "display": "瑪 3:1-4:6",
+        "book": "Malachi",
+        "chapter": "3"
+      }
+    ]
+  }
+]
