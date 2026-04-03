@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/lib/contentful";
+import { getAllArticlesForSitemap } from "@/lib/contentful";
 
 export const GET = async () => {
   const baseUrl = 'https://asbible.com';
@@ -11,20 +11,7 @@ export const GET = async () => {
     { url: '/2026每日读经表', priority: 0.6, changefreq: 'yearly' },
   ];
 
-  let allArticles = [];
-  let skip = 0;
-  const limit = 100;
-  let hasMoreArticles = true;
-
-  while (hasMoreArticles) {
-    const articlesBatch = await getAllArticles(limit, skip);
-    allArticles = [...allArticles, ...articlesBatch];
-    skip += articlesBatch.length;
-
-    if (articlesBatch.length < limit) {
-      hasMoreArticles = false;
-    }
-  }
+  const allArticles = await getAllArticlesForSitemap(500);
 
   const urls = [
     ...staticPages.map((page) => ({

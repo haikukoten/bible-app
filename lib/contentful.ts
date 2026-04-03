@@ -174,3 +174,39 @@ export async function getArticle(
     content: article.content.json,
   } as Article;
 }
+
+const SITEMAP_GRAPHQL_FIELDS = `
+  slug
+  publishedDate
+`;
+
+interface SitemapArticle {
+  slug: string;
+  publishedDate?: string;
+}
+
+export async function getAllArticlesForSitemap(
+  limit = 100
+): Promise<SitemapArticle[]> {
+  const query = `query AllArticlesForSitemap($limit: Int!) {
+    blogCollection(
+      where: { slug_exists: true }
+      order: publishedDate_DESC
+      limit: $limit
+    ) {
+      items {
+        ${SITEMAP_GRAPHQL_FIELDS}
+      }
+    }
+  }`;
+
+  const raw = await fetchGraphQL(query, false, { limit });
+  const fr = raw as {
+    errors?: { message: string }[];
+    data?: { blogCollection?: { items?: SitemapArticle[] } };
+  };
+  if (fr.errors?.length) {
+    console.error('Contentful GraphQL:', fr.errors.map((e) => e.message).join('; '));
+  }
+  return fr.data?.blogCollection?.items ?? [];
+}
