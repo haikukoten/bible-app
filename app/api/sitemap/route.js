@@ -9,6 +9,7 @@ export const GET = async (req) => {
     '/bible',
     '/blog',
     '/chat',
+    '/2026-daily-reading-plan',
   ];
 
   // Fetch all articles (with pagination logic)
