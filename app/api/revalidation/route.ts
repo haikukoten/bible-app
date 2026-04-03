@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { revalidateTag } from "next/cache";
-import { NextRequest } from "next/server"; // Import NextRequest type
+import { revalidateTag, revalidatePath } from "next/cache";
+import { NextRequest } from "next/server";
 
-export async function POST(request: NextRequest) { // Add NextRequest type here
+export async function POST(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   const secret = requestHeaders.get("x-vercel-reval-key");
 
@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) { // Add NextRequest type here
   }
 
   revalidateTag("articles");
+  revalidatePath("/api/sitemap");
 
   return NextResponse.json({ revalidated: true, now: Date.now() });
 }

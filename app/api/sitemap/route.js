@@ -1,65 +1,65 @@
-import { getAllArticles } from "@/lib/contentful"; // Import from your content fetching library
+import { getAllArticles } from "@/lib/contentful";
 
-export const GET = async (req) => {
-  const baseUrl = 'https://asbible.com'; // Your actual domain
+export const GET = async () => {
+  const baseUrl = 'https://asbible.com';
 
-  // Static pages (replace as necessary)
   const staticPages = [
-    '',
-    '/bible',
-    '/blog',
-    '/chat',
-    '/2026-daily-reading-plan',
+    { url: '', priority: 1, changefreq: 'monthly' },
+    { url: '/bible', priority: 0.5, changefreq: 'monthly' },
+    { url: '/blog', priority: 0.9, changefreq: 'weekly' },
+    { url: '/chat', priority: 0.5, changefreq: 'monthly' },
+    { url: '/2026每日读经表', priority: 0.6, changefreq: 'yearly' },
   ];
 
-  // Fetch all articles (with pagination logic)
-  let allArticles = []; // Accumulate all articles here
-  let skip = 0;         // Start at 0 to get the first page of results
-  const limit = 10;     // Contentful limit for fetching articles per request
-  let hasMoreArticles = true; // Flag to indicate if more articles exist
+  let allArticles = [];
+  let skip = 0;
+  const limit = 100;
+  let hasMoreArticles = true;
 
-  // Continue fetching articles until none are left
   while (hasMoreArticles) {
-    const articlesBatch = await getAllArticles(limit, skip); // Fetch articles from Contentful
-    allArticles = [...allArticles, ...articlesBatch];         // Append fetched articles to the accumulated array
-    skip += articlesBatch.length;                             // Move the skip value forward by the number of articles fetched
+    const articlesBatch = await getAllArticles(limit, skip);
+    allArticles = [...allArticles, ...articlesBatch];
+    skip += articlesBatch.length;
 
-    // Stop fetching if fewer than 'limit' articles are returned (means no more articles to fetch)
     if (articlesBatch.length < limit) {
       hasMoreArticles = false;
     }
   }
 
-  // Create a list of URLs for static and dynamic (blog) pages
   const urls = [
-    ...staticPages.map((page) => `${baseUrl}${page}`),                  // Static pages
-    ...allArticles.map(
-      (article) =>
-        `${baseUrl}/blog/${encodeURIComponent(article.slug)}`
-    ),
+    ...staticPages.map((page) => ({
+      loc: `${baseUrl}${page.url}`,
+      priority: page.priority,
+      changefreq: page.changefreq,
+      lastmod: new Date().toISOString().split('T')[0],
+    })),
+    ...allArticles.map((article) => ({
+      loc: `${baseUrl}/blog/${encodeURIComponent(article.slug)}`,
+      priority: 0.8,
+      changefreq: 'weekly',
+      lastmod: article.publishedDate ? new Date(article.publishedDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+    })),
   ];
 
-  // Generate sitemap XML
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       ${urls
-        .map((url) => {
-          return `
+        .map((url) => `
             <url>
-              <loc>${url}</loc>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
+              <loc>${url.loc}</loc>
+              <lastmod>${url.lastmod}</lastmod>
+              <changefreq>${url.changefreq}</changefreq>
+              <priority>${url.priority}</priority>
             </url>
-          `;
-        })
+          `)
         .join('')}
     </urlset>
   `;
 
-  // Return the sitemap XML response
   return new Response(sitemap, {
     headers: {
       'Content-Type': 'application/xml',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
     },
   });
 };
