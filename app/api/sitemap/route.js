@@ -1,8 +1,11 @@
 import { getAllArticlesForSitemap } from "@/lib/contentful";
+import { revalidateTag } from "next/cache";
 
 export const dynamic = 'force-dynamic';
 
 export const GET = async () => {
+  revalidateTag('articles');
+
   const baseUrl = 'https://asbible.com';
 
   const staticPages = [
