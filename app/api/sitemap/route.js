@@ -1,5 +1,7 @@
 import { getAllArticlesForSitemap } from "@/lib/contentful";
 
+export const dynamic = 'force-dynamic';
+
 export const GET = async () => {
   const baseUrl = 'https://asbible.com';
 
