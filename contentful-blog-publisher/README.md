@@ -5,7 +5,7 @@ Separate Node service that:
 1. Reads your editorial brief from **`config.txt`** (copy from `config.example.txt`).
 2. Uses **OpenAI** (chat completions) to plan a post: title, excerpt, and **gist body** (outline + section headings).
 3. Optionally creates a **GitHub Gist** with that brief (set `GITHUB_TOKEN`; skipped if unset).
-4. Generates a **cover image** with the **OpenAI Images API** from the **article excerpt** (default **`dall-e-3`**; override with `OPENAI_IMAGE_MODEL`).
+4. Generates a **cover image** with the **BFL FLUX API** from the **article excerpt** (default **`flux-2-pro`**; override with `BFL_IMAGE_MODEL`).
 5. Writes the full article with **OpenAI** again (JSON → Contentful Rich Text; long-form, human-style copy per prompts in `src/openai.ts`).
 6. Uploads the image and **publishes** a **`blog`** entry via the **Contentful Management API**. The **`excerpt`** field is capped at **255 characters** (Contentful Short text); prompts ask the model to stay within that limit, and the publisher **truncates** with an ellipsis if needed.
 
@@ -18,7 +18,8 @@ Separate Node service that:
 
 ## Prerequisites
 
-- **OpenAI API key** with access to the chat and image models you configure ([platform.openai.com](https://platform.openai.com/)).
+- **OpenAI API key** with access to the chat models you configure ([platform.openai.com](https://platform.openai.com/)).
+- **Black Forest Labs API key** for image generation ([dashboard.bfl.ai](https://dashboard.bfl.ai/)).
 - **Contentful Management token** (not the Delivery token). Same **Space ID** as the Next.js site.
 - Content type **`blog`** with fields: `title`, `slug`, `excerpt`, `content` (Rich text), `publishedDate`, `coverImage` (Media, one asset) — same as the existing site.
 - **GitHub** token with **gist** scope (optional; gists are skipped if missing).
@@ -75,10 +76,10 @@ See **`.env.example`**. Important:
 
 | Variable | Purpose |
 |----------|---------|
-| `OPENAI_API_KEY` | OpenAI secret key |
+| `BFL_API_KEY` | BFL Flux API key |
 | `OPENAI_TEXT_MODEL` | Default `gpt-4o-mini` (e.g. `gpt-4o`) |
-| `OPENAI_IMAGE_MODEL` | Default `dall-e-3` (or `dall-e-2`) |
-| `OPENAI_IMAGE_SIZE` | `1024x1024` / `1792x1024` / `1024x1792` for DALL·E 3 |
+| `BFL_IMAGE_MODEL` | Default `flux-2-pro` |
+| `BFL_IMAGE_SIZE` | Default `1024x1024` |
 | `CONTENTFUL_MANAGEMENT_TOKEN` | CMA token |
 | `CONTENTFUL_SPACE_ID` | Space ID |
 | `CONTENTFUL_BLOG_CONTENT_TYPE_ID` | Default `blog` |

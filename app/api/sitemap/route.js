@@ -26,7 +26,7 @@ export const GET = async () => {
       lastmod: new Date().toISOString().split('T')[0],
     })),
     ...allArticles.map((article) => ({
-      loc: `${baseUrl}/blog/${encodeURIComponent(article.slug)}`,
+      loc: `${baseUrl}/blog/${article.slug}`,
       priority: 0.8,
       changefreq: 'weekly',
       lastmod: article.publishedDate ? new Date(article.publishedDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],

@@ -1,12 +1,12 @@
-const OPENAI_CHAT = 'https://api.openai.com/v1/chat/completions';
+const MINIMAX_CHAT = 'https://api.minimax.io/v1/chat/completions';
 const OPENAI_IMAGES = 'https://api.openai.com/v1/images/generations';
 
-const textModel = () => process.env.OPENAI_TEXT_MODEL ?? 'gpt-4o-mini';
+const textModel = () => process.env.MINIMAX_TEXT_MODEL ?? 'MiniMax-M3';
 const imageModel = () => process.env.OPENAI_IMAGE_MODEL ?? 'dall-e-3';
 
 function apiKey(): string {
-  const k = process.env.OPENAI_API_KEY;
-  if (!k) throw new Error('OPENAI_API_KEY is required');
+  const k = process.env.MINIMAX_API_KEY;
+  if (!k) throw new Error('MINIMAX_API_KEY is required');
   return k;
 }
 
@@ -16,7 +16,7 @@ async function chatJson(
   temperature: number,
   maxTokens: number
 ): Promise<string> {
-  const res = await fetch(OPENAI_CHAT, {
+  const res = await fetch(MINIMAX_CHAT, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey()}`,
@@ -46,8 +46,18 @@ async function chatJson(
     );
   }
 
-  const text = data.choices?.[0]?.message?.content?.trim();
+  let text = data.choices?.[0]?.message?.content?.trim();
   if (!text) throw new Error('OpenAI returned empty content');
+  
+  // MiniMax-M3 injects <think> tags; remove them to parse JSON cleanly
+  text = text.replace(/<think>[\s\S]*?<\/think>\s*/i, '');
+  
+  // Extract JSON block in case there's any other text
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (jsonMatch) {
+    text = jsonMatch[0];
+  }
+
   return text;
 }
 
@@ -153,62 +163,119 @@ Rules:
 }
 
 /**
- * Cover image via OpenAI Images API (default: dall-e-3).
+ * Cover image via BFL FLUX API (default: flux-2-pro).
  * Prompt is built from the article excerpt so the visual matches the card copy.
  */
 export async function generateCoverImageBuffer(params: {
   excerpt: string;
   title?: string;
 }): Promise<{ buffer: Buffer; mimeType: string }> {
+  const bflKey = process.env.BFL_API_KEY;
+  if (!bflKey) throw new Error('BFL_API_KEY is required for image generation');
+
   const excerpt = params.excerpt.trim();
   const titleHint = params.title?.trim()
     ? `Context (do not render as text in the image): ${params.title.trim()}\n\n`
     : '';
-  const fullPrompt = `${titleHint}Blog cover illustration, editorial style, warm and respectful. Absolutely no text, letters, numbers, logos, or watermarks in the image.
+    
+  const artStyles = [
+    "Soft watercolor painting, natural textures, gentle brushstrokes, ethereal lighting",
+    "Classic oil painting style, rich earth tones, chiaroscuro lighting, highly textured",
+    "Cinematic nature photography, golden hour lighting, hyper-realistic, soft depth of field",
+    "Vintage woodblock print illustration, intricate linework, muted organic colors",
+    "Minimalist landscape illustration, clean vector art, warm pastel color palette, negative space",
+    "Stained glass window style illustration, vibrant backlit colors, intricate geometric lead lines",
+    "Textured charcoal sketch with soft pastel color accents, intimate and raw"
+  ];
+  const randomStyle = artStyles[Math.floor(Math.random() * artStyles.length)];
 
-Interpret the themes, mood, and atmosphere of this article excerpt as a single cohesive scene or symbolic composition (abstract or concrete—your choice), suitable for a faith-focused blog:
+  const fullPrompt = `${titleHint}A highly detailed, evocative scene capturing the essence of this theme: "${excerpt}". Art Style: ${randomStyle}. Composition: Clean, warm, and respectful. Mood: Serene, inspiring, grounded. CRITICAL NOTE: Absolutely no text, no letters, no numbers, no words, no signatures, and no watermarks anywhere in the image.`;
 
-${excerpt}`;
+  const envSize = process.env.OPENAI_IMAGE_SIZE || process.env.BFL_IMAGE_SIZE || '1024x1024';
+  const [widthStr, heightStr] = envSize.split('x');
+  const width = parseInt(widthStr, 10) || 1024;
+  const height = parseInt(heightStr, 10) || 1024;
 
-  const allowedSizes = ['1024x1024', '1792x1024', '1024x1792'] as const;
-  const envSize = process.env.OPENAI_IMAGE_SIZE;
-  const size = allowedSizes.includes(envSize as (typeof allowedSizes)[number])
-    ? (envSize as (typeof allowedSizes)[number])
-    : '1024x1024';
+  const model = process.env.BFL_IMAGE_MODEL || 'flux-2-pro';
+  const BFL_URL = `https://api.bfl.ai/v1/${model}`;
 
-  const res = await fetch(OPENAI_IMAGES, {
+  console.log(`[pipeline] Requesting image from BFL (${model})...`);
+
+  const req = await fetch(BFL_URL, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${apiKey()}`,
       'Content-Type': 'application/json',
+      'x-key': bflKey,
     },
     body: JSON.stringify({
-      model: imageModel(),
       prompt: fullPrompt.slice(0, 4000),
-      n: 1,
-      size,
-      response_format: 'b64_json',
+      width,
+      height,
     }),
   });
 
-  const data = (await res.json()) as {
-    error?: { message?: string };
-    data?: Array<{ b64_json?: string }>;
-  };
-
-  if (!res.ok) {
-    throw new Error(
-      `OpenAI images ${res.status}: ${data.error?.message ?? JSON.stringify(data)}`
-    );
+  const data = await req.json() as any;
+  if (!req.ok) {
+    throw new Error(`BFL image generation error ${req.status}: ${JSON.stringify(data)}`);
   }
 
-  const b64 = data.data?.[0]?.b64_json;
-  if (!b64) {
-    throw new Error('OpenAI images: no b64_json in response');
+  const taskId = data.id;
+  const pollingUrl = data.polling_url || `https://api.bfl.ai/v1/get_result?id=${taskId}`;
+  
+  if (!taskId) {
+    throw new Error('BFL API did not return a task ID');
   }
+
+  // Poll for result
+  let status = 'Pending';
+  let sampleUrl = '';
+  const maxAttempts = 120; // 2 minutes max
+  let attempts = 0;
+
+  while (attempts < maxAttempts) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    attempts++;
+
+    const pollReq = await fetch(pollingUrl, {
+      method: 'GET',
+      headers: {
+        'x-key': bflKey,
+        'Accept': 'application/json'
+      },
+    });
+
+    const pollData = await pollReq.json() as any;
+    if (!pollReq.ok) {
+      throw new Error(`BFL polling error ${pollReq.status}: ${JSON.stringify(pollData)}`);
+    }
+
+    status = pollData.status;
+    
+    if (status === 'Ready') {
+      sampleUrl = pollData.result?.sample;
+      break;
+    } else if (status === 'Error' || status === 'Failed') {
+      throw new Error(`BFL generation failed: ${JSON.stringify(pollData)}`);
+    } else if (status === 'Request Moderated' || status === 'Content Moderated') {
+      throw new Error(`BFL generation blocked by moderation: ${status}`);
+    }
+  }
+
+  if (status !== 'Ready' || !sampleUrl) {
+    throw new Error('BFL image generation timed out or failed to return a sample URL');
+  }
+
+  // Fetch the actual image buffer
+  const imgRes = await fetch(sampleUrl);
+  if (!imgRes.ok) {
+    throw new Error(`Failed to download BFL image from ${sampleUrl}: ${imgRes.status}`);
+  }
+
+  const arrayBuffer = await imgRes.arrayBuffer();
+  const mimeType = imgRes.headers.get('content-type') || 'image/jpeg';
 
   return {
-    buffer: Buffer.from(b64, 'base64'),
-    mimeType: 'image/png',
+    buffer: Buffer.from(arrayBuffer),
+    mimeType,
   };
 }

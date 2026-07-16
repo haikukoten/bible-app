@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 import { BLOCKS, MARKS, Document } from "@contentful/rich-text-types";
+import CapiViewTracker from "@/components/CapiViewTracker";
 
 // Custom rendering options for Contentful rich text
 const options = {
@@ -99,7 +100,7 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const slugParam = params.slug.normalize("NFC");
+  const slugParam = decodeURIComponent(params.slug).normalize("NFC");
 
   // Fetch article based on slug
   const article = await getArticle(slugParam);
@@ -199,6 +200,7 @@ export default async function BlogPostPage({
           </div>
         </div>
       </section>
+      <CapiViewTracker />
     </main>
   );
 }

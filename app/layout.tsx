@@ -1,9 +1,13 @@
-// app/layout.tsx
 import './globals.css';
 import ClientNavbar from '@/components/ClientNavbar'; // Import the Client Navbar
 import Link from 'next/link';
 import Script from 'next/script'; // Import the Next.js Script component
-// Inter font removed for raw 4chan aesthetic
+import { Caveat, Pacifico, Dancing_Script } from 'next/font/google';
+import CapiFormTracker from '@/components/CapiFormTracker';
+
+const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
+const pacifico = Pacifico({ weight: '400', subsets: ['latin'], variable: '--font-pacifico' });
+const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing-script' });
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://asbible.com';
@@ -35,8 +39,33 @@ export default function RootLayout({
             gtag('config', 'G-250XKLDNC4');
           `}
         </Script>
+        {/* Meta Pixel Code */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1526511622820852');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=1526511622820852&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
       </head>
-      <body>
+      <body className={`${caveat.variable} ${pacifico.variable} ${dancingScript.variable}`}>
+        <CapiFormTracker />
         <div className="flex flex-col min-h-screen bg-background">
           <ClientNavbar /> {/* Use the Client Component here */}
           <main className="flex-1 w-full max-w-7xl mx-auto">

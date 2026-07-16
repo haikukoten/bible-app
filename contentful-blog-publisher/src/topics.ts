@@ -40,7 +40,7 @@ export async function loadTopics(
     if (!trimmed || trimmed.startsWith('#')) continue;
     const pipe = trimmed.indexOf('|');
     if (pipe === -1) {
-      out.push({ keyword: trimmed, language: 'English' });
+      out.push({ keyword: trimmed, language: 'the same language as the keyword' });
       continue;
     }
     const keyword = trimmed.slice(0, pipe).trim();

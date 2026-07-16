@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'asBible | Read Bible Blog',
@@ -31,5 +31,13 @@ export default function BibleLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      {/* Audienceful.js */}
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <script data-orgid="org_2xZfK6as" src="https://cdn.audiencefulapp.net/forms/audienceful.min.js"></script>
+      {/* End Audienceful.js */}
+    </>
+  );
 }

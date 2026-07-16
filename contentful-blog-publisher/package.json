@@ -7,7 +7,8 @@
     "start": "tsx src/index.ts",
     "run-once": "tsx src/index.ts --once",
     "verify-contentful": "tsx src/verify-contentful.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test-flux": "tsx test-flux.ts"
   },
   "dependencies": {
     "@contentful/rich-text-types": "^16.3.0",

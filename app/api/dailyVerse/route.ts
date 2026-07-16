@@ -40,7 +40,7 @@ async function generateVerse(date: string): Promise<DailyVersePayload | null> {
       messages: [
         {
           role: 'system',
-          content: `You output only valid JSON (no markdown). Current date: ${date}. Suggest one short inspirational Bible verse: include exact verse text, book name, chapter and verse numbers as integers. Base the choice loosely on the calendar date; do not mention any historical event in the output.`,
+          content: `You output only valid JSON (no markdown). Current date: ${date}. Suggest one short inspirational Bible verse: include exact verse text, book name, chapter and verse numbers as integers. IMPORTANT: Do not use Psalm 118:24. Pick a highly varied, unique, and random inspirational verse from across the entire Bible. Random seed for today: ${Math.random()}`,
         },
         {
           role: 'user',
@@ -50,6 +50,7 @@ async function generateVerse(date: string): Promise<DailyVersePayload | null> {
       max_tokens: 400,
       temperature: 0.6,
     }),
+    cache: 'no-store',
   });
 
   const data = (await res.json()) as {
@@ -121,43 +122,48 @@ export async function GET() {
   const todayDate = new Date().toISOString().split('T')[0];
 
   try {
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+    currentData = JSON.parse(fileContent);
+  } catch {
+    // File doesn't exist or is invalid
+  }
+
+  try {
     const stats = await fs.stat(filePath);
     const fileDate = stats.mtime.toISOString().split('T')[0];
     
     if (fileDate !== todayDate) {
       needsUpdate = true;
-    } else {
-      const fileContent = await fs.readFile(filePath, 'utf-8');
-      currentData = JSON.parse(fileContent);
     }
   } catch {
-    // File doesn't exist or is invalid
     needsUpdate = true;
   }
 
   if (!needsUpdate && currentData) {
-    return NextResponse.json(currentData);
+    return NextResponse.json(currentData, {
+      headers: { 'Cache-Control': 'no-store, max-age=0' },
+    });
   }
 
   // Generate new verse if needed
   if (!process.env.OPENAI_API_KEY) {
     // If no API key, return old data if it exists
-    if (currentData) return NextResponse.json(currentData);
+    if (currentData) return NextResponse.json(currentData, { headers: { 'Cache-Control': 'no-store, max-age=0' } });
     return NextResponse.json({ error: 'OpenAI is not configured.' }, { status: 503 });
   }
 
   try {
     const verse = await generateVerse(todayDate);
     if (!verse) {
-      if (currentData) return NextResponse.json(currentData);
+      if (currentData) return NextResponse.json(currentData, { headers: { 'Cache-Control': 'no-store, max-age=0' } });
       return NextResponse.json({ error: 'Could not generate daily verse.' }, { status: 502 });
     }
 
     await fs.writeFile(filePath, JSON.stringify(verse, null, 2), 'utf-8');
-    return NextResponse.json(verse);
+    return NextResponse.json(verse, { headers: { 'Cache-Control': 'no-store, max-age=0' } });
   } catch (error) {
     console.error('dailyVerse GET:', error);
-    if (currentData) return NextResponse.json(currentData);
+    if (currentData) return NextResponse.json(currentData, { headers: { 'Cache-Control': 'no-store, max-age=0' } });
     return NextResponse.json({ error: 'Failed to write daily verse.' }, { status: 500 });
   }
 }
