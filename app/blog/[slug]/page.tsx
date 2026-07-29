@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import { BLOCKS, MARKS, Document } from "@contentful/rich-text-types";
 import CapiViewTracker from "@/components/CapiViewTracker";
 import SubscribeForm from "@/components/SubscribeForm";
+import ShareButtons from "@/components/ShareButtons";
 
 // Custom rendering options for Contentful rich text
 const options = {
@@ -170,10 +171,22 @@ export default async function BlogPostPage({
               <SubscribeForm />
             </div>
 
-            {/* Article content */}
-            <div className="space-y-4 md:space-y-6">
-              <div className="space-y-2">
-                <div className="prose max-w-none">
+            {/* Article content with Floating Share Buttons */}
+            <div className="flex flex-col md:flex-row gap-6 relative mt-8">
+              {/* Floating Share Buttons - Desktop */}
+              <div className="hidden md:block w-12 flex-shrink-0">
+                <div className="sticky top-24 pt-2">
+                  <ShareButtons title={article?.title || "Article"} />
+                </div>
+              </div>
+
+              {/* Share Buttons - Mobile */}
+              <div className="md:hidden flex justify-center w-full mb-4">
+                <ShareButtons title={article?.title || "Article"} horizontal />
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <div className="prose max-w-none space-y-4 md:space-y-6">
                   {/* Check if content exists */}
                   {content ? (
                     documentToReactComponents(content, options)
