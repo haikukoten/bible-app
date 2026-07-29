@@ -219,12 +219,7 @@ export default async function BlogPostPage({
                 </div>
               </div>
 
-              {/* Share Buttons - Mobile (Floating Bottom Bar) */}
-              <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 pointer-events-none">
-                <div className="pointer-events-auto">
-                  <ShareButtons title={article?.title || "Article"} horizontal />
-                </div>
-              </div>
+
 
               <div className="flex-1 min-w-0">
                 <div className="prose max-w-none space-y-4 md:space-y-6">
@@ -234,6 +229,13 @@ export default async function BlogPostPage({
                   ) : (
                     <p>No content available.</p>
                   )}
+                </div>
+              </div>
+
+              {/* Share Buttons - Mobile (Sticky Bottom Bar) */}
+              <div className="md:hidden sticky bottom-6 z-50 flex justify-center w-full pointer-events-none">
+                <div className="pointer-events-auto">
+                  <ShareButtons title={article?.title || "Article"} horizontal />
                 </div>
               </div>
             </div>
