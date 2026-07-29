@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { Metadata, ResolvingMetadata } from "next";
 import { getArticle, getAllArticles } from "@/lib/contentful";
 import { blogPostHref } from "@/lib/blogPath";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -94,6 +95,44 @@ export async function generateStaticParams() {
   return allArticles.map((article) => ({
     slug: article.slug,
   }));
+}
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const slugParam = decodeURIComponent(params.slug).normalize("NFC");
+  const article = await getArticle(slugParam);
+
+  if (!article) {
+    return {
+      title: "Article Not Found",
+    };
+  }
+
+  const title = article.title || "asBible | Read Bible Blog";
+  const description = article.excerpt || "Read insightful Bible blogs on asBible.";
+  const url = `https://asbible.com/blog/${slugParam}`;
+  const coverImageUrl = article.coverImage?.url ? getAbsoluteUrl(article.coverImage.url) : null;
+  const images = coverImageUrl ? [coverImageUrl] : [];
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images,
+    },
+  };
 }
 
 // BlogPostPage component to render individual article
