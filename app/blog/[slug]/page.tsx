@@ -220,8 +220,10 @@ export default async function BlogPostPage({
               </div>
 
               {/* Share Buttons - Mobile (Floating Bottom Bar) */}
-              <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md p-2 px-6 rounded-full shadow-xl border border-gray-200 dark:border-gray-800 transition-all duration-300">
-                <ShareButtons title={article?.title || "Article"} horizontal />
+              <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 pointer-events-none">
+                <div className="pointer-events-auto">
+                  <ShareButtons title={article?.title || "Article"} horizontal />
+                </div>
               </div>
 
               <div className="flex-1 min-w-0">
