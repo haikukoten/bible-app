@@ -92,6 +92,19 @@ async function fetchGraphQL(
   return response.json();
 }
 
+const ARTICLE_PREVIEW_GRAPHQL_FIELDS = `
+  sys {
+    id
+  }
+  title
+  slug
+  excerpt
+  publishedDate
+  coverImage {
+    url
+  }
+`;
+
 function extractArticleEntries(fetchResponse: unknown): Article[] {
   const fr = fetchResponse as {
     errors?: { message: string }[];
@@ -107,7 +120,7 @@ function extractArticleEntries(fetchResponse: unknown): Article[] {
 }
 
 export async function getAllArticles(
-  limit = 10,
+  limit = 12,
   skip = 0,
   isDraftMode = false
 ): Promise<Article[]> {
@@ -120,7 +133,7 @@ export async function getAllArticles(
       preview: ${isDraftMode ? 'true' : 'false'}
     ) {
       items {
-        ${ARTICLE_GRAPHQL_FIELDS}
+        ${ARTICLE_PREVIEW_GRAPHQL_FIELDS}
       }
     }
   }`;

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 import { BLOCKS, MARKS, Document } from "@contentful/rich-text-types";
 import CapiViewTracker from "@/components/CapiViewTracker";
+import SubscribeForm from "@/components/SubscribeForm";
 
 // Custom rendering options for Contentful rich text
 const options = {
@@ -165,6 +166,10 @@ export default async function BlogPostPage({
               <p>No cover image available.</p>
             )}
 
+            <div className="flex justify-center">
+              <SubscribeForm />
+            </div>
+
             {/* Article content */}
             <div className="space-y-4 md:space-y-6">
               <div className="space-y-2">
@@ -177,6 +182,10 @@ export default async function BlogPostPage({
                   )}
                 </div>
               </div>
+            </div>
+
+            <div className="flex justify-center border-t pt-8 mt-8">
+              <SubscribeForm />
             </div>
 
             {/* Previous and Next buttons */}

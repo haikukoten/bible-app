@@ -31,13 +31,5 @@ export default function BibleLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      {children}
-      {/* Audienceful.js */}
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script data-orgid="org_2xZfK6as" src="https://cdn.audiencefulapp.net/forms/audienceful.min.js"></script>
-      {/* End Audienceful.js */}
-    </>
-  );
+  return <>{children}</>;
 }

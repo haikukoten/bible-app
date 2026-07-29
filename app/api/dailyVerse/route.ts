@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { NextRequest } from 'next/server';
+import { loadVersion } from '@/lib/bibleJson';
+import { books } from '@/lib/bibleBooks';
 
 export const dynamic = 'force-dynamic';
-
-const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 
 type DailyVersePayload = {
   verse: string;
@@ -14,60 +14,35 @@ type DailyVersePayload = {
   verse_number: number;
 };
 
-function parseDailyVerse(raw: unknown): DailyVersePayload | null {
-  if (!raw || typeof raw !== 'object') return null;
-  const o = raw as Record<string, unknown>;
-  if (typeof o.verse !== 'string' || typeof o.book !== 'string') return null;
-  const chapter = Number(o.chapter);
-  const verse_number = Number(o.verse_number);
-  if (!Number.isFinite(chapter) || !Number.isFinite(verse_number)) return null;
-  return { verse: o.verse, book: o.book, chapter, verse_number };
-}
-
 async function generateVerse(date: string): Promise<DailyVersePayload | null> {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) return null;
-
-  const res = await fetch(OPENAI_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      response_format: { type: 'json_object' },
-      messages: [
-        {
-          role: 'system',
-          content: `You output only valid JSON (no markdown). Current date: ${date}. Suggest one short inspirational Bible verse: include exact verse text, book name, chapter and verse numbers as integers. IMPORTANT: Do not use Psalm 118:24. Pick a highly varied, unique, and random inspirational verse from across the entire Bible. Random seed for today: ${Math.random()}`,
-        },
-        {
-          role: 'user',
-          content: `Return a JSON object with keys: verse (string), book (string), chapter (number), verse_number (number).`,
-        },
-      ],
-      max_tokens: 400,
-      temperature: 0.6,
-    }),
-    cache: 'no-store',
-  });
-
-  const data = (await res.json()) as {
-    choices?: { message?: { content?: string } }[];
-  };
-
-  const text = data.choices?.[0]?.message?.content?.trim();
-  if (!text) return null;
-
-  let parsed: unknown;
   try {
-    parsed = JSON.parse(text);
-  } catch {
+    const versionData = await loadVersion('en_kjv');
+    if (!versionData || versionData.length === 0) return null;
+
+    // Pick a random book
+    const randomBook = versionData[Math.floor(Math.random() * versionData.length)];
+    const bookMeta = books.find(b => b.abbrev.toLowerCase() === randomBook.abbrev.toLowerCase());
+    const bookName = bookMeta ? bookMeta.name : randomBook.abbrev;
+
+    // Pick a random chapter
+    const randomChapterIndex = Math.floor(Math.random() * randomBook.chapters.length);
+    const chapterVerses = randomBook.chapters[randomChapterIndex];
+    if (!chapterVerses || chapterVerses.length === 0) return null;
+
+    // Pick a random verse
+    const randomVerseIndex = Math.floor(Math.random() * chapterVerses.length);
+    const verseText = chapterVerses[randomVerseIndex];
+
+    return {
+      verse: verseText,
+      book: bookName,
+      chapter: randomChapterIndex + 1,
+      verse_number: randomVerseIndex + 1,
+    };
+  } catch (err) {
+    console.error('Failed to generate local random verse:', err);
     return null;
   }
-
-  return parseDailyVerse(parsed);
 }
 
 function authorize(request: NextRequest): boolean {
@@ -84,12 +59,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  if (!process.env.OPENAI_API_KEY) {
-    return NextResponse.json(
-      { error: 'OpenAI is not configured.' },
-      { status: 503 }
-    );
-  }
 
   const date = new Date().toISOString().split('T')[0];
 
@@ -146,11 +115,6 @@ export async function GET() {
   }
 
   // Generate new verse if needed
-  if (!process.env.OPENAI_API_KEY) {
-    // If no API key, return old data if it exists
-    if (currentData) return NextResponse.json(currentData, { headers: { 'Cache-Control': 'no-store, max-age=0' } });
-    return NextResponse.json({ error: 'OpenAI is not configured.' }, { status: 503 });
-  }
 
   try {
     const verse = await generateVerse(todayDate);

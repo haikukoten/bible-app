@@ -86,10 +86,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Audienceful.js */}
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script data-orgid="org_2xZfK6as" src="https://cdn.audiencefulapp.net/forms/audienceful.min.js"></script>
-      {/* End Audienceful.js */}
     </>
   );
 }

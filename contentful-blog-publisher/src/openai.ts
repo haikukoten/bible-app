@@ -138,7 +138,7 @@ Title: ${brief.title}
 Excerpt (for card — stay aligned with this promise): ${brief.excerpt}
 ${langRule}
 
-Length: the full body must be approximately **700–1200 words** in the article language (if the language uses different counting, match that length in a comparable way). Under-length is not acceptable—expand with real substance: examples, careful explanation, one or two vivid images or analogies, and honest reflection—not padding.
+Length: the full body must be approximately **700–1200 words** in the article language (for logographic languages like Chinese, Japanese, and Korean, this means **1500–2000 characters**). Under-length is not acceptable—expand with real substance: examples, careful explanation, one or two vivid images or analogies, and honest reflection—not padding.
 
 Write the full article. Return a single JSON object with:
 - "excerpt": string — polished excerpt for the listing (can match or refine the planned excerpt). **Must be ≤ 255 characters** (including spaces).

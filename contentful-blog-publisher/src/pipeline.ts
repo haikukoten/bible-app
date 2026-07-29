@@ -9,6 +9,7 @@ import { createArticleGist } from './gist.js';
 import { blocksToDocument, type BodyBlock } from './richText.js';
 import { publishBlogPost } from './contentfulPublish.js';
 import { loadTopics, type BlogTopic } from './topics.js';
+import { addInternalLinksToDocument } from './internalLinker.js';
 
 /** Unicode-friendly slug (matches Contentful + Next URL encoding). */
 export function uniqueSlugFromTitle(title: string): string {
@@ -104,9 +105,15 @@ async function publishOneArticle(
     return { type: 'paragraph', text: String(b) };
   });
 
-  const document = blocksToDocument(blocks);
-
+  let document = blocksToDocument(blocks);
   const slug = uniqueSlugFromTitle(brief.title);
+
+  console.log('[pipeline] Adding internal links in-memory before publishing...');
+  try {
+    document = await addInternalLinksToDocument(document, slug, 4);
+  } catch (error) {
+    console.error('[pipeline] Error during in-memory internal linking:', error);
+  }
 
   console.log('[pipeline] Publishing to Contentful…');
   const { entryId } = await publishBlogPost({
@@ -121,3 +128,4 @@ async function publishOneArticle(
 
   console.log('[pipeline] Published entry:', entryId, 'slug:', slug);
 }
+

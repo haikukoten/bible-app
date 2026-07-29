@@ -16,7 +16,7 @@ export function isValidBookAbbrev(book: string): boolean {
   return BOOK_ABBREV_PATTERN.test(book);
 }
 
-async function loadVersion(version: string): Promise<BibleBookJson[]> {
+export async function loadVersion(version: string): Promise<BibleBookJson[]> {
   const cached = bibleCache.get(version);
   if (cached) return cached;
 
