@@ -1,130 +1,114 @@
-# asBible
+# asBible System Architecture & Documentation
 
-A [Next.js](https://nextjs.org/) 14 app for reading the Bible in many translations, browsing a Contentful-powered blog, and chatting with an AI assistant. Bible text is served from static JSON under `public/json` (no Redis or database for scripture).
+Welcome to **asBible**, a robust, automated ecosystem that combines a Next.js 14 web application for Bible reading and spiritual growth with a fully autonomous AI-driven publishing engine powered by Contentful.
 
-## Features
+## 🌟 Overview
 
-- **Bible reader** (`/bible`) — Select translation, book, and chapter. Text is loaded via `GET /api/bible`, which reads `public/json/<version>.json` and caches parsed data in memory per server process.
-- **Blog** (`/blog`) — Articles from **Contentful** (GraphQL), with on-demand revalidation.
-- **Chat** (`/chat`) — Proxies to OpenAI (`gpt-4o-mini`) through `POST /api/chat-with-gpt` so the API key stays on the server.
-- **Verse of the day** — `components/DailyVerse.tsx` loads `public/dailyVerse.json`. Regenerate with `POST /api/dailyVerse` (see below).
+The ecosystem is divided into two primary parts:
+1. **The Web Application (`/`)**: A fast, SEO-optimized Next.js 14 frontend offering a Bible reader, an AI chat interface, a dynamic Verse of the Day, and a beautiful reading experience for the blog.
+2. **The Publishing Engine (`/contentful-blog-publisher`)**: An autonomous Node.js background worker system (managed via PM2) that generates theological articles, AI imagery, and publishes them seamlessly to Contentful on configured schedules.
 
-## Security model
+---
+
+## 1️⃣ Web Application Features (Next.js)
+
+- **Bible Reader (`/bible`)**: Allows users to read and navigate different translations. Scripture data is read directly from large, heavily cached static JSON files in `public/json/` (no database overhead).
+- **Blog (`/blog`)**: Displays articles fetched from Contentful via GraphQL. Articles support rich text and are optimized for SEO with dynamic metadata.
+- **AI Chat (`/chat`)**: A conversational interface proxying to OpenAI (`gpt-4o-mini`) through a secure `POST /api/chat-with-gpt` endpoint, keeping API keys safe on the server.
+- **Verse of the Day**: A dynamically loaded client component (`DailyVerse.tsx`) that reads from `public/dailyVerse.json`. This JSON is regenerated via a secure `POST /api/dailyVerse` endpoint.
+- **Newsletter Subscriptions**: Users can sign up via an elegant inline form on the homepage or cards on blog posts. Subscriptions are saved automatically to a local `subscriptions.csv` file via `POST /api/subscribe`.
+- **Google Analytics & Event Tracking**: Fully integrated with Google Analytics (`G-250XKLDNC4`). Includes custom event tracking for the floating and sticky **Share Buttons** (Facebook, Twitter, WhatsApp, Copy Link) on articles.
+
+---
+
+## 2️⃣ Autonomous Blog Publishing Engine
+
+The `contentful-blog-publisher/` directory contains an autonomous publishing system that runs in the background 24/7. It generates high-quality articles and images, creates a GitHub Gist for the content brief, and publishes directly to Contentful.
+
+### Dual-Instance Setup
+The system runs **two independent PM2 instances**, configured via `ecosystem.config.cjs`:
+
+1. **`blog-publisher` (Main)**
+   - **Topics List**: `topics.txt`
+   - **State Tracking**: `data/state.json`
+   - **Schedule**: Aims for ~1 article every 3 days (72-hour interval + 24-hour random jitter).
+   - **Behavior**: Expects explicit `Keyword|Language` pairs (e.g. `Faith|English`).
+
+2. **`blog-publisher-2` (High Frequency)**
+   - **Topics List**: `topics2.txt`
+   - **State Tracking**: `data/state2.json`
+   - **Schedule**: Aims for ~2 articles per day (4-hour interval + 16-hour random jitter).
+   - **Behavior**: Smart language fallback. If no `|Language` is provided (e.g. `salmo 91`), it explicitly commands the AI to write the article in the same language as the keyword.
+
+### AI Integrations
+- **Text Generation**: Uses OpenAI's `gpt-4o-mini` to write the title, excerpt, and rich-text body matching the exact required JSON structure for Contentful.
+- **Image Generation**: Uses **Black Forest Labs (BFL)** API. Recently upgraded to the highly efficient **`flux-2-klein-9b`** model to cut image generation costs by 50% while maintaining exceptional speed and photorealistic quality.
+
+---
+
+## 🔒 Security Model
 
 | Area | Behavior |
 |------|----------|
-| **HTTP headers** | `next.config.mjs` sets `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy` on all routes. |
-| **Bible API** | `version` must match a known translation id (see `lib/bibleBooks.ts`); `book` is validated; `chapter` is bounded. No path traversal. |
-| **Chat API** | Validates message shape and size; basic per-IP rate limit; does not leak raw OpenAI error bodies to the client. |
-| **Daily verse refresh** | `POST /api/dailyVerse` requires `Authorization: Bearer <CRON_SECRET>`. Without `CRON_SECRET`, regeneration is disabled. |
-| **Contentful revalidation** | `POST /api/revalidation` requires header `x-vercel-reval-key` matching `CONTENTFUL_REVALIDATE_SECRET`. |
-| **Contentful preview** | `GET /api/draft` uses `CONTENTFUL_PREVIEW_SECRET` (query param `secret`). |
+| **HTTP Headers** | Next.js sets strict `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`. |
+| **Chat API** | Validates message shape/size; applies basic IP rate limiting; sanitizes OpenAI errors. |
+| **Daily Verse** | `/api/dailyVerse` requires `Authorization: Bearer <CRON_SECRET>`. |
+| **Contentful Cache** | `/api/revalidation` webhook requires `x-vercel-reval-key` matching `CONTENTFUL_REVALIDATE_SECRET`. |
+| **API Keys** | `OPENAI_API_KEY`, `BFL_API_KEY`, and Contentful Management tokens are strictly server-side. |
 
-**Contentful delivery tokens** (`NEXT_PUBLIC_CONTENTFUL_*`) are exposed to the browser by design for client-side fetches; use a **Content Delivery API** read-only token, not a management token.
+---
 
-Set **`OPENAI_API_KEY`** only on the server (never `NEXT_PUBLIC_`).
+## ⚙️ Environment Configuration
 
-## Environment variables
+Ensure `.env.local` contains the following keys for the system to function:
 
-Create a `.env.local` (or configure your host) with:
+### Frontend (Next.js Root)
+- `OPENAI_API_KEY` - For the chat and daily verse generator.
+- `NEXT_PUBLIC_CONTENTFUL_SPACE_ID` - Contentful Space ID.
+- `NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN` - Content Delivery API (CDA) token.
+- `CRON_SECRET` - For triggering Verse of the Day updates.
+- `CONTENTFUL_REVALIDATE_SECRET` - For Contentful webhooks.
 
-| Variable | Required | Purpose |
-|----------|----------|---------|
-| `OPENAI_API_KEY` | For chat + optional daily verse generation | OpenAI API |
-| `NEXT_PUBLIC_CONTENTFUL_SPACE_ID` | Blog | Contentful space |
-| `NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN` | Blog | Contentful Delivery API token |
-| `NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN` | Optional | Draft preview |
-| `CONTENTFUL_REVALIDATE_SECRET` | Optional | Webhook → `/api/revalidation` |
-| `CONTENTFUL_PREVIEW_SECRET` | Optional | `/api/draft` preview links |
-| `CRON_SECRET` | For `POST /api/dailyVerse` | Long random string; same value in `Authorization: Bearer …` |
-| `NEXT_PUBLIC_SITE_URL` | Recommended | Canonical site URL (e.g. `https://asbible.com`) for metadata / Open Graph |
+### Publisher Engine (`/contentful-blog-publisher/.env`)
+- `OPENAI_API_KEY` - For article writing.
+- `BFL_API_KEY` - For Black Forest Labs image generation (`flux-2-klein-9b`).
+- `GITHUB_TOKEN` - For creating article briefs as Gists.
+- `CONTENTFUL_SPACE_ID` & `CONTENTFUL_MANAGEMENT_TOKEN` - For pushing content directly into Contentful.
 
-### Connecting the blog (Contentful)
+---
 
-1. In Contentful, open **Settings → API keys** and copy **Space ID** and the **Content Delivery API — access token** (published content). Optionally copy the **Content Preview API** token for draft preview.
-2. Paste them into **`.env.local`** (see `.env.example`). Prefer the **Copy** buttons in the UI; characters are easy to misread from screenshots.
-3. **Content model** must match what `lib/contentful.ts` queries: a content type with API ID **`blog`**, with fields **`title`**, **`slug`**, **`excerpt`**, **`content`** (Rich text), **`publishedDate`**, and **`coverImage`** (Media, one asset). If your field IDs differ, update the GraphQL fields in `lib/contentful.ts`.
-4. After changing env vars, run **`npm run build`** again (Next.js inlines `NEXT_PUBLIC_*` at build time), then **`pm2 reload asbible`** (or restart PM2).
+## 🚀 Deployment & Operations
 
-If the build log shows `Contentful GraphQL: Authentication failed`, the Space ID or Delivery token is wrong or revoked — create a new API key in Contentful and update `.env.local`.
+The entire stack is designed to be hosted on a VPS (like Ubuntu) using PM2 for process management and Caddy as a reverse proxy.
 
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Production build
-
+### Next.js Production Build
 ```bash
 npm ci
 npm run build
-npm start
+pm2 start ecosystem.config.js # Starts the 'asbible' Next.js server on port 3000
 ```
+*Note: Run `npm run build && pm2 reload asbible` after any frontend UI changes.*
 
-### PM2 + Caddy (e.g. asbible.com)
-
-The app listens on **`127.0.0.1:3000`** only (see `ecosystem.config.js`) so it is not exposed publicly; **Caddy** terminates TLS and reverse-proxies by hostname. Other sites on the same Caddy instance use **different `host` blocks** — they do not interfere.
-
-1. **Env:** copy `.env.local` (from `.env.example`) on the server and set Contentful + `NEXT_PUBLIC_SITE_URL` (see **Connecting the blog** above).
-
-2. **Build and start with PM2** (from the repo directory):
-
-   ```bash
-   npm ci
-   npm run build
-   pm2 start ecosystem.config.js
-   pm2 save
-   ```
-
-   Optional: `pm2 startup` to revive processes after reboot.
-
-3. **Caddy:** merge the blocks in `deploy/caddy-asbible.snippet` into `/etc/caddy/Caddyfile` (keep your existing sites, e.g. `pdfs.onl`, in the same file). Then:
-
-   ```bash
-   sudo caddy validate --config /etc/caddy/Caddyfile
-   sudo systemctl reload caddy
-   ```
-
-4. **DNS:** point **A/AAAA** records for `asbible.com` and (if used) `www.asbible.com` to this server’s IP. Caddy will obtain certificates automatically.
-
-5. **Health:** `curl -I https://asbible.com` and `pm2 logs asbible`.
-
-## Bible data
-
-Translations live as large JSON files: `public/json/<abbreviation>.json` (e.g. `en_kjv.json`). The list of valid `version` query parameters matches `ALLOWED_BIBLE_VERSION_ABBREVS` in `lib/bibleBooks.ts`.
-
-## Refreshing the daily verse
-
-`POST /api/dailyVerse` generates JSON via OpenAI and writes `public/dailyVerse.json`.
-
-- Requires **`CRON_SECRET`** in the environment and header:  
-  `Authorization: Bearer <CRON_SECRET>`
-- On **serverless** hosts (e.g. Vercel), the filesystem is often read-only at runtime — use a VPS/PM2 setup, or change the implementation to write to object storage.
-
-Example (cron on a server):
-
+### Starting the Publishing Engines
+Navigate to `/contentful-blog-publisher` and run:
 ```bash
-curl -X POST -H "Authorization: Bearer $CRON_SECRET" https://your-domain/api/dailyVerse
+npm ci
+pm2 start ecosystem.config.cjs
+```
+This will launch both `blog-publisher` and `blog-publisher-2`.
+
+### PM2 Monitoring
+To check the health of all services:
+```bash
+pm2 status
+```
+You should see `asbible`, `blog-publisher`, and `blog-publisher-2` running. To monitor the logs of the automated writers:
+```bash
+pm2 logs blog-publisher-2
 ```
 
-## Contentful webhooks
+### Routing (Caddy)
+The Caddy reverse proxy (`/etc/caddy/Caddyfile`) terminates SSL and points `asbible.com` directly to `127.0.0.1:3000`.
 
-Point a Contentful webhook to `POST https://<your-domain>/api/revalidation` with header `x-vercel-reval-key: <CONTENTFUL_REVALIDATE_SECRET>` to invalidate cached articles (`revalidateTag('articles')`).
-
-## Automated blog publisher (optional)
-
-The folder **`contentful-blog-publisher/`** is a separate Node service that reads **`config.txt`**, optional **`topics.txt`** (keyword + language per line, rotating each run), uses **OpenAI** for article text and cover images (DALL·E), creates a **GitHub Gist** with the brief, and publishes to Contentful on a **~3-day** schedule with random jitter. See **`contentful-blog-publisher/README.md`**.
-
-## Blog URLs and Unicode slugs
-
-- Links use **`blogPostHref()`** (`lib/blogPath.ts`) so slugs with accents or spaces work in the browser.
-- **`getArticle`** accepts Unicode slugs; it previously rejected them and caused **404** — that is fixed.
-- To **require ASCII-only** slugs and return 404 for others, set **`BLOG_SLUG_ASCII_ONLY=true`** in the environment (default: allow Unicode).
-
-## License
-
-Private project; see repository owner.
+---
+*Maintained as a private project.*
