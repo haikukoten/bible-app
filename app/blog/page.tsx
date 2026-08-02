@@ -3,6 +3,12 @@ import { blogPostHref } from "@/lib/blogPath";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog | asBible",
+  description: "Explore thought-provoking articles on faith, spirituality, and more.",
+};
 
 export const revalidate = 60; // Revalidate every 60 seconds if new posts are added
 

@@ -41,7 +41,7 @@ const options = {
       return <p className="mb-6 text-xl leading-relaxed">{paragraphText}</p>;
     },
     [BLOCKS.HEADING_1]: (node: any, children: ReactNode) => (
-      <h1 className="text-3xl md:text-4xl font-bold mb-4">{children}</h1>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">{children}</h2>
     ),
     [BLOCKS.HEADING_2]: (node: any, children: ReactNode) => (
       <h2 className="text-2xl md:text-3xl font-bold mb-3">{children}</h2>
@@ -119,6 +119,9 @@ export async function generateMetadata(
   return {
     title,
     description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title,
       description,
@@ -171,7 +174,25 @@ export default async function BlogPostPage({
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-6 md:p-24">
-      <section className="w-full max-w-3xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: article?.title,
+            description: article?.excerpt,
+            image: coverImageUrl ? [coverImageUrl] : [],
+            datePublished: (article as any)?.publishedDate || new Date().toISOString(),
+            author: {
+              "@type": "Organization",
+              name: "asBible",
+              url: "https://asbible.com"
+            }
+          })
+        }}
+      />
+      <article className="w-full max-w-3xl">
         <div className="space-y-12">
           {/* Go Back Button */}
           <div className="mt-8">
@@ -264,7 +285,7 @@ export default async function BlogPostPage({
             </div>
           </div>
         </div>
-      </section>
+      </article>
       <CapiViewTracker />
     </main>
   );

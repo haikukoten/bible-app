@@ -37,9 +37,12 @@ export async function saveState(state: SchedulerState): Promise<void> {
   await fs.writeFile(p, JSON.stringify(state, null, 2), 'utf-8');
 }
 
-/** ~3 days + random 0–24h jitter (ms). */
+/** Configurable interval + random jitter (ms). Defaults to 3 days + 0-24h jitter. */
 export function computeNextRunAfterSuccess(from: Date): Date {
-  const threeDays = 3 * 24 * 60 * 60 * 1000;
-  const jitter = Math.floor(Math.random() * 24 * 60 * 60 * 1000);
-  return new Date(from.getTime() + threeDays + jitter);
+  const baseIntervalHrs = parseFloat(process.env.RUN_INTERVAL_HOURS || '72');
+  const jitterHrs = parseFloat(process.env.RUN_JITTER_HOURS || '24');
+
+  const base = baseIntervalHrs * 60 * 60 * 1000;
+  const jitter = Math.floor(Math.random() * jitterHrs * 60 * 60 * 1000);
+  return new Date(from.getTime() + base + jitter);
 }

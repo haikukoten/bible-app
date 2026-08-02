@@ -196,7 +196,7 @@ export async function generateCoverImageBuffer(params: {
   const width = parseInt(widthStr, 10) || 1024;
   const height = parseInt(heightStr, 10) || 1024;
 
-  const model = process.env.BFL_IMAGE_MODEL || 'flux-2-pro';
+  const model = process.env.BFL_IMAGE_MODEL || 'flux-2-klein-9b';
   const BFL_URL = `https://api.bfl.ai/v1/${model}`;
 
   console.log(`[pipeline] Requesting image from BFL (${model})...`);
