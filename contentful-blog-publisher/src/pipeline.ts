@@ -9,7 +9,8 @@ import { createArticleGist } from './gist.js';
 import { blocksToDocument, type BodyBlock } from './richText.js';
 import { publishBlogPost } from './contentfulPublish.js';
 import { loadTopics, type BlogTopic } from './topics.js';
-import { addInternalLinksToDocument } from './internalLinker.js';
+import { addInternalLinksToDocument, addEmbeddingToStore } from './internalLinker.js';
+import type { ArticleBrief, ArticleBodyJson } from './openai.js';
 
 /** Unicode-friendly slug (matches Contentful + Next URL encoding). */
 export function uniqueSlugFromTitle(title: string): string {
@@ -127,5 +128,12 @@ async function publishOneArticle(
   });
 
   console.log('[pipeline] Published entry:', entryId, 'slug:', slug);
+
+  console.log('[pipeline] Adding new article to semantic vector store...');
+  try {
+    await addEmbeddingToStore(brief.title, body.excerpt, slug);
+  } catch (error) {
+    console.error('[pipeline] Error adding embedding to store:', error);
+  }
 }
 

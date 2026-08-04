@@ -6,9 +6,9 @@ import Image from "next/image";
 import { getAllArticles } from "@/lib/contentful";
 import { blogPostHref } from "@/lib/blogPath";
 import dynamic from 'next/dynamic';
+import SubscribeForm from '@/components/SubscribeForm';
 
-// Import DailyVerse dynamically to disable SSR (as it uses client-side hooks)
-const DailyVerse = dynamic(() => import('@/components/DailyVerse'), { ssr: false });
+import DailyVerse from '@/components/DailyVerse';
 
 export const revalidate = 60;
 
@@ -39,6 +39,9 @@ export default async function Home() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <DailyVerse /> {/* Use DailyVerse component here */}
+            <div className="w-full mt-6">
+              <SubscribeForm variant="inline" />
+            </div>
           </div>
         </div>
       </section>
@@ -50,7 +53,7 @@ export default async function Home() {
             Latest Blog Posts
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {allPostsData.map((post) => (
+            {allPostsData.map((post, index) => (
               <Card key={post.sys.id} className="flex flex-col justify-between h-full">
                 <div>
                   <CardHeader>
@@ -65,6 +68,7 @@ export default async function Home() {
                         width={350}
                         height={200}
                         className="rounded-lg object-cover w-full"
+                        priority={index === 0}
                       />
                     )}
                     <p className="mt-4">{post.excerpt}</p>

@@ -20,10 +20,21 @@ export default function ShareButtons({ title, horizontal = false }: ShareButtons
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 
+  const trackShare = (platform: string) => {
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag('event', 'share', {
+        method: platform,
+        content_type: 'article',
+        item_id: title,
+      });
+    }
+  };
+
   const handleCopyLink = () => {
     if (!url) return;
     navigator.clipboard.writeText(url);
     setCopied(true);
+    trackShare('Copy Link');
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -51,19 +62,19 @@ export default function ShareButtons({ title, horizontal = false }: ShareButtons
 
   return (
     <div className={containerClass}>
-      <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+      <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" onClick={() => trackShare('Facebook')}>
         <Button size="icon" className="rounded-full bg-[#1877F2] text-white hover:bg-[#0c63d4] h-11 w-11 md:h-12 md:w-12 shadow-md hover:shadow-lg transition-all">
           <Facebook className="h-5 w-5" fill="currentColor" />
         </Button>
       </a>
-      <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+      <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" onClick={() => trackShare('Twitter')}>
         <Button size="icon" className="rounded-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 h-11 w-11 md:h-12 md:w-12 shadow-md hover:shadow-lg transition-all">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
           </svg>
         </Button>
       </a>
-      <a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">
+      <a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" onClick={() => trackShare('WhatsApp')}>
         <Button size="icon" className="rounded-full bg-[#25D366] text-white hover:bg-[#1ebd59] h-11 w-11 md:h-12 md:w-12 shadow-md hover:shadow-lg transition-all">
           <svg
             xmlns="http://www.w3.org/2000/svg"

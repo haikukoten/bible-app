@@ -1,6 +1,13 @@
 import './loadEnv.js';
 import { createRequire } from 'module';
 import type { Document, Node, Text, Block, Inline, Paragraph } from '@contentful/rich-text-types';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { pipeline, env } from '@xenova/transformers';
+
+// Use remote models (cached locally by default)
+env.allowLocalModels = false;
 
 const require = createRequire(import.meta.url);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,26 +23,68 @@ function apiKey(): string {
   return k;
 }
 
-// Fetch Sitemap
-async function fetchSitemap(): Promise<Array<{ slug: string }>> {
-  console.log('[internalLinker] Fetching sitemap...');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const EMBEDDINGS_FILE = path.join(__dirname, '../data/embeddings.json');
+
+export type ArticleEmbedding = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  embedding: number[];
+};
+
+export async function loadEmbeddings(): Promise<ArticleEmbedding[]> {
   try {
-    const res = await fetch('https://asbible.com/api/sitemap', { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const xml = await res.text();
-    // Parse basic XML to extract /blog/ slugs
-    const slugRegex = /<loc>https:\/\/asbible\.com\/blog\/([^<]+)<\/loc>/g;
-    const slugs = [];
-    let match;
-    while ((match = slugRegex.exec(xml)) !== null) {
-      slugs.push({ slug: match[1] });
-    }
-    console.log(`[internalLinker] Found ${slugs.length} blog posts in sitemap.`);
-    return slugs;
-  } catch (error) {
-    console.error('[internalLinker] Error fetching sitemap:', error);
+    const data = await fs.readFile(EMBEDDINGS_FILE, 'utf-8');
+    return JSON.parse(data) as ArticleEmbedding[];
+  } catch (err: any) {
+    if (err.code === 'ENOENT') return [];
+    console.error('[internalLinker] Error loading embeddings:', err);
     return [];
   }
+}
+
+export async function saveEmbeddings(data: ArticleEmbedding[]) {
+  await fs.writeFile(EMBEDDINGS_FILE, JSON.stringify(data, null, 2), 'utf-8');
+}
+
+let extractorInstance: any = null;
+async function getExtractor() {
+  if (!extractorInstance) {
+    console.log('[internalLinker] Loading local AI embeddings model (Xenova/all-MiniLM-L6-v2)...');
+    extractorInstance = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+  }
+  return extractorInstance;
+}
+
+async function getEmbedding(text: string): Promise<number[]> {
+  const ex = await getExtractor();
+  // Mean pooling and normalize for cosine similarity
+  const output = await ex(text.substring(0, 4000), { pooling: 'mean', normalize: true });
+  return Array.from(output.data);
+}
+
+export async function addEmbeddingToStore(title: string, excerpt: string, slug: string) {
+  const text = `${title}\n\n${excerpt}`;
+  console.log(`[internalLinker] Generating local AI embedding for: ${slug}`);
+  const embedding = await getEmbedding(text);
+  
+  const store = await loadEmbeddings();
+  const filtered = store.filter(e => e.slug !== slug);
+  filtered.push({ slug, title, excerpt, embedding });
+  await saveEmbeddings(filtered);
+  console.log(`[internalLinker] Saved embedding for ${slug}. Total index size: ${filtered.length}`);
+}
+
+function cosineSimilarity(vecA: number[], vecB: number[]): number {
+  let dotProduct = 0, normA = 0, normB = 0;
+  for (let i = 0; i < vecA.length; i++) {
+    dotProduct += vecA[i] * vecB[i];
+    normA += vecA[i] * vecA[i];
+    normB += vecB[i] * vecB[i];
+  }
+  if (normA === 0 || normB === 0) return 0;
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
 // Extract pure text from Contentful Document
@@ -61,11 +110,11 @@ async function getLinkingSuggestions(articleText: string, availableSlugs: string
   
   const systemPrompt = 'You follow instructions and respond with a single valid JSON object only, no markdown fences.';
   
-  const userPrompt = `You are an SEO internal linking assistant. I have an article and a list of available article slugs.
+  const userPrompt = `You are an SEO internal linking assistant. I have an article and a list of highly relevant available article slugs.
 Your task is to identify up to ${maxLinks} exact phrases in the article text that conceptually relate to the available slugs, so they can be hyperlinked.
 
 Available slugs:
-${availableSlugs.slice(0, 100).join('\n')}
+${availableSlugs.join('\n')}
 
 Article text:
 ---
@@ -78,7 +127,8 @@ Rules:
 3. "slug" MUST be exactly one of the slugs from the available list.
 4. Provide a maximum of ${maxLinks} links. Return fewer if there are no good matches.
 5. If no relevant links are found, return { "links": [] }.
-6. Do not wrap the JSON in markdown fences. Just output the JSON.`;
+6. Do not evaluate every slug in your thoughts. Just find a few good matches quickly and output the final JSON.
+7. You follow instructions and respond with a single valid JSON object only, no markdown fences.`;
 
   console.log(`[internalLinker] Asking MiniMax for up to ${maxLinks} links...`);
   const res = await fetch(MINIMAX_CHAT, {
@@ -106,8 +156,6 @@ Rules:
   }
 
   let rawText = data.choices?.[0]?.message?.content?.trim() || '';
-  console.log('[internalLinker] RAW MINIMAX OUTPUT (first 500 chars):\n', rawText.substring(0, 500));
-  
   let text = rawText;
   
   // Remove think block
@@ -126,8 +174,6 @@ Rules:
 
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (jsonMatch) text = jsonMatch[0];
-  
-  console.log('[internalLinker] Extracted JSON length:', text.length);
 
   try {
     const parsed = JSON.parse(text);
@@ -160,7 +206,6 @@ function injectLinksIntoDocument(doc: Document, suggestions: Array<{ exact_text:
     });
 
     if (afterText) {
-      // Process the remaining text for multiple occurrences (optional, but let's keep it simple and just do first match per node)
       result.push({ ...textNode, value: afterText });
     }
 
@@ -204,18 +249,32 @@ function injectLinksIntoDocument(doc: Document, suggestions: Array<{ exact_text:
 }
 
 export async function addInternalLinksToDocument(doc: Document, currentSlug: string, maxLinks = 4): Promise<Document> {
-  console.log(`[internalLinker] Processing in-memory document for internal links...`);
+  console.log(`[internalLinker] Processing in-memory document for internal links via RAG...`);
   const articleText = extractTextFromDocument(doc);
   
-  const sitemapSlugs = await fetchSitemap();
-  const availableSlugs = sitemapSlugs.map(s => s.slug).filter(s => s !== currentSlug);
+  const embeddingsStore = await loadEmbeddings();
+  const availableDocs = embeddingsStore.filter(s => s.slug !== currentSlug);
 
-  if (availableSlugs.length === 0) {
-    console.log('[internalLinker] No available slugs to link to.');
+  if (availableDocs.length === 0) {
+    console.log('[internalLinker] No available slugs in vector store.');
     return doc;
   }
 
-  const suggestions = await getLinkingSuggestions(articleText, availableSlugs, maxLinks);
+  // Generate embedding for current text
+  console.log('[internalLinker] Generating embedding for current article text...');
+  const queryEmbedding = await getEmbedding(articleText);
+
+  // Rank slugs
+  const ranked = availableDocs.map(item => ({
+    slug: item.slug,
+    score: cosineSimilarity(queryEmbedding, item.embedding)
+  })).sort((a, b) => b.score - a.score);
+
+  // Take top 5
+  const topMatches = ranked.slice(0, 5).map(r => r.slug);
+  console.log(`[internalLinker] Top semantic matches: ${topMatches.join(', ')}`);
+
+  const suggestions = await getLinkingSuggestions(articleText, topMatches, maxLinks);
   
   if (suggestions.length === 0) {
     console.log('[internalLinker] MiniMax returned no linking suggestions.');
@@ -250,7 +309,7 @@ export async function processArticleForInternalLinking(entryId: string, maxLinks
 
   const doc = entry.fields.content[loc] as Document;
   
-  const updatedDoc = await addInternalLinksToDocument(doc, entry.fields.slug[loc], maxLinks);
+  const updatedDoc = await addInternalLinksToDocument(doc, (entry.fields.slug[loc] as string) || '', maxLinks);
   
   // Update entry
   entry.fields.content[loc] = updatedDoc;

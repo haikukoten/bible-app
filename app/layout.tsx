@@ -2,12 +2,7 @@ import './globals.css';
 import ClientNavbar from '@/components/ClientNavbar'; // Import the Client Navbar
 import Link from 'next/link';
 import Script from 'next/script'; // Import the Next.js Script component
-import { Caveat, Pacifico, Dancing_Script } from 'next/font/google';
 import CapiFormTracker from '@/components/CapiFormTracker';
-
-const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' });
-const pacifico = Pacifico({ weight: '400', subsets: ['latin'], variable: '--font-pacifico' });
-const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing-script' });
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://asbible.com';
@@ -64,7 +59,7 @@ export default function RootLayout({
           />
         </noscript>
       </head>
-      <body className={`${caveat.variable} ${pacifico.variable} ${dancingScript.variable}`}>
+      <body className="min-h-screen">
         <CapiFormTracker />
         <div className="flex flex-col min-h-screen bg-background">
           <ClientNavbar /> {/* Use the Client Component here */}
