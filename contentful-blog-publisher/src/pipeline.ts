@@ -92,8 +92,7 @@ async function publishOneArticle(
 
   console.log('[pipeline] Generating cover image (OpenAI Images)…');
   const { buffer: imageBuffer, mimeType } = await generateCoverImageBuffer({
-    excerpt: brief.excerpt,
-    title: brief.title,
+    imagePrompt: brief.image_prompt,
   });
 
   console.log('[pipeline] Writing article body (OpenAI)…');

@@ -69,6 +69,7 @@ export type TopicContext = {
 export type ArticleBrief = {
   title: string;
   excerpt: string;
+  image_prompt: string;
   gistBody: string;
 };
 
@@ -105,13 +106,14 @@ ${topicBlock}
 Return a single JSON object with keys:
 - "title": string — compelling article title
 - "excerpt": string — 2–3 sentences for the listing card (plain text). **Hard limit: 255 characters max** (CMS field). Rich mood/themes; stay under the cap.
+- "image_prompt": string — a purely physical, literal visual description of a scene representing the article (e.g., "A shepherd resting under a large oak tree in a sunlit valley"). DO NOT include any text, typography, symbols, or mention abstract concepts/scriptures.
 - "gistBody": string — markdown for a GitHub Gist: title, the excerpt, a bullet outline, and 5–8 section headings you will expand in the full long-form article.
 
 Keep the tone consistent with the brief. Avoid harmful or hateful content.`;
 
   const raw = await chatJson(JSON_SYSTEM, user, 0.85, 8192);
   const parsed = JSON.parse(raw) as ArticleBrief;
-  if (!parsed.title || !parsed.excerpt || !parsed.gistBody) {
+  if (!parsed.title || !parsed.excerpt || !parsed.gistBody || !parsed.image_prompt) {
     throw new Error('Article brief JSON missing required fields');
   }
   return parsed;
@@ -167,16 +169,12 @@ Rules:
  * Prompt is built from the article excerpt so the visual matches the card copy.
  */
 export async function generateCoverImageBuffer(params: {
-  excerpt: string;
-  title?: string;
+  imagePrompt: string;
 }): Promise<{ buffer: Buffer; mimeType: string }> {
   const bflKey = process.env.BFL_API_KEY;
   if (!bflKey) throw new Error('BFL_API_KEY is required for image generation');
 
-  const excerpt = params.excerpt.trim();
-  const titleHint = params.title?.trim()
-    ? `Context (do not render as text in the image): ${params.title.trim()}\n\n`
-    : '';
+  const cleanPrompt = params.imagePrompt.trim();
     
   const artStyles = [
     "Soft watercolor painting, natural textures, gentle brushstrokes, ethereal lighting",
@@ -189,7 +187,7 @@ export async function generateCoverImageBuffer(params: {
   ];
   const randomStyle = artStyles[Math.floor(Math.random() * artStyles.length)];
 
-  const fullPrompt = `${titleHint}A highly detailed, evocative scene capturing the essence of this theme: "${excerpt}". Art Style: ${randomStyle}. Composition: Clean, warm, and respectful. Mood: Serene, inspiring, grounded. CRITICAL NOTE: Absolutely no text, no letters, no numbers, no words, no signatures, and no watermarks anywhere in the image.`;
+  const fullPrompt = `A highly detailed, purely visual and evocative scene: ${cleanPrompt}. Art Style: ${randomStyle}. Composition: Clean, warm, and respectful. Mood: Serene, inspiring, grounded.`;
 
   const envSize = process.env.OPENAI_IMAGE_SIZE || process.env.BFL_IMAGE_SIZE || '1024x1024';
   const [widthStr, heightStr] = envSize.split('x');
